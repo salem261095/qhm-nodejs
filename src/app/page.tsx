@@ -1,7 +1,7 @@
 export default function Home() {
   return (
     <main>
-      <h1>Blank Project</h1>
+      <h1>laoding</h1>
     </main>
   );
 }
