@@ -7,8 +7,6 @@ import { ArrowRight } from "lucide-react";
 
 const ease = [0.22, 1, 0.36, 1] as [number, number, number, number];
 
-const heroSignals = ["Corporate", "FDI", "Tax & Zakat", "Disputes", "Technology"];
-
 export default function HeroSection() {
   const { hero } = homepageContent;
 
@@ -85,22 +83,6 @@ export default function HeroSection() {
                 "linear-gradient(180deg, rgba(31,41,51,0.08), rgba(31,41,51,0.62))",
             }}
           />
-
-          <div className="absolute bottom-0 left-0 right-0 border-t border-white/18 bg-gray-850/72 backdrop-blur-sm">
-            <div className="grid grid-cols-2 gap-px bg-white/12 sm:grid-cols-5">
-              {heroSignals.map((signal, index) => (
-                <motion.div
-                  key={signal}
-                  initial={{ opacity: 0, y: 18 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.55, ease, delay: 0.58 + index * 0.07 }}
-                  className="bg-gray-850/72 px-4 py-4 text-xs font-light uppercase text-white/62"
-                >
-                  {signal}
-                </motion.div>
-              ))}
-            </div>
-          </div>
         </motion.div>
       </div>
     </section>
