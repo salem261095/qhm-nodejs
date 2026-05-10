@@ -3,177 +3,455 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { motion, AnimatePresence } from "framer-motion";
-import { Mail, Phone, ArrowUpRight, X, ChevronRight } from "lucide-react";
-import { teamMembers } from "@/data/lawyers";
+import { AnimatePresence, motion } from "framer-motion";
+import { ArrowRight, ArrowUpRight, Mail, Phone, X } from "lucide-react";
 
-const fadeIn = {
-  hidden: { opacity: 0, y: 24 },
-  visible: (i = 0) => ({
-    opacity: 1, y: 0,
-    transition: { delay: i * 0.07, duration: 0.6, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] },
-  }),
+type TeamMember = {
+  name: string;
+  phone?: string;
+  role: string;
+  email?: string;
+  image: string;
+  description?: string[];
 };
 
-type Member = typeof teamMembers[number];
+const headshotBase = "/assets/For Website Upgrade/FinalHeadShotsForWebsite";
 
-function MemberModal({ member, onClose }: { member: Member; onClose: () => void }) {
+const teamMembers: TeamMember[] = [
+  {
+    name: "Dr. Qaisar H. Metawea",
+    role: "Managing Partner",
+    image: `${headshotBase}/Qaisar.jpg`,
+    description: [
+      "Qaisar Hamed Metawea Law Firm (QHM) is a Saudi-based corporate law firm advising multinational companies, financial institutions, and regional headquarters on market entry, regulatory compliance, high-value transactions, tax disputes, and complex commercial matters across the Kingdom.",
+      "We deliver partner-led, commercially driven legal solutions designed to provide regulatory certainty, mitigate transactional risk, and accelerate speed to market.",
+    ],
+  },
+  { name: "Yasser Mustafa", phone: "503195639", role: "Counsel - Head of Riyadh", email: "yam@qhmlawfirm.com", image: `${headshotBase}/Yasser Mustafa.jpg` },
+  { name: "Tamer Elnagar", phone: "564200245", role: "Counsel", email: "hmb@qhmlawfirm.com", image: `${headshotBase}/Tamer Elnagar.jpg` },
+  { name: "Amna Usman", phone: "541018241", role: "Managing Associate", email: "anu@qhmlawfirm.com", image: `${headshotBase}/Amna Usman.jpg` },
+  { name: "Hamed Matawi", phone: "540612000", role: "Managing Associate", email: "ham@qhmlawfirm.com", image: `${headshotBase}/Hamed Matawi.jpg` },
+  { name: "Muayd Johar", phone: "542616176", role: "Managing Associate", email: "mhj@qhmlawfirm.com", image: `${headshotBase}/Muayd Johar.jpg` },
+  { name: "Mahmoud Bashandy", phone: "537876104", role: "Managing Associate", email: "msb@qhmlawfirm.com", image: `${headshotBase}/Mahmoud Bashandy.jpg` },
+  { name: "Abdulelah Ashmawi", phone: "555666089", role: "Senior Associate", email: "ama@qhmlawfirm.com", image: `${headshotBase}/Abdulelah Ashmawi.jpg` },
+  { name: "Deema Daqqaq", phone: "538775566", role: "Associate", email: "dad@qhmlawfirm.com", image: `${headshotBase}/Deema Daqqaq.jpg` },
+  { name: "Tamara Khattab", phone: "506698555", role: "Associate", email: "thk@qhmlawfirm.com", image: `${headshotBase}/Tamara Khattab.jpg` },
+  { name: "Talah Reda", phone: "553539876", role: "Junior Associate", email: "tkr@qhmlawfirm.com", image: `${headshotBase}/Talah Reda.jpg` },
+  { name: "Abdulmajeed Ghandoorah", phone: "566624679", role: "Trainee Lawyer", email: "ahg@qhmlawfirm.com", image: `${headshotBase}/Abdulmajeed Ghandoorah.jpg` },
+  { name: "Oays Mansori", phone: "598970517", role: "Trainee Lawyer", email: "omm@qhmlawfirm.com", image: `${headshotBase}/Oays Mansori.jpg` },
+  { name: "Nada Al Mehdar", phone: "544460560", role: "Finance", email: "nat@qhmlawfirm.com", image: `${headshotBase}/Nada Al Mehdar .jpg` },
+  { name: "Syed Rezavi", phone: "566044203", role: "Marketing & BD", email: "skr@qhmlawfirm.com", image: `${headshotBase}/Syed Rezavi.jpg` },
+];
+
+const roles = ["All", "Leadership", "Counsel", "Associates", "Operations"] as const;
+
+const ease = [0.22, 1, 0.36, 1] as [number, number, number, number];
+
+const container = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.07,
+      delayChildren: 0.05,
+    },
+  },
+};
+
+const item = {
+  hidden: { opacity: 0, y: 28, clipPath: "inset(0 0 14% 0)" },
+  visible: {
+    opacity: 1,
+    y: 0,
+    clipPath: "inset(0 0 0% 0)",
+    transition: { duration: 0.7, ease },
+  },
+};
+
+function TextReveal({ children, delay = 0 }: { children: string; delay?: number }) {
+  return (
+    <>
+      {children.split("\n").map((line, index) => (
+        <span key={line} className="block overflow-hidden">
+          <motion.span
+            initial={{ y: "112%" }}
+            animate={{ y: 0 }}
+            transition={{ delay: delay + index * 0.1, duration: 0.85, ease }}
+            className="block"
+          >
+            {line}
+          </motion.span>
+        </span>
+      ))}
+    </>
+  );
+}
+
+function ScrollTextReveal({ children }: { children: string }) {
+  return (
+    <>
+      {children.split("\n").map((line, index) => (
+        <span key={line} className="block overflow-hidden">
+          <motion.span
+            variants={{
+              hidden: { y: "112%" },
+              visible: {
+                y: 0,
+                transition: { delay: index * 0.08, duration: 0.78, ease },
+              },
+            }}
+            className="block"
+          >
+            {line}
+          </motion.span>
+        </span>
+      ))}
+    </>
+  );
+}
+
+function cleanPhone(phone?: string) {
+  if (!phone) return "";
+  return `+966 ${phone.slice(0, 2)} ${phone.slice(2, 5)} ${phone.slice(5)}`;
+}
+
+function phoneHref(phone?: string) {
+  if (!phone) return "";
+  return `tel:+966${phone}`;
+}
+
+function roleGroup(member: TeamMember) {
+  const role = member.role.toLowerCase();
+  if (role.includes("partner") || role.includes("head")) return "Leadership";
+  if (role.includes("counsel")) return "Counsel";
+  if (role.includes("finance") || role.includes("marketing")) return "Operations";
+  return "Associates";
+}
+
+function getInitials(name: string) {
+  return name
+    .replace("Dr. ", "")
+    .split(" ")
+    .map((part) => part[0])
+    .join("")
+    .slice(0, 2);
+}
+
+function MemberModal({ member, onClose }: { member: TeamMember; onClose: () => void }) {
   return (
     <motion.div
-      initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-      className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-0 sm:p-6 bg-black/60 backdrop-blur-sm"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="fixed inset-0 z-50 flex items-end justify-center bg-black/65 p-0 backdrop-blur-sm sm:items-center sm:p-6"
       onClick={onClose}
     >
-      <motion.div
-        initial={{ y: "100%", opacity: 0 }} animate={{ y: 0, opacity: 1 }}
-        exit={{ y: "100%", opacity: 0 }}
-        transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-        onClick={(e) => e.stopPropagation()}
-        className="bg-white w-full sm:max-w-2xl max-h-[90vh] overflow-y-auto"
+      <motion.article
+        initial={{ y: 60, opacity: 0, clipPath: "inset(8% 0 0 0)" }}
+        animate={{ y: 0, opacity: 1, clipPath: "inset(0% 0 0 0)" }}
+        exit={{ y: 48, opacity: 0, clipPath: "inset(8% 0 0 0)" }}
+        transition={{ duration: 0.45, ease }}
+        onClick={(event) => event.stopPropagation()}
+        className="grid max-h-[92vh] w-full max-w-5xl overflow-y-auto bg-white lg:grid-cols-[0.9fr_1.1fr]"
       >
-        <div className="sticky top-0 bg-white z-10 flex items-center justify-between px-8 py-5 border-b border-gray-100">
-          <div>
-            <p className="text-xs font-bold tracking-[0.25em] uppercase text-brand">{member.position}</p>
-            <h2 className="text-xl font-extrabold text-gray-950 mt-0.5">{member.name}</h2>
-          </div>
-          <button onClick={onClose} className="w-9 h-9 flex items-center justify-center text-gray-400 hover:text-gray-900 hover:bg-gray-100 transition-colors">
-            <X size={18} />
-          </button>
-        </div>
-        <div className="px-8 py-8">
-          {member.bio.length > 0 && (
-            <div className="space-y-4 mb-8">
-              {member.bio.map((para, i) => <p key={i} className="text-gray-600 text-sm leading-relaxed">{para}</p>)}
+        <motion.div
+          initial={{ clipPath: "inset(0 16% 0 0)", scale: 1.08 }}
+          animate={{ clipPath: "inset(0 0% 0 0)", scale: 1 }}
+          transition={{ duration: 0.72, ease }}
+          className="relative min-h-[420px] bg-brand/5"
+        >
+          <Image
+            src={member.image}
+            alt={member.name}
+            fill
+            className="object-cover object-top grayscale"
+            sizes="(max-width: 1024px) 100vw, 42vw"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/28 to-transparent" />
+        </motion.div>
+
+        <div className="flex min-h-[420px] flex-col p-7 sm:p-9 lg:p-12">
+          <motion.div
+            initial="hidden"
+            animate="visible"
+            variants={container}
+            className="mb-12 flex items-start justify-between gap-8"
+          >
+            <div>
+              <motion.p variants={item} className="text-xs font-light uppercase text-brand/55">{member.role}</motion.p>
+              <motion.h2 variants={item} className="mt-4 text-4xl font-semibold leading-tight text-brand sm:text-5xl">{member.name}</motion.h2>
             </div>
-          )}
-          {member.practices.length > 0 && (
-            <div className="border-t border-gray-100 pt-8">
-              <p className="text-xs font-bold tracking-[0.3em] uppercase text-brand mb-4">Practice Areas</p>
-              <div className="flex flex-wrap gap-2">
-                {member.practices.map((p) => (
-                  <span key={p} className="text-xs font-semibold bg-gray-50 border border-gray-100 text-gray-700 px-3 py-1.5">{p}</span>
+            <motion.button
+              initial={{ opacity: 0, rotate: -12 }}
+              animate={{ opacity: 1, rotate: 0 }}
+              transition={{ delay: 0.18, duration: 0.4, ease }}
+              type="button"
+              onClick={onClose}
+              className="flex h-11 w-11 shrink-0 items-center justify-center border border-brand/18 text-brand transition-colors hover:bg-brand hover:text-white"
+              aria-label="Close profile"
+            >
+              <X size={18} />
+            </motion.button>
+          </motion.div>
+
+          <motion.div
+            initial="hidden"
+            animate="visible"
+            variants={container}
+            className="mt-auto space-y-4 border-t border-brand/12 pt-8"
+          >
+            {member.description && (
+              <div className="space-y-4 pb-5">
+                {member.description.map((paragraph) => (
+                  <motion.p key={paragraph} variants={item} className="text-sm leading-7 text-black/58">
+                    {paragraph}
+                  </motion.p>
                 ))}
               </div>
-            </div>
-          )}
-          {"email" in member && member.email && (
-            <div className="border-t border-gray-100 pt-8 mt-8 flex flex-col sm:flex-row gap-4">
-              <a href={`mailto:${member.email}`} className="inline-flex items-center gap-2 text-sm font-bold text-brand hover:underline">
-                <Mail size={14} /> {member.email}
-              </a>
-              {"phone" in member && (member as { phone?: string }).phone && (
-                <a href={`tel:${(member as { phone?: string }).phone}`} className="inline-flex items-center gap-2 text-sm font-bold text-gray-500 hover:text-brand transition-colors">
-                  <Phone size={14} /> {(member as { phone?: string }).phone}
-                </a>
-              )}
-            </div>
-          )}
+            )}
+            {member.email && (
+              <motion.a variants={item} href={`mailto:${member.email}`} className="group flex items-center justify-between gap-5 border-b border-brand/10 pb-4 text-brand">
+                <span className="inline-flex items-center gap-3 text-sm">
+                  <Mail size={16} />
+                  {member.email}
+                </span>
+                <ArrowUpRight size={16} className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+              </motion.a>
+            )}
+            {member.phone && (
+              <motion.a variants={item} href={phoneHref(member.phone)} className="group flex items-center justify-between gap-5 border-b border-brand/10 pb-4 text-brand">
+                <span className="inline-flex items-center gap-3 text-sm">
+                  <Phone size={16} />
+                  {cleanPhone(member.phone)}
+                </span>
+                <ArrowUpRight size={16} className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+              </motion.a>
+            )}
+            {!member.email && !member.phone && (
+              <motion.p variants={item} className="text-sm leading-7 text-black/52">Contact details are handled through the firm reception.</motion.p>
+            )}
+          </motion.div>
         </div>
-      </motion.div>
+      </motion.article>
     </motion.div>
   );
 }
 
-function MemberCard({ member, index, onClick }: { member: Member; index: number; onClick: () => void }) {
-  const hasPhoto = !member.image.includes("placeholder");
+function FeaturedMember({ member, onSelect }: { member: TeamMember; onSelect: () => void }) {
   return (
-    <motion.div custom={index} variants={fadeIn} onClick={onClick}
-      className="group cursor-pointer bg-white border border-gray-100 hover:border-brand/30 hover:shadow-lg transition-all duration-300"
+    <motion.button
+      type="button"
+      variants={item}
+      onClick={onSelect}
+      whileHover={{ y: -6 }}
+      transition={{ duration: 0.35, ease }}
+      className="group grid w-full overflow-hidden bg-brand text-left text-white lg:grid-cols-[0.92fr_1.08fr]"
     >
-      <div className="relative h-64 bg-gray-100 overflow-hidden">
-        {hasPhoto ? (
-          <Image src={member.image} alt={member.name} fill
-            className="object-cover object-top grayscale group-hover:grayscale-0 transition-all duration-500"
-            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-          />
-        ) : (
-          <div className="w-full h-full flex items-center justify-center bg-gray-50">
-            <span className="text-4xl font-extrabold text-gray-200">
-              {member.name.split(" ").map((n) => n[0]).join("").slice(0, 2)}
-            </span>
-          </div>
+      <motion.div
+        variants={{
+          hidden: { clipPath: "inset(8% 0 8% 0)" },
+          visible: { clipPath: "inset(0% 0 0% 0)", transition: { duration: 0.95, ease } },
+        }}
+        className="relative min-h-[460px] overflow-hidden bg-white/5 sm:min-h-[560px] lg:min-h-[680px]"
+      >
+        <Image
+          src={member.image}
+          alt={member.name}
+          fill
+          priority
+          className="scale-[1.13] object-cover object-[68%_center] grayscale transition duration-700 group-hover:scale-[1.03] group-hover:grayscale-0 lg:object-[72%_center]"
+          sizes="(max-width: 1024px) 100vw, 46vw"
+        />
+        <div className="absolute inset-0 bg-brand/15 transition-opacity group-hover:opacity-0" />
+      </motion.div>
+      <div className="flex min-h-[420px] flex-col justify-end p-7 sm:p-10 lg:p-14">
+        <motion.p variants={item} className="text-xs font-light uppercase text-white/48">{member.role}</motion.p>
+        <motion.h2 variants={item} className="mt-5 max-w-3xl text-5xl font-semibold leading-[0.98] sm:text-6xl lg:text-7xl">
+          <ScrollTextReveal>{member.name}</ScrollTextReveal>
+        </motion.h2>
+        {member.description && (
+          <motion.p variants={item} className="mt-8 max-w-2xl text-sm leading-7 text-white/62 sm:text-base sm:leading-8">
+            {member.description[0]}
+          </motion.p>
         )}
-        <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity">
-          <div className="w-8 h-8 bg-brand flex items-center justify-center">
-            <ArrowUpRight size={14} className="text-white" />
-          </div>
+        <motion.div variants={item} className="mt-10 flex items-center justify-between border-t border-white/16 pt-6">
+          <span className="text-sm font-light text-white/58">View profile</span>
+          <ArrowUpRight size={20} className="transition-transform group-hover:-translate-y-1 group-hover:translate-x-1" />
+        </motion.div>
+      </div>
+    </motion.button>
+  );
+}
+
+function MemberCard({ member, index, onSelect }: { member: TeamMember; index: number; onSelect: () => void }) {
+  return (
+    <motion.button
+      type="button"
+      custom={index}
+      variants={item}
+      onClick={onSelect}
+      layout
+      whileHover={{ y: -6 }}
+      whileTap={{ scale: 0.985 }}
+      transition={{ duration: 0.32, ease }}
+      className="group flex min-h-[420px] flex-col bg-white text-left transition-colors hover:bg-brand hover:text-white"
+    >
+      <div className="relative h-72 overflow-hidden bg-brand/5">
+        <Image
+          src={member.image}
+          alt={member.name}
+          fill
+          className="scale-[1.12] object-cover object-top grayscale transition duration-700 group-hover:scale-[1.02] group-hover:grayscale-0"
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+        />
+        <div className="absolute left-4 top-4 bg-white px-3 py-2 text-xs font-light text-brand transition-colors group-hover:bg-brand group-hover:text-white">
+          {String(index + 1).padStart(2, "0")}
         </div>
       </div>
-      <div className="p-6">
-        <p className="text-xs font-bold tracking-[0.25em] uppercase text-brand mb-1">{member.position}</p>
-        <h3 className="font-extrabold text-gray-950 text-lg leading-tight">{member.name}</h3>
-        {member.practices.length > 0 && (
-          <div className="mt-3 flex flex-wrap gap-1">
-            {member.practices.slice(0, 2).map((p) => (
-              <span key={p} className="text-xs text-gray-400 bg-gray-50 px-2 py-1">{p}</span>
-            ))}
-            {member.practices.length > 2 && (
-              <span className="text-xs text-gray-400 bg-gray-50 px-2 py-1">+{member.practices.length - 2}</span>
-            )}
-          </div>
-        )}
+      <div className="flex flex-1 flex-col p-6">
+        <p className="text-xs font-light uppercase text-brand/55 transition-colors group-hover:text-white/45">{member.role}</p>
+        <div className="mt-4 flex items-start justify-between gap-5">
+          <h3 className="text-2xl font-light leading-tight text-brand transition-colors group-hover:text-white">{member.name}</h3>
+          <ArrowUpRight size={17} className="mt-1 shrink-0 text-brand/35 transition-all group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-white" />
+        </div>
+        <div className="mt-auto pt-8 text-xs font-light uppercase text-black/36 transition-colors group-hover:text-white/45">
+          {member.email || getInitials(member.name)}
+        </div>
       </div>
-    </motion.div>
+    </motion.button>
   );
 }
 
 export default function TeamPage() {
-  const [selected, setSelected] = useState<Member | null>(null);
+  const [selected, setSelected] = useState<TeamMember | null>(null);
+  const [activeRole, setActiveRole] = useState<(typeof roles)[number]>("All");
+  const featured = teamMembers[0];
 
-  const groups = [
-    { label: "Managing Partner", members: teamMembers.filter((m) => m.position.toLowerCase().includes("managing")) },
-    { label: "Senior Associates", members: teamMembers.filter((m) => m.position.toLowerCase().includes("senior")) },
-    { label: "Associates", members: teamMembers.filter((m) => m.position.toLowerCase() === "associate") },
-    { label: "Trainees & Operations", members: teamMembers.filter((m) => m.position.toLowerCase().includes("trainee") || m.position.toLowerCase().includes("admin")) },
-  ];
+  const filteredMembers = teamMembers
+    .slice(1)
+    .filter((member) => activeRole === "All" || roleGroup(member) === activeRole);
 
   return (
-    <main>
-      <section className="relative bg-gray-950 text-white pt-36 pb-24 overflow-hidden">
-        <div className="absolute inset-0 opacity-10 bg-[radial-gradient(ellipse_at_bottom_right,rgba(25,57,138,0.7)_0%,transparent_60%)]" />
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <motion.div initial="hidden" animate="visible" variants={{ visible: { transition: { staggerChildren: 0.1 } } }}>
-            <motion.p variants={fadeIn} className="text-xs font-bold tracking-[0.35em] uppercase text-brand mb-4">The Team</motion.p>
-            <motion.h1 variants={fadeIn} className="text-6xl sm:text-7xl md:text-8xl font-extrabold leading-[0.95] tracking-tighter mb-8 max-w-3xl">Our People</motion.h1>
-            <motion.p variants={fadeIn} className="text-white/50 text-xl max-w-xl leading-relaxed">
-              A multi-disciplinary legal team combining Saudi regulatory mastery with international commercial expertise.
-            </motion.p>
-          </motion.div>
-        </div>
-        <div className="absolute bottom-0 left-0 right-0 h-px bg-white/10" />
-      </section>
-
-      <section className="py-24 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-24">
-          {groups.map((group) => group.members.length > 0 && (
-            <motion.div key={group.label} initial="hidden" whileInView="visible"
-              viewport={{ once: true, amount: 0.05 }}
-              variants={{ visible: { transition: { staggerChildren: 0.07 } } }}
-            >
-              <motion.div variants={fadeIn} className="flex items-center gap-6 mb-10 pb-5 border-b border-gray-100">
-                <h2 className="text-xs font-bold tracking-[0.3em] uppercase text-brand">{group.label}</h2>
-                <div className="flex-1 h-px bg-gray-100" />
-                <span className="text-xs font-bold text-gray-300">{group.members.length}</span>
-              </motion.div>
-              <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                {group.members.map((member, i) => (
-                  <MemberCard key={member.id} member={member} index={i} onClick={() => setSelected(member)} />
-                ))}
-              </div>
-            </motion.div>
-          ))}
-        </div>
-      </section>
-
-      <section className="py-20 bg-brand text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-8">
-          <div>
-            <h2 className="text-3xl font-extrabold mb-2">Engage The Team Directly</h2>
-            <p className="text-white/60 text-sm">Senior counsel from the first conversation. No intake delays.</p>
+    <main className="bg-white">
+      <section className="border-b border-brand/12 bg-white px-5 pb-16 pt-24 sm:px-8 lg:px-10 lg:pb-20">
+        <motion.div
+          initial="hidden"
+          animate="visible"
+          variants={container}
+          className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.86fr_1.14fr] lg:items-end"
+        >
+          <div className="self-end">
+            <motion.h1 className="max-w-5xl text-6xl font-semibold uppercase leading-[0.9] text-brand sm:text-7xl lg:text-[8rem]">
+              <TextReveal>Our Team</TextReveal>
+            </motion.h1>
+            <motion.div
+              initial={{ scaleX: 0 }}
+              animate={{ scaleX: 1 }}
+              transition={{ delay: 0.55, duration: 0.9, ease }}
+              className="mt-8 h-px w-full max-w-xl origin-left bg-brand/16"
+            />
           </div>
-          <Link href="/contact" className="inline-flex items-center gap-3 bg-white text-brand px-8 py-4 font-bold uppercase tracking-widest text-sm hover:bg-gray-100 transition-all flex-shrink-0 group">
-            Contact Us <ChevronRight size={16} className="group-hover:translate-x-1 transition-transform" />
-          </Link>
+
+          <motion.div variants={item} className="max-w-xl self-end lg:justify-self-end">
+            <p className="text-base leading-8 text-black/58">
+              Our team consists of bilingual Saudi-qualified lawyers and experienced legal consultants who combine regulatory insight with commercial pragmatism.
+            </p>
+            <div className="mt-10 grid grid-cols-3 border border-brand/12 text-center">
+              <motion.div variants={item} className="border-r border-brand/12 p-4">
+                <p className="text-3xl font-semibold text-brand">{teamMembers.length}</p>
+                <p className="mt-1 text-xs font-light uppercase text-black/42">People</p>
+              </motion.div>
+              <motion.div variants={item} className="border-r border-brand/12 p-4">
+                <p className="text-3xl font-semibold text-brand">2</p>
+                <p className="mt-1 text-xs font-light uppercase text-black/42">Offices</p>
+              </motion.div>
+              <motion.div variants={item} className="p-4">
+                <p className="text-3xl font-semibold text-brand">KSA</p>
+                <p className="mt-1 text-xs font-light uppercase text-black/42">Market</p>
+              </motion.div>
+            </div>
+          </motion.div>
+        </motion.div>
+      </section>
+
+      <section className="px-5 py-16 sm:px-8 lg:px-10">
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.16 }}
+          variants={container}
+          className="mx-auto max-w-7xl"
+        >
+          <FeaturedMember member={featured} onSelect={() => setSelected(featured)} />
+        </motion.div>
+      </section>
+
+      <section className="border-t border-brand/12 px-5 py-16 sm:px-8 lg:px-10 lg:py-20">
+        <div className="mx-auto max-w-7xl">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.25 }}
+            variants={container}
+            className="mb-10 grid gap-6 lg:grid-cols-[1fr_0.78fr] lg:items-end"
+          >
+            <div>
+              <motion.p variants={item} className="text-xs font-light uppercase text-brand/55">Directory</motion.p>
+              <motion.h2 variants={item} className="mt-4 text-4xl font-semibold uppercase leading-tight text-brand sm:text-5xl">
+                <ScrollTextReveal>People Directory</ScrollTextReveal>
+              </motion.h2>
+            </div>
+            <motion.div variants={item} className="flex flex-col gap-3 sm:flex-row lg:justify-end">
+              <Link
+                href="/contact"
+                className="inline-flex h-12 shrink-0 items-center justify-center gap-3 border border-brand bg-brand px-5 text-sm font-light uppercase text-white transition-colors hover:bg-white hover:text-brand"
+              >
+                Contact
+                <ArrowRight size={16} />
+              </Link>
+            </motion.div>
+          </motion.div>
+
+          <div className="mb-8 flex gap-px overflow-x-auto bg-brand/12 p-px">
+            {roles.map((role) => (
+              <button
+                key={role}
+                type="button"
+                onClick={() => setActiveRole(role)}
+                className="relative min-h-11 shrink-0 overflow-hidden bg-white px-5 text-xs font-light uppercase text-brand transition-colors hover:bg-brand/5"
+              >
+                {activeRole === role && (
+                  <motion.span
+                    layoutId="active-team-filter"
+                    transition={{ duration: 0.35, ease }}
+                    className="absolute inset-0 bg-brand"
+                  />
+                )}
+                <span className={`relative z-10 transition-colors ${activeRole === role ? "text-white" : "text-brand"}`}>{role}</span>
+              </button>
+            ))}
+          </div>
+
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeRole}
+              initial="hidden"
+              animate="visible"
+              exit={{ opacity: 0, y: 18, transition: { duration: 0.2 } }}
+              variants={container}
+              layout
+              className="grid gap-px bg-brand/12 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+            >
+              {filteredMembers.map((member, index) => (
+                <MemberCard key={member.email ?? member.name} member={member} index={index} onSelect={() => setSelected(member)} />
+              ))}
+            </motion.div>
+          </AnimatePresence>
+
+          {filteredMembers.length === 0 && (
+            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="border border-brand/12 p-10 text-center text-sm text-black/50">
+              No team members in this category.
+            </motion.div>
+          )}
         </div>
       </section>
 

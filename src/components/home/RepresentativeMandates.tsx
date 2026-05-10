@@ -3,6 +3,19 @@
 import { homepageContent } from "@/data/homepage";
 import { motion } from "framer-motion";
 
+const ease = [0.22, 1, 0.36, 1] as [number, number, number, number];
+
+const reveal = {
+  hidden: { opacity: 0, y: 28, filter: "blur(10px)", clipPath: "inset(0 0 14% 0)" },
+  visible: (delay = 0) => ({
+    opacity: 1,
+    y: 0,
+    filter: "blur(0px)",
+    clipPath: "inset(0 0 0% 0)",
+    transition: { duration: 0.72, delay, ease },
+  }),
+};
+
 export default function RepresentativeMandates() {
   const { representativeMandates } = homepageContent;
 
@@ -10,12 +23,15 @@ export default function RepresentativeMandates() {
     <section className="py-24 lg:py-40 bg-[#fafafa]">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mb-20 text-center max-w-3xl mx-auto">
-          <span className="text-brand font-bold tracking-[0.2em] uppercase text-xs sm:text-sm block mb-6">
-            Institutional Proof
-          </span>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-gray-900 leading-[1.1] tracking-tight">
+          <motion.h2
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.45 }}
+            variants={reveal}
+            className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-gray-900 leading-[1.1] tracking-tight"
+          >
             Representative Mandates
-          </h2>
+          </motion.h2>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 relative">
@@ -39,16 +55,37 @@ export default function RepresentativeMandates() {
               }`}></div>
 
               <div>
-                <span className="inline-block bg-gray-100 text-brand font-bold text-xs px-4 py-1.5 uppercase tracking-[0.1em] mb-6 rounded-sm">
+                <motion.span
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true }}
+                  variants={reveal}
+                  custom={0.08}
+                  className="inline-block bg-gray-100 text-brand font-bold text-xs px-4 py-1.5 uppercase tracking-[0.1em] mb-6 rounded-sm"
+                >
                   {mandate.category}
-                </span>
-                <h3 className="text-2xl font-bold text-gray-900 mb-6 leading-snug">
+                </motion.span>
+                <motion.h3
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true }}
+                  variants={reveal}
+                  custom={0.14}
+                  className="text-2xl font-bold text-gray-900 mb-6 leading-snug"
+                >
                   {mandate.title}
-                </h3>
+                </motion.h3>
               </div>
-              <p className="text-gray-600 font-light leading-relaxed text-lg">
+              <motion.p
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                variants={reveal}
+                custom={0.2}
+                className="text-gray-600 font-light leading-relaxed text-lg"
+              >
                 {mandate.description}
-              </p>
+              </motion.p>
             </motion.div>
           ))}
         </div>

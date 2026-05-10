@@ -5,6 +5,19 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Plus, Minus } from "lucide-react";
 
+const ease = [0.22, 1, 0.36, 1] as [number, number, number, number];
+
+const itemReveal = {
+  hidden: { opacity: 0, y: 26, filter: "blur(10px)", clipPath: "inset(0 0 14% 0)" },
+  visible: (delay = 0) => ({
+    opacity: 1,
+    y: 0,
+    filter: "blur(0px)",
+    clipPath: "inset(0 0 0% 0)",
+    transition: { duration: 0.72, delay, ease },
+  }),
+};
+
 export default function CoreCompetencies() {
   const { coreCompetencies } = homepageContent;
   const [activeIndex, setActiveIndex] = useState<number | null>(0);
@@ -15,12 +28,15 @@ export default function CoreCompetencies() {
         <div className="flex flex-col lg:flex-row gap-16 lg:gap-24">
           
           <div className="w-full lg:w-5/12 lg:sticky lg:top-32 lg:self-start">
-            <span className="text-brand font-bold tracking-[0.2em] uppercase text-xs sm:text-sm block mb-6 border-l-2 border-brand pl-4">
-              Core Competencies
-            </span>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-[1.1] tracking-tight mb-8">
+            <motion.h2
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.45 }}
+              variants={itemReveal}
+              className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-[1.1] tracking-tight mb-8"
+            >
               Partner-led advisory designed for execution.
-            </h2>
+            </motion.h2>
           </div>
 
           <div className="w-full lg:w-7/12">
@@ -28,7 +44,15 @@ export default function CoreCompetencies() {
               {coreCompetencies.map((competency, index) => {
                 const isActive = activeIndex === index;
                 return (
-                  <div key={index} className="border-b border-gray-200">
+                  <motion.div
+                    key={index}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, amount: 0.35 }}
+                    variants={itemReveal}
+                    custom={index * 0.08}
+                    className="border-b border-gray-200"
+                  >
                     <button
                       onClick={() => setActiveIndex(isActive ? null : index)}
                       className="w-full flex items-center justify-between py-8 text-left group"
@@ -63,7 +87,7 @@ export default function CoreCompetencies() {
                         </motion.div>
                       )}
                     </AnimatePresence>
-                  </div>
+                  </motion.div>
                 );
               })}
             </div>

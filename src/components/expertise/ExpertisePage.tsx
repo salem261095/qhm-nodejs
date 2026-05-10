@@ -1,162 +1,311 @@
 "use client";
 
-import { useState } from "react";
+import { useRef } from "react";
 import Link from "next/link";
-import { motion, AnimatePresence } from "framer-motion";
-import { ArrowRight, ChevronDown, Building2, Globe, Shield, Gavel, Users, Lightbulb, Zap, Briefcase, Landmark, Film, Laptop, HeartPulse, Pill, Plane, Ship, Building, Scale } from "lucide-react";
-import { practiceAreasData } from "@/data/practiceAreas";
+import { motion, useScroll, useTransform } from "framer-motion";
+import {
+  ArrowRight,
+  Building2,
+  Gavel,
+  Globe,
+  Landmark,
+  Lightbulb,
+  Users,
+} from "lucide-react";
 
-const iconMap: Record<string, React.ElementType> = {
-  Building: Building2, Briefcase, Globe, Users, Landmark, Lightbulb,
-  Film, Laptop, HeartPulse, Pill, Zap, Plane, Ship, Building2, Gavel, Scale, Shield,
+type ExpertiseItem = {
+  title: string;
+  icon: React.ElementType;
+  description?: string;
+  points?: string[];
 };
 
-const fadeIn = {
-  hidden: { opacity: 0, y: 24 },
-  visible: (i = 0) => ({
-    opacity: 1, y: 0,
-    transition: { delay: i * 0.06, duration: 0.6, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] },
-  }),
+const expertiseItems: ExpertiseItem[] = [
+  {
+    title: "Corporate & Commercial",
+    icon: Building2,
+    description:
+      "Corporate structuring, joint ventures, shareholder agreements, governance frameworks, and cross-border commercial transactions.",
+  },
+  {
+    title: "Foreign Direct Investment (FDI)",
+    icon: Globe,
+    points: [
+      "MISA Licensing & Regulatory Approvals",
+      "Regional Headquarters (RHQ) Setup",
+      "Regulatory Incentives & Market Entry",
+    ],
+  },
+  {
+    title: "Tax, Zakat & Transfer Pricing",
+    icon: Landmark,
+    points: [
+      "ZATCA advisory & objection procedures",
+      "Representation before Committees for Resolution of Tax Violations and Disputes",
+      "Settlement negotiations & transfer pricing",
+    ],
+  },
+  {
+    title: "Dispute Resolution & Litigation",
+    icon: Gavel,
+    description:
+      "Strategic representation in commercial disputes, tax litigation, regulatory investigations, and arbitration matters.",
+  },
+  {
+    title: "Employment & Executive Matters",
+    icon: Users,
+    description:
+      "Advising corporates on executive contracts, Saudization compliance, workforce restructuring, and dispute mitigation.",
+  },
+  {
+    title: "Intellectual Property & Technology",
+    icon: Lightbulb,
+    description:
+      "IP protection, licensing agreements, technology transactions, and digital regulatory compliance.",
+  },
+];
+
+const sectorItems = [
+  {
+    title: "Energy & Infrastructure",
+    description: "Vision 2030 Lead Sector - Power, renewables, and large-scale infrastructure projects.",
+  },
+  { title: "Healthcare & Pharmaceuticals" },
+  { title: "Aviation & Maritime" },
+  { title: "Real Estate & Development" },
+  { title: "IT & Telecom" },
+];
+
+const ease = [0.22, 1, 0.36, 1] as [number, number, number, number];
+
+const container = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.075,
+      delayChildren: 0.05,
+    },
+  },
 };
+
+const blurItem = {
+  hidden: { opacity: 0, y: 30, filter: "blur(14px)", clipPath: "inset(0 0 14% 0)" },
+  visible: {
+    opacity: 1,
+    y: 0,
+    filter: "blur(0px)",
+    clipPath: "inset(0 0 0% 0)",
+    transition: { duration: 0.82, ease },
+  },
+};
+
+function TextReveal({ children, delay = 0 }: { children: string; delay?: number }) {
+  return (
+    <>
+      {children.split("\n").map((line, index) => (
+        <span key={line} className="block overflow-hidden">
+          <motion.span
+            initial={{ y: "112%" }}
+            animate={{ y: 0 }}
+            transition={{ delay: delay + index * 0.1, duration: 0.88, ease }}
+            className="block"
+          >
+            {line}
+          </motion.span>
+        </span>
+      ))}
+    </>
+  );
+}
+
+function ScrollTextReveal({ children }: { children: string }) {
+  return (
+    <>
+      {children.split("\n").map((line, index) => (
+        <span key={line} className="block overflow-hidden">
+          <motion.span
+            variants={{
+              hidden: { y: "112%" },
+              visible: {
+                y: 0,
+                transition: { delay: index * 0.08, duration: 0.82, ease },
+              },
+            }}
+            className="block"
+          >
+            {line}
+          </motion.span>
+        </span>
+      ))}
+    </>
+  );
+}
 
 export default function ExpertisePage() {
-  const [openId, setOpenId] = useState<string | null>(practiceAreasData[0].id);
-
-  const toggle = (id: string) => setOpenId((prev) => (prev === id ? null : id));
+  const heroRef = useRef<HTMLElement | null>(null);
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ["start start", "end start"],
+  });
+  const heroY = useTransform(scrollYProgress, [0, 1], [0, 92]);
+  const heroOpacity = useTransform(scrollYProgress, [0, 0.78], [1, 0.42]);
+  const ruleScale = useTransform(scrollYProgress, [0, 0.85], [1, 0.42]);
 
   return (
-    <main>
-
-      <section className="relative bg-gray-950 text-white pt-36 pb-24 overflow-hidden">
-        <div className="absolute inset-0 opacity-10 bg-[radial-gradient(ellipse_at_top_right,rgba(25,57,138,0.7)_0%,transparent_60%)]" />
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <motion.div initial="hidden" animate="visible" variants={{ visible: { transition: { staggerChildren: 0.1 } } }}>
-            <motion.p variants={fadeIn} className="text-xs font-bold tracking-[0.35em] uppercase text-brand mb-4">Our Mandates</motion.p>
-            <motion.h1 variants={fadeIn} className="text-6xl sm:text-7xl md:text-8xl font-extrabold leading-[0.95] tracking-tighter mb-8 max-w-3xl">
-              Practice Areas
-            </motion.h1>
-            <motion.p variants={fadeIn} className="text-white/50 text-xl max-w-xl leading-relaxed">
-              Our practice areas are structured around the needs of multinational corporations operating in or entering Saudi Arabia.
-            </motion.p>
-          </motion.div>
-        </div>
-        <div className="absolute bottom-0 left-0 right-0 h-px bg-white/10" />
-      </section>
-
-      <section className="py-8 bg-white border-b border-gray-100 sticky top-[72px] z-30 hidden md:block">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex gap-6 overflow-x-auto no-scrollbar">
-            {practiceAreasData.map((area) => {
-              const Icon = iconMap[area.icon] ?? Scale;
-              return (
-                <button
-                  key={area.id}
-                  onClick={() => setOpenId(area.id)}
-                  className={`flex items-center gap-2 text-xs font-bold tracking-widest uppercase whitespace-nowrap pb-2 border-b-2 transition-all ${
-                    openId === area.id ? "text-brand border-brand" : "text-gray-300 border-transparent hover:text-gray-600"
-                  }`}
-                >
-                  <Icon size={12} strokeWidth={2} />
-                  {area.name}
-                </button>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      <section className="py-16 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.05 }}
-            variants={{ visible: { transition: { staggerChildren: 0.05 } } }}
-            className="divide-y divide-gray-100"
-          >
-            {practiceAreasData.map((area, i) => {
-              const Icon = iconMap[area.icon] ?? Scale;
-              const isOpen = openId === area.id;
-              return (
-                <motion.div key={area.id} custom={i} variants={fadeIn}>
-                  <button
-                    onClick={() => toggle(area.id)}
-                    className={`w-full flex items-center justify-between gap-6 py-6 text-left group transition-colors ${isOpen ? "text-brand" : "text-gray-900 hover:text-brand"}`}
-                  >
-                    <div className="flex items-center gap-5">
-                      <span className="text-xs font-bold text-gray-200 group-hover:text-brand/40 transition-colors w-6 flex-shrink-0">
-                        {String(i + 1).padStart(2, "0")}
-                      </span>
-                      <Icon size={20} strokeWidth={1.5} className={`flex-shrink-0 transition-colors ${isOpen ? "text-brand" : "text-gray-300 group-hover:text-brand"}`} />
-                      <span className="text-lg md:text-xl font-extrabold tracking-tight">{area.name}</span>
-                    </div>
-                    <ChevronDown
-                      size={18}
-                      strokeWidth={2}
-                      className={`flex-shrink-0 transition-transform duration-300 ${isOpen ? "rotate-180 text-brand" : "text-gray-300"}`}
-                    />
-                  </button>
-
-                  <AnimatePresence initial={false}>
-                    {isOpen && (
-                      <motion.div
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: "auto", opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-                        className="overflow-hidden"
-                      >
-                        <div className="pb-10 pl-11 md:pl-16 grid md:grid-cols-2 gap-8">
-                          <div>
-                            <p className="text-gray-500 text-sm leading-relaxed mb-6">{area.content}</p>
-                            {area.points.length > 0 && (
-                              <ul className="space-y-2">
-                                {area.points.map((pt) => (
-                                  <li key={pt} className="flex items-start gap-3 text-sm text-gray-600">
-                                    <span className="w-1 h-1 rounded-full bg-brand mt-2 flex-shrink-0" />
-                                    {pt}
-                                  </li>
-                                ))}
-                              </ul>
-                            )}
-                          </div>
-                          <div className="bg-gray-50 p-8 flex flex-col justify-between">
-                            <div>
-                              <p className="text-xs font-bold tracking-[0.3em] uppercase text-brand mb-3">Full Capability</p>
-                              <p className="text-sm text-gray-400 leading-relaxed">
-                                Available in both Arabic and English. Partner-led oversight on all mandates in this practice area.
-                              </p>
-                            </div>
-                            <Link
-                              href="/contact"
-                              className="inline-flex items-center gap-2 mt-8 text-sm font-bold uppercase tracking-widest text-brand group hover:gap-4 transition-all"
-                            >
-                              Discuss This Practice
-                              <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
-                            </Link>
-                          </div>
-                        </div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </motion.div>
-              );
-            })}
-          </motion.div>
-        </div>
-      </section>
-
-      <section className="py-20 bg-brand text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-8">
+    <main className="bg-white">
+      <section ref={heroRef} className="relative overflow-hidden border-b border-brand/12 bg-white px-5 pb-16 pt-24 sm:px-8 lg:px-10 lg:pb-24">
+        <motion.div style={{ y: heroY, opacity: heroOpacity }} className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.92fr_1.08fr] lg:items-end">
           <div>
-            <h2 className="text-3xl font-extrabold mb-2">Discuss Your Mandate</h2>
-            <p className="text-white/60 text-sm">Full capabilities available in both Arabic and English for all practice areas.</p>
+            <h1 className="max-w-5xl text-6xl font-semibold uppercase leading-[0.9] text-brand sm:text-7xl lg:text-[8rem]">
+              <TextReveal delay={0.08}>Legal Expertise</TextReveal>
+            </h1>
+            <motion.div style={{ scaleX: ruleScale }} className="mt-8 h-px w-full max-w-xl origin-left bg-brand/16" />
           </div>
-          <Link href="/contact" className="inline-flex items-center gap-3 bg-white text-brand px-8 py-4 font-bold uppercase tracking-widest text-sm hover:bg-gray-100 transition-all flex-shrink-0 group">
-            Submit Corporate Enquiry
-            <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
-          </Link>
+
+          <motion.div
+            initial={{ opacity: 0, y: 24, filter: "blur(12px)" }}
+            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            transition={{ delay: 0.28, duration: 0.82, ease }}
+            className="max-w-xl lg:justify-self-end"
+          >
+            <p className="text-base leading-8 text-black/58">
+              Our practice areas are structured around the needs of multinational corporations operating in or entering Saudi Arabia.
+            </p>
+          </motion.div>
+        </motion.div>
+      </section>
+
+      <motion.section
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.18 }}
+        variants={container}
+        className="px-5 py-16 sm:px-8 lg:px-10 lg:py-24"
+      >
+        <div className="mx-auto max-w-7xl">
+          <div className="mb-12 grid gap-8 lg:grid-cols-[0.82fr_1.18fr] lg:items-end">
+            <div>
+              <motion.h2 variants={blurItem} className="mt-4 text-4xl font-semibold uppercase leading-tight text-brand sm:text-5xl">
+                <ScrollTextReveal>Practice Areas</ScrollTextReveal>
+              </motion.h2>
+            </div>
+            <motion.p variants={blurItem} className="max-w-2xl text-sm leading-7 text-black/52 lg:justify-self-end">
+              A broad Saudi legal platform for corporate workstreams that move across transactions, licensing, people, technology, regulated sectors, and disputes.
+            </motion.p>
+          </div>
+
+          <motion.div variants={container} className="grid gap-px bg-brand/12 md:grid-cols-2 xl:grid-cols-3">
+            {expertiseItems.map((area, index) => {
+              const Icon = area.icon;
+
+              return (
+                <motion.article
+                  key={area.title}
+                  variants={blurItem}
+                  whileHover={{ y: -4 }}
+                  transition={{ duration: 0.3, ease }}
+                  className="group flex min-h-[340px] flex-col bg-white p-6 text-left transition-colors hover:bg-brand hover:text-white sm:p-7"
+                >
+                  <div className="flex items-start justify-between gap-5">
+                    <div className="flex h-12 w-12 items-center justify-center border border-brand/14 text-brand/55 transition-colors group-hover:border-white/20 group-hover:text-white">
+                      <Icon size={21} strokeWidth={1.5} />
+                    </div>
+                    <span className="font-mono text-xs text-brand/28 transition-colors group-hover:text-white/42">
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+                  </div>
+
+                  <div className="mt-12">
+                    <h3 className="text-3xl font-light leading-tight text-brand transition-colors group-hover:text-white">
+                      {area.title}
+                    </h3>
+                    {area.description && (
+                      <p className="mt-5 text-sm leading-7 text-black/52 transition-colors group-hover:text-white/62">
+                        {area.description}
+                      </p>
+                    )}
+                    {area.points && (
+                      <ul className="mt-6 space-y-3">
+                        {area.points.map((point) => (
+                          <li key={point} className="flex gap-3 text-sm leading-6 text-black/58 transition-colors group-hover:text-white/68">
+                            <span className="mt-2 h-1 w-1 shrink-0 bg-brand transition-colors group-hover:bg-white/70" />
+                            <span>{point}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </div>
+                </motion.article>
+              );
+            })}
+          </motion.div>
         </div>
+      </motion.section>
+
+      <motion.section
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.18 }}
+        variants={container}
+        className="border-t border-brand/12 px-5 py-16 sm:px-8 lg:px-10 lg:py-24"
+      >
+        <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.82fr_1.18fr]">
+          <div>
+            <motion.h2 variants={blurItem} className="mt-4 text-5xl font-semibold uppercase leading-[0.98] text-brand sm:text-6xl lg:text-7xl">
+              <ScrollTextReveal>{"Sector-Specific\nAdvisory."}</ScrollTextReveal>
+            </motion.h2>
+          </div>
+
+          <motion.div variants={container} className="grid gap-px bg-brand/12">
+            {sectorItems.map((sector, index) => (
+              <motion.article
+                key={sector.title}
+                variants={blurItem}
+                whileHover={{ x: 6 }}
+                transition={{ duration: 0.3, ease }}
+                className="group grid gap-6 bg-white p-6 transition-colors hover:bg-brand hover:text-white sm:grid-cols-[0.18fr_0.82fr] sm:p-7"
+              >
+                <span className="font-mono text-xs text-brand/35 transition-colors group-hover:text-white/42">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <div>
+                  <h3 className="text-2xl font-light leading-tight text-brand transition-colors group-hover:text-white">{sector.title}</h3>
+                  {sector.description && (
+                    <p className="mt-3 max-w-2xl text-sm leading-7 text-black/52 transition-colors group-hover:text-white/62">
+                      {sector.description}
+                    </p>
+                  )}
+                </div>
+              </motion.article>
+            ))}
+          </motion.div>
+        </div>
+      </motion.section>
+
+      <section className="bg-gray-850 px-5 py-16 text-white sm:px-8 lg:px-10 lg:py-20">
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+          variants={container}
+          className="mx-auto flex max-w-7xl flex-col gap-10 md:flex-row md:items-end md:justify-between"
+        >
+          <div>
+            <motion.p variants={blurItem} className="text-xs font-light uppercase text-white/45">Next Step</motion.p>
+            <motion.h2 variants={blurItem} className="mt-4 text-4xl font-semibold uppercase leading-tight md:text-6xl">
+              <ScrollTextReveal>Discuss Your Mandate</ScrollTextReveal>
+            </motion.h2>
+            <motion.p variants={blurItem} className="mt-5 max-w-xl text-sm leading-7 text-white/58">
+              Engage our corporate team for strategic counsel on your commercial objectives in Saudi Arabia.
+            </motion.p>
+          </div>
+          <motion.div variants={blurItem}>
+            <Link href="/contact" className="group inline-flex min-h-12 items-center gap-4 border border-white bg-white px-6 text-sm font-light uppercase text-gray-850 transition-colors hover:bg-gray-850 hover:text-white">
+              Submit Corporate Enquiry
+              <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
+            </Link>
+          </motion.div>
+        </motion.div>
       </section>
     </main>
   );

@@ -3,6 +3,7 @@
 @theme inline {
   --color-brand: rgba(25, 57, 138, 0.9);
   --color-brand-solid: rgb(25, 57, 138);
+  --color-gray-850: #1f2933;
 }
 
 body {

@@ -10,7 +10,9 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
     pathname === "/home-2" ||
     pathname.startsWith("/home-2/") ||
     pathname === "/home-3" ||
-    pathname.startsWith("/home-3/");
+    pathname.startsWith("/home-3/") ||
+    pathname === "/home-4" ||
+    pathname.startsWith("/home-4/");
 
   if (isStandaloneVariant) {
     return <>{children}</>;

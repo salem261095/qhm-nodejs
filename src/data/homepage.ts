@@ -6,6 +6,7 @@ export const navItems = [
       { label: "Variant 1 — Cinematic", href: "/" },
       { label: "Variant 2 — Editorial", href: "/home-2" },
       { label: "Variant 3 - Intelligence Hub", href: "/home-3" },
+      { label: "Variant 4 - Dynamic Minimal", href: "/home-4" },
     ],
   },
   { label: "Expertise", href: "/expertise" },
