@@ -12,7 +12,7 @@ export default function HeroV2() {
         muted
         playsInline
         className="absolute inset-0 h-full w-full object-cover object-center"
-        src="/assets/For Website Upgrade/QHM2-compressed.mp4"
+        src="/assets/For Website Upgrade/QHMsingleCompressed.mp4"
       />
       <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.48),rgba(0,0,0,0.68))]" />
       <motion.div
@@ -25,7 +25,9 @@ export default function HeroV2() {
       <div className="absolute inset-0 z-10">
         <div className="absolute bottom-20 left-0 right-0 px-5 text-left sm:bottom-24 sm:px-12 lg:bottom-28">
           <h1 className="max-w-5xl select-none text-5xl font-thin uppercase leading-tight text-white sm:text-6xl md:text-7xl lg:text-[6.5rem] xl:text-[8rem]">
-            <SplitReveal delay={0.62}>{"Saudi Depth.\nGlobal Confidence."}</SplitReveal>
+            <SplitReveal delay={0.62}>
+              {"Saudi Depth.\nGlobal Confidence."}
+            </SplitReveal>
           </h1>
         </div>
 
@@ -35,7 +37,9 @@ export default function HeroV2() {
           transition={{ delay: 1.2, duration: 0.8 }}
           className="absolute bottom-8 left-0 right-0 flex justify-center"
         >
-          <span className="text-white/30 text-xs font-light uppercase">Jeddah · Riyadh</span>
+          <span className="text-white/30 text-xs font-light uppercase">
+            Jeddah · Riyadh
+          </span>
         </motion.div>
       </div>
     </section>

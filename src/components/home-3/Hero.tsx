@@ -5,8 +5,6 @@ import { motion } from "framer-motion";
 import { MapPin, ArrowRight } from "lucide-react";
 import { ease, PremiumButton, TextReveal } from "./shared";
 
-
-
 export default function Hero() {
   return (
     <section className="relative min-h-screen overflow-hidden bg-brand text-white">
@@ -19,14 +17,16 @@ export default function Hero() {
         animate={{ scale: 1 }}
         transition={{ duration: 4.5, ease }}
         className="absolute inset-0 h-full w-full object-cover opacity-55"
-        src="/assets/For%20Website%20Upgrade/QHM2-compressed.mp4"
+        src="/assets/For%20Website%20Upgrade/QHMsingleCompressed.mp4"
       />
       <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(25,57,138,0.72)_0%,rgba(25,57,138,0.38)_60%,rgba(25,57,138,0.58)_100%)]" />
 
       <div className="relative z-10 mx-auto flex min-h-screen max-w-7xl flex-col justify-end px-5 pb-16 pt-32 sm:px-8 lg:px-10 lg:pb-20">
         <div className="max-w-5xl border-t border-white/20 pt-10">
           <h1 className="text-4xl font-semibold uppercase leading-[0.94] text-white sm:text-5xl lg:text-6xl xl:text-[5.5rem]">
-            <TextReveal delay={0.4}>{"Saudi Depth.\nGlobal Confidence."}</TextReveal>
+            <TextReveal delay={0.4}>
+              {"Saudi Depth.\nGlobal Confidence."}
+            </TextReveal>
           </h1>
           <motion.p
             initial={{ opacity: 0, y: 22, filter: "blur(10px)" }}
@@ -34,7 +34,9 @@ export default function Hero() {
             transition={{ delay: 0.95, duration: 0.8, ease }}
             className="mt-8 max-w-2xl text-base font-light leading-8 text-white/68"
           >
-            Independent. Saudi-based. Internationally experienced. From market entry and corporate structuring to compliance, disputes, and sector regulation — QHM delivers partner-led bilingual legal counsel.
+            Independent. Saudi-based. Internationally experienced. From market
+            entry and corporate structuring to compliance, disputes, and sector
+            regulation — QHM delivers partner-led bilingual legal counsel.
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 18, filter: "blur(10px)" }}
@@ -47,9 +49,14 @@ export default function Hero() {
               className="group inline-flex min-h-12 items-center justify-between gap-7 border border-white bg-white px-6 py-3 text-sm font-light uppercase text-brand transition-all duration-300 hover:bg-transparent hover:text-white"
             >
               <span>Contact QHM</span>
-              <ArrowRight size={16} className="transition-transform duration-300 group-hover:translate-x-1" />
+              <ArrowRight
+                size={16}
+                className="transition-transform duration-300 group-hover:translate-x-1"
+              />
             </Link>
-            <PremiumButton href="/expertise" inverse>Explore Expertise</PremiumButton>
+            <PremiumButton href="/expertise" inverse>
+              Explore Expertise
+            </PremiumButton>
           </motion.div>
           <motion.div
             initial={{ opacity: 0 }}
