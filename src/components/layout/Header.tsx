@@ -48,7 +48,7 @@ export default function Header() {
           <Link href="/" className="block shrink-0" onClick={() => setMenuOpen(false)}>
             <div className="relative w-28 md:w-36">
               <Image
-                src="/logo/QHM_Blue.svg"
+                src="/assets/identity/QHM_Blue.svg"
                 alt="QHM Law Firm"
                 width={144}
                 height={88}
@@ -58,7 +58,7 @@ export default function Header() {
                 }`}
               />
               <Image
-                src="/logo/QHM_White.svg"
+                src="/assets/identity/QHM_White.svg"
                 alt="QHM Law Firm"
                 width={144}
                 height={88}
@@ -75,10 +75,10 @@ export default function Header() {
               <Link
                 key={link.href}
                 href={link.href}
-                className={`relative text-sm font-light uppercase tracking-wide transition-colors duration-500 after:absolute after:-bottom-0.5 after:left-0 after:h-px after:w-0 after:transition-all after:duration-300 hover:after:w-full ${
+                className={`relative text-sm font-medium uppercase tracking-wide transition-colors duration-500 after:absolute after:-bottom-0.5 after:left-0 after:h-px after:w-0 after:transition-all after:duration-300 hover:after:w-full ${
                   isTransparent
-                    ? "text-white/78 hover:text-white after:bg-white"
-                    : "text-brand/70 hover:text-brand after:bg-brand"
+                    ? "text-white/90 hover:text-white after:bg-white"
+                    : "text-brand/85 hover:text-brand after:bg-brand"
                 }`}
               >
                 {link.label}
@@ -92,8 +92,8 @@ export default function Header() {
               aria-label="Contact"
               className={`flex h-10 w-10 items-center justify-center border transition-all duration-500 ${
                 isTransparent
-                  ? "border-white/20 text-white/75 hover:border-white hover:text-white"
-                  : "border-brand/20 text-brand/55 hover:border-brand hover:text-brand"
+                  ? "border-white/35 text-white/90 hover:border-white hover:text-white"
+                  : "border-brand/30 text-brand/80 hover:border-brand hover:text-brand"
               }`}
             >
               <Mail size={16} />
@@ -127,7 +127,7 @@ export default function Header() {
           >
             <div className="flex items-center justify-between px-5 py-4 sm:px-8">
               <Image
-                src="/logo/QHM_Blue.svg"
+                src="/assets/identity/QHM_Blue.svg"
                 alt="QHM Law Firm"
                 width={180}
                 height={60}

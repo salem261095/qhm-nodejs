@@ -38,7 +38,7 @@ export default function CompetenciesV2() {
                 <ScrollTextReveal>Why Counsel Chooses QHM</ScrollTextReveal>
               </motion.h2>
             </div>
-            <motion.p variants={editorialWipe} custom={1} className="text-white/50 max-w-sm text-sm leading-relaxed">
+            <motion.p variants={editorialWipe} custom={1} className="max-w-sm text-sm leading-relaxed text-white/78">
               Partner-led delivery ensuring senior oversight on every mandate from day one.
             </motion.p>
           </div>
@@ -65,7 +65,7 @@ export default function CompetenciesV2() {
                 <div className="flex flex-col md:flex-row md:items-center gap-4 flex-1">
                   <h3 className="text-xl font-light md:w-64 flex-shrink-0">{item.title}</h3>
                   <div className="hidden md:block w-px h-12 bg-white/20 flex-shrink-0" />
-                  <p className="text-white/60 text-sm leading-relaxed flex-1">{item.description}</p>
+                  <p className="flex-1 text-sm leading-relaxed text-white/78">{item.description}</p>
                 </div>
                 <ArrowRight size={18} className="text-white/20 group-hover:text-white group-hover:translate-x-2 transition-all flex-shrink-0 hidden md:block" />
               </motion.div>

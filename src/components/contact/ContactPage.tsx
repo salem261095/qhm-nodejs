@@ -101,7 +101,7 @@ export default function ContactPage() {
                   custom={index}
                   className={field.type === "email" || field.name === "matterType" ? "sm:col-span-2" : ""}
                 >
-                  <label className="text-xs font-light uppercase text-brand/50">
+                  <label className="text-xs font-medium uppercase text-brand/70">
                     {field.label} {field.required && "*"}
                   </label>
                   {field.type === "select" ? (
@@ -131,7 +131,7 @@ export default function ContactPage() {
               <motion.div variants={reveal} className="sm:col-span-2">
                 <button
                   type="button"
-                  className="group inline-flex min-h-12 w-full items-center justify-center gap-4 border border-brand bg-brand px-7 text-sm font-light uppercase text-white transition-colors hover:bg-white hover:text-brand sm:w-auto"
+                  className="group inline-flex min-h-12 w-full items-center justify-center gap-4 border border-brand bg-brand px-7 text-sm font-medium uppercase text-white transition-colors hover:bg-white hover:text-brand sm:w-auto"
                 >
                   Submit Corporate Enquiry
                   <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
@@ -179,7 +179,7 @@ export default function ContactPage() {
                       <p key={line}>{line}</p>
                     ))}
                   </address>
-                  <Link href={office.mapHref} className="mt-6 inline-flex items-center gap-3 text-sm font-light uppercase text-white/72 hover:text-white">
+                  <Link href={office.mapHref} className="mt-6 inline-flex items-center gap-3 text-sm font-medium uppercase text-white/85 hover:text-white">
                     {office.mapLabel}
                     <ArrowUpRight size={15} />
                   </Link>

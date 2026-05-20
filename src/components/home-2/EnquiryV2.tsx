@@ -40,7 +40,7 @@ export default function EnquiryV2() {
               {corporateEnquiryFields.map((field, index) =>
                 field.type === "select" ? (
                   <motion.div key={field.name} variants={editorialWipe} custom={index * 0.7} className="flex flex-col gap-1.5">
-                    <label className="text-xs font-light uppercase text-brand/50">{field.label}</label>
+                    <label className="text-xs font-medium uppercase text-brand/70">{field.label}</label>
                     <select
                       name={field.name}
                       required={field.required}
@@ -56,7 +56,7 @@ export default function EnquiryV2() {
                   </motion.div>
                 ) : (
                   <motion.div key={field.name} variants={editorialWipe} custom={index * 0.7} className="flex flex-col gap-1.5">
-                    <label className="text-xs font-light uppercase text-brand/50">{field.label}</label>
+                    <label className="text-xs font-medium uppercase text-brand/70">{field.label}</label>
                     <input
                       type={field.type}
                       name={field.name}
@@ -71,7 +71,7 @@ export default function EnquiryV2() {
                 variants={editorialWipe}
                 custom={corporateEnquiryFields.length * 0.7}
                 type="submit"
-                className="mt-4 flex w-full items-center justify-center gap-3 border border-brand bg-brand px-8 py-4 text-sm font-light uppercase text-white transition-all hover:bg-white hover:text-brand group"
+                className="mt-4 flex w-full items-center justify-center gap-3 border border-brand bg-brand px-8 py-4 text-sm font-medium uppercase text-white transition-all hover:bg-white hover:text-brand group"
               >
                 Submit Enquiry
                 <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />

@@ -96,7 +96,7 @@ export default function ExpertiseExplorer() {
                 </div>
 
                 <div className="mt-16">
-                  <p className="max-w-xl text-base leading-8 text-white/62">
+                  <p className="max-w-xl text-base leading-8 text-white/80">
                     {activeArea.description}
                   </p>
                   <div className="mt-10">

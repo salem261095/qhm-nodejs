@@ -1,13 +1,9 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
-import { ArrowRight, ArrowUpRight, MapPin, Search, X } from "lucide-react";
+import { motion } from "framer-motion";
+import { ArrowRight } from "lucide-react";
 import { homepageContent } from "@/data/homepage";
-import { teamMembers } from "@/data/lawyers";
-import { publicationsData } from "@/data/publications";
 
 export const {
   hero,
@@ -50,18 +46,18 @@ export const navLinks = [
 ];
 
 export const teamHeadshots = [
-  "/assets/For Website Upgrade/FinalHeadShotsForWebsite/Qaisar.jpg",
-  "/assets/For Website Upgrade/FinalHeadShotsForWebsite/1a.jpg",
-  "/assets/For Website Upgrade/FinalHeadShotsForWebsite/2.jpg",
-  "/assets/For Website Upgrade/FinalHeadShotsForWebsite/3.jpg",
-  "/assets/For Website Upgrade/FinalHeadShotsForWebsite/4.jpg",
-  "/assets/For Website Upgrade/FinalHeadShotsForWebsite/5.jpg",
-  "/assets/For Website Upgrade/FinalHeadShotsForWebsite/6a.jpg",
-  "/assets/For Website Upgrade/FinalHeadShotsForWebsite/7a.jpg",
-  "/assets/For Website Upgrade/FinalHeadShotsForWebsite/8.jpg",
-  "/assets/For Website Upgrade/FinalHeadShotsForWebsite/9a.jpg",
-  "/assets/For Website Upgrade/FinalHeadShotsForWebsite/11a.jpg",
-  "/assets/For Website Upgrade/FinalHeadShotsForWebsite/12.jpg",
+  "/assets/team/Qaisar.jpg",
+  "/assets/team/Yasser Mustafa.jpg",
+  "/assets/team/Tamer Elnagar.jpg",
+  "/assets/team/Amna Usman.jpg",
+  "/assets/team/Hamed Matawi.jpg",
+  "/assets/team/Muayd Johar.jpg",
+  "/assets/team/Mahmoud Bashandy.jpg",
+  "/assets/team/Abdulelah Ashmawi.jpg",
+  "/assets/team/Deema Daqqaq.jpg",
+  "/assets/team/Tamara Khattab.jpg",
+  "/assets/team/Talah Reda.jpg",
+  "/assets/team/Abdulmajeed Ghandoorah.jpg",
 ];
 
 export function TextReveal({ children, delay = 0 }: { children: string; delay?: number }) {
@@ -135,7 +131,7 @@ export function SectionLabel({ children, inverse = false }: { children: string; 
   return (
     <motion.p
       variants={revealItem}
-      className={`text-xs font-light uppercase ${inverse ? "text-white/55" : "text-brand/65"}`}
+      className={`text-xs font-medium uppercase ${inverse ? "text-white/75" : "text-brand/75"}`}
     >
       {children}
     </motion.p>
@@ -154,10 +150,10 @@ export function PremiumButton({
   return (
     <Link
       href={href}
-      className={`group inline-flex min-h-12 items-center justify-between gap-7 border px-6 py-3 text-sm font-light uppercase transition-all duration-300 ${
+      className={`group inline-flex min-h-12 items-center justify-between gap-7 border px-6 py-3 text-sm font-medium uppercase transition-all duration-300 ${
         inverse
-          ? "border-white/45 text-white hover:border-white hover:bg-white hover:text-brand"
-          : "border-brand/35 text-brand hover:border-brand hover:bg-brand hover:text-white"
+          ? "border-white/65 text-white hover:border-white hover:bg-white hover:text-brand"
+          : "border-brand/50 text-brand hover:border-brand hover:bg-brand hover:text-white"
       }`}
     >
       <span>{children}</span>

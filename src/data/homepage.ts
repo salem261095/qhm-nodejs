@@ -3,8 +3,8 @@ export const navItems = [
     label: "Home",
     href: "/",
     children: [
-      { label: "Main — Intelligence Hub", href: "/" },
-      { label: "Variant — Editorial", href: "/home-2" },
+      { label: "Main - Intelligence Hub", href: "/" },
+      { label: "Variant - Editorial", href: "/home-2" },
     ],
   },
   { label: "Expertise", href: "/expertise" },
@@ -33,7 +33,7 @@ export const heroCtas = [
 
 export const managingPartnerCta = {
   label: "Meet Dr. Qaisar",
-  href: "/team/dr-qaisar-h-metawea",
+  href: "/team",
 };
 
 export const coreCompetencies = [
@@ -67,42 +67,42 @@ export const practiceAreas = [
   {
     title: "Corporate & Commercial",
     description: "Structuring complex entities and cross-border transactions.",
-    href: "/expertise/corporate-commercial",
+    href: "/expertise",
   },
   {
     title: "Joint Ventures & FDI",
     description: "Navigating foreign investment laws and strategic partnerships.",
-    href: "/expertise/joint-ventures-fdi",
+    href: "/expertise",
   },
   {
     title: "Regulatory Advisory",
     description: "Compliance with Capital Market Authority and gov regulations.",
-    href: "/expertise/regulatory-advisory",
+    href: "/expertise",
   },
   {
     title: "Dispute Resolution",
     description: "Commercial arbitration and high-stakes litigation.",
-    href: "/expertise/dispute-resolution",
+    href: "/expertise",
   },
   {
     title: "Employment & Labor",
     description: "Workforce structuring and executive contracts.",
-    href: "/expertise/employment-labor",
+    href: "/expertise",
   },
   {
     title: "IP & Technology",
     description: "Protecting intellectual assets and data privacy.",
-    href: "/expertise/ip-technology",
+    href: "/expertise",
   },
   {
     title: "Tax & Zakat",
     description: "Corporate tax planning and disputes.",
-    href: "/expertise/tax-zakat",
+    href: "/expertise",
   },
   {
     title: "Sector Advisory",
     description: "Specialized counsel for Energy, Health, and Real Estate.",
-    href: "/expertise/sector-advisory",
+    href: "/expertise",
   },
 ];
 
@@ -111,31 +111,31 @@ export const industryFocus = [
     number: "01.",
     title: "Energy & Infrastructure",
     icon: "zap",
-    href: "/sectors/energy-infrastructure",
+    href: "/expertise",
   },
   {
     number: "02.",
     title: "Healthcare & Pharmaceuticals",
     icon: "health",
-    href: "/sectors/healthcare-pharmaceuticals",
+    href: "/expertise",
   },
   {
     number: "03.",
     title: "Aviation & Maritime",
     icon: "plane",
-    href: "/sectors/aviation-maritime",
+    href: "/expertise",
   },
   {
     number: "04.",
     title: "Real Estate & Development",
     icon: "building",
-    href: "/sectors/real-estate-development",
+    href: "/expertise",
   },
   {
     number: "05.",
     title: "IT & Telecom",
     icon: "chip",
-    href: "/sectors/it-telecom",
+    href: "/expertise",
   },
 ];
 
@@ -287,7 +287,7 @@ export const footerLinks = [
   { label: "About Us", href: "/about" },
   { label: "The Team", href: "/team" },
   { label: "Contact", href: "/contact" },
-  { label: "Legal Notices", href: "/legal-notices" },
+  { label: "Insights", href: "/insights" },
 ];
 
 export const homepageContent = {

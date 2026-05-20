@@ -38,7 +38,7 @@ export default function AboutPage() {
             >
               {hero.heading}
             </motion.h1>
-            <motion.p variants={fadeIn} className="text-white/50 text-xl max-w-xl leading-relaxed">
+            <motion.p variants={fadeIn} className="max-w-xl text-xl leading-relaxed text-white/80">
               {hero.subheading}
             </motion.p>
           </motion.div>
@@ -113,7 +113,7 @@ export default function AboutPage() {
                     <h3 className="text-lg font-bold">{p.title}</h3>
                   </div>
                   <div className="md:col-span-7">
-                    <p className="text-white/50 text-sm leading-relaxed">{p.description}</p>
+                    <p className="text-sm leading-relaxed text-white/75">{p.description}</p>
                   </div>
                 </motion.div>
               ))}
@@ -170,7 +170,7 @@ export default function AboutPage() {
               <p className="text-xs font-bold tracking-[0.3em] uppercase text-brand mb-6">{leadership.label}</p>
               <h2 className="text-4xl md:text-5xl font-extrabold leading-tight mb-4">{leadership.name}</h2>
               <p className="text-brand font-bold text-sm uppercase tracking-widest mb-8">{leadership.role}</p>
-              <p className="text-white/50 text-base leading-relaxed mb-10 max-w-md">{leadership.bio}</p>
+              <p className="mb-10 max-w-md text-base leading-relaxed text-white/78">{leadership.bio}</p>
               <Link
                 href="/team"
                 className="inline-flex items-center gap-3 text-sm font-bold tracking-widest uppercase text-brand group hover:gap-5 transition-all"

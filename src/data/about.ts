@@ -65,6 +65,6 @@ export const aboutData = {
     name: "Dr. Qaisar H. Metawea",
     role: "Founder and Managing Partner",
     bio: "Advising multinational boards on high-stakes Saudi regulatory and corporate mandates.",
-    image: "/assets/For Website Upgrade/FinalHeadShotsForWebsite/Qaisar.jpg",
+    image: "/assets/team/Qaisar.jpg",
   },
 };

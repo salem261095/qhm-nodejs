@@ -39,7 +39,7 @@ export default function MandatesStream() {
           </div>
           <motion.p
             variants={revealItem}
-            className="max-w-md text-sm leading-7 text-white/55"
+            className="max-w-md text-sm leading-7 text-white/75"
           >
             {representativeMandates.map((mandate) => mandate.category).join(" / ")}
           </motion.p>
@@ -60,9 +60,9 @@ export default function MandatesStream() {
               transition={{ duration: 0.3, ease }}
               className="group min-w-[82vw] border-t border-white/20 bg-brand p-7 transition-colors hover:border-white sm:min-w-[420px] lg:min-w-0 lg:flex-1"
             >
-              <p className="text-xs font-light uppercase text-white/42">{mandate.category}</p>
+              <p className="text-xs font-medium uppercase text-white/70">{mandate.category}</p>
               <h3 className="mt-7 text-2xl font-light leading-tight text-white">{mandate.title}</h3>
-              <p className="mt-5 text-sm leading-7 text-white/55">{mandate.description}</p>
+              <p className="mt-5 text-sm leading-7 text-white/75">{mandate.description}</p>
               <ArrowUpRight
                 size={18}
                 className="mt-8 text-white/32 transition-all group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-white"

@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowRight, ArrowUpRight, MapPin } from "lucide-react";
+import { ArrowUpRight, MapPin } from "lucide-react";
 import Link from "next/link";
 import {
   footer,
@@ -46,7 +46,7 @@ export default function OfficesAndCta() {
               </address>
               <Link
                 href={office.mapHref}
-                className="mt-9 inline-flex items-center gap-3 text-sm font-light uppercase text-brand"
+                className="mt-9 inline-flex items-center gap-3 text-sm font-medium uppercase text-brand"
               >
                 {office.mapLabel}
                 <ArrowUpRight size={16} />

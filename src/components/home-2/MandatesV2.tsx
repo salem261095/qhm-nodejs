@@ -58,11 +58,11 @@ export default function MandatesV2() {
               className="group grid md:grid-cols-12 gap-6 py-10 hover:bg-white/5 transition-colors px-2"
             >
               <div className="md:col-span-3">
-                <span className="block text-xs font-light uppercase text-white/50">{m.category}</span>
+                <span className="block text-xs font-medium uppercase text-white/72">{m.category}</span>
               </div>
               <div className="md:col-span-7">
                 <h3 className="text-lg font-light text-white mb-3 leading-snug">{m.title}</h3>
-                <p className="text-white/50 text-sm leading-relaxed">{m.description}</p>
+                <p className="text-sm leading-relaxed text-white/75">{m.description}</p>
               </div>
               <div className="md:col-span-2 flex md:justify-end items-start">
                 <ArrowUpRight

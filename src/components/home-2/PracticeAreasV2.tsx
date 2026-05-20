@@ -1,12 +1,18 @@
 "use client";
 
-import Image from "next/image";
-import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { ArrowRight, ArrowUpRight, Building2, Globe, Gavel, Lightbulb, Mail, MapPin, Phone, Scale, Shield, Users, Zap } from "lucide-react";
-import { corporateEnquiryFields, coreCompetencies, editorialWipe, fadeIn, hero, industryFocus, industryTicker, lineDraw, luxuryNavLinks, practiceAreas, practiceIcons, premiumEase, representativeMandates, sectionReveal, teamHeadshots, PremiumButton, ScrollTextReveal, SplitReveal } from "./shared";
-import { teamMembers } from "@/data/lawyers";
+import { ArrowRight, Scale } from "lucide-react";
+import {
+  editorialWipe,
+  lineDraw,
+  practiceAreas,
+  practiceIcons,
+  premiumEase,
+  sectionReveal,
+  PremiumButton,
+  ScrollTextReveal,
+} from "./shared";
 
 export default function PracticeAreasV2() {
   const [activeIndex, setActiveIndex] = useState(0);

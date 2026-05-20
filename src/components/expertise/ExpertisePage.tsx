@@ -300,7 +300,7 @@ export default function ExpertisePage() {
             </motion.p>
           </div>
           <motion.div variants={blurItem}>
-            <Link href="/contact" className="group inline-flex min-h-12 items-center gap-4 border border-white bg-white px-6 text-sm font-light uppercase text-gray-850 transition-colors hover:bg-gray-850 hover:text-white">
+            <Link href="/contact" className="group inline-flex min-h-12 items-center gap-4 border border-white bg-white px-6 text-sm font-medium uppercase text-gray-850 transition-colors hover:bg-gray-850 hover:text-white">
               Submit Corporate Enquiry
               <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
             </Link>

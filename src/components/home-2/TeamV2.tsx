@@ -1,11 +1,15 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
-import { useEffect, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
-import { ArrowRight, ArrowUpRight, Building2, Globe, Gavel, Lightbulb, Mail, MapPin, Phone, Scale, Shield, Users, Zap } from "lucide-react";
-import { corporateEnquiryFields, coreCompetencies, fadeIn, hero, industryFocus, industryTicker, luxuryNavLinks, practiceAreas, practiceIcons, premiumEase, representativeMandates, sectionReveal, teamHeadshots, PremiumButton, ScrollTextReveal, SectionLabel, SplitReveal } from "./shared";
+import { motion } from "framer-motion";
+import {
+  fadeIn,
+  sectionReveal,
+  teamHeadshots,
+  PremiumButton,
+  ScrollTextReveal,
+  SectionLabel,
+} from "./shared";
 import { teamMembers } from "@/data/lawyers";
 
 export default function TeamV2() {

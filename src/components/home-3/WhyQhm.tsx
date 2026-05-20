@@ -1,8 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
-import { coreCompetencies, ease, revealContainer, revealItem, ScrollTextReveal, SectionLabel, SectionReveal } from "./shared";
+import { coreCompetencies, ease, revealItem, ScrollTextReveal, SectionLabel, SectionReveal } from "./shared";
 
 const cardVariant = {
   hidden: { opacity: 0, scale: 0.86, filter: "blur(6px)" },

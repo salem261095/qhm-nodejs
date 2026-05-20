@@ -2,7 +2,14 @@
 
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
-import { ease, industryFocus, revealItem, ScrollTextReveal, SectionLabel, SectionReveal } from "./shared";
+import {
+  ease,
+  industryFocus,
+  revealItem,
+  ScrollTextReveal,
+  SectionLabel,
+  SectionReveal,
+} from "./shared";
 
 const rowVariant = {
   hidden: { opacity: 0 },
@@ -20,6 +27,7 @@ export default function SectorCinema() {
         loop
         muted
         playsInline
+        preload="metadata"
         variants={{
           hidden: { scale: 1.08, clipPath: "inset(12% 0 12% 0)" },
           visible: {
@@ -29,14 +37,11 @@ export default function SectorCinema() {
           },
         }}
         className="absolute inset-0 h-full w-full object-cover opacity-62"
-        src="/assets/For Website Upgrade/compressed-banner-video.mp4"
+        src="/assets/vid/compressed-banner-video.mp4"
       />
       <div className="absolute inset-0 pointer-events-none" />
       <div className="relative z-10 mx-auto grid min-h-[66vh] max-w-7xl items-end gap-12 lg:grid-cols-[1fr_0.9fr]">
         <div>
-          <motion.div variants={revealItem}>
-            <SectionLabel inverse>Industry Focus</SectionLabel>
-          </motion.div>
           <motion.h2
             variants={revealItem}
             className="mt-5 text-5xl font-semibold uppercase leading-tight md:text-7xl"
@@ -58,8 +63,10 @@ export default function SectorCinema() {
               className="flex items-center justify-between border-b border-white/16 px-6 py-5 last:border-b-0"
             >
               <div>
-                <p className="text-xs font-light text-white/36">{item.number}</p>
-                <h3 className="mt-2 text-xl font-light">{item.title}</h3>
+                <p className="text-xs font-medium text-white/70">
+                  {item.number}
+                </p>
+                <h3 className="mt-2 text-xl font-normal">{item.title}</h3>
               </div>
               <ArrowRight size={16} className="text-white/40" />
             </motion.div>

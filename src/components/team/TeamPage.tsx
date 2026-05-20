@@ -15,7 +15,7 @@ type TeamMember = {
   description?: string[];
 };
 
-const headshotBase = "/assets/For Website Upgrade/FinalHeadShotsForWebsite";
+const headshotBase = "/assets/team";
 
 const teamMembers: TeamMember[] = [
   {
@@ -347,7 +347,7 @@ export default function TeamPage() {
             <motion.div variants={item} className="flex flex-col gap-3 sm:flex-row lg:justify-end">
               <Link
                 href="/contact"
-                className="inline-flex h-12 shrink-0 items-center justify-center gap-3 border border-brand bg-brand px-5 text-sm font-light uppercase text-white transition-colors hover:bg-white hover:text-brand"
+                className="inline-flex h-12 shrink-0 items-center justify-center gap-3 border border-brand bg-brand px-5 text-sm font-medium uppercase text-white transition-colors hover:bg-white hover:text-brand"
               >
                 Contact
                 <ArrowRight size={16} />
@@ -361,7 +361,7 @@ export default function TeamPage() {
                 key={role}
                 type="button"
                 onClick={() => setActiveRole(role)}
-                className="relative min-h-11 shrink-0 overflow-hidden bg-white px-5 text-xs font-light uppercase text-brand transition-colors hover:bg-brand/5"
+                className="relative min-h-11 shrink-0 overflow-hidden bg-white px-5 text-xs font-medium uppercase text-brand transition-colors hover:bg-brand/5"
               >
                 {activeRole === role && (
                   <motion.span

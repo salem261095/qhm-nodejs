@@ -1,15 +1,12 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
-import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import {
-  ArrowRight, ArrowUpRight, MapPin, Phone, Mail,
+  ArrowRight,
   Building2, Globe, Scale, Gavel, Users, Lightbulb, Zap, Shield
 } from "lucide-react";
 import { homepageContent } from "@/data/homepage";
-import { teamMembers } from "@/data/lawyers";
 
 export const { hero, managingPartner, coreCompetencies, practiceAreas, industryFocus, representativeMandates, corporateEnquiryFields, newsletter } = homepageContent;
 
@@ -126,7 +123,7 @@ export function SectionLabel({ children, inverse = false }: { children: string; 
   return (
     <motion.p
       variants={fadeIn}
-      className={`text-xs font-light uppercase ${inverse ? "text-white/50" : "text-brand/60"}`}
+      className={`text-xs font-medium uppercase ${inverse ? "text-white/75" : "text-brand/75"}`}
     >
       {children}
     </motion.p>
@@ -145,10 +142,10 @@ export function PremiumButton({
   return (
     <Link
       href={href}
-      className={`group inline-flex items-center justify-between gap-6 border px-6 py-3 text-xs font-light uppercase transition-all duration-300 ${
+      className={`group inline-flex items-center justify-between gap-6 border px-6 py-3 text-xs font-medium uppercase transition-all duration-300 ${
         inverse
-          ? "border-white/40 text-white hover:border-white hover:bg-white hover:text-brand"
-          : "border-brand/30 text-brand hover:border-brand hover:bg-brand hover:text-white"
+          ? "border-white/65 text-white hover:border-white hover:bg-white hover:text-brand"
+          : "border-brand/50 text-brand hover:border-brand hover:bg-brand hover:text-white"
       }`}
     >
       <span>{children}</span>
@@ -165,11 +162,11 @@ export const luxuryNavLinks = [
 ];
 
 export const teamHeadshots = [
-  "/assets/For Website Upgrade/FinalHeadShotsForWebsite/Qaisar.jpg",
-  "/assets/For Website Upgrade/FinalHeadShotsForWebsite/1a.jpg",
-  "/assets/For Website Upgrade/FinalHeadShotsForWebsite/2.jpg",
-  "/assets/For Website Upgrade/FinalHeadShotsForWebsite/3.jpg",
-  "/assets/For Website Upgrade/FinalHeadShotsForWebsite/4.jpg",
+  "/assets/team/Qaisar.jpg",
+  "/assets/team/Yasser Mustafa.jpg",
+  "/assets/team/Tamer Elnagar.jpg",
+  "/assets/team/Amna Usman.jpg",
+  "/assets/team/Hamed Matawi.jpg",
 ];
 
 
