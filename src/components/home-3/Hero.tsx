@@ -1,45 +1,15 @@
 "use client";
 
-import { useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
-import { ArrowRight, Building2, FileCheck2, Globe2, MapPin, Scale, ShieldCheck } from "lucide-react";
+import Link from "next/link";
+import { motion } from "framer-motion";
+import { MapPin, ArrowRight } from "lucide-react";
 import { ease, PremiumButton, TextReveal } from "./shared";
 
-const pathwayItems = [
-  {
-    label: "Establish",
-    icon: Building2,
-    text: "Corporate structuring, MISA licensing, RHQ setup, and foreign investment approvals.",
-  },
-  {
-    label: "Operate",
-    icon: FileCheck2,
-    text: "Employment, governance, commercial contracts, tax, and ongoing regulatory compliance.",
-  },
-  {
-    label: "Protect",
-    icon: ShieldCheck,
-    text: "Risk management across IP, technology, data, sector regulation, and board-level obligations.",
-  },
-  {
-    label: "Resolve",
-    icon: Scale,
-    text: "Commercial disputes, tax objections, regulatory investigations, arbitration, and litigation.",
-  },
-  {
-    label: "Grow",
-    icon: Globe2,
-    text: "Sector expansion across energy, healthcare, aviation, maritime, real estate, IT, and telecom.",
-  },
-];
+
 
 export default function Hero() {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const activeItem = pathwayItems[activeIndex];
-  const ActiveIcon = activeItem.icon;
-
   return (
-    <section className="relative min-h-screen overflow-hidden bg-gray-850 text-white">
+    <section className="relative min-h-screen overflow-hidden bg-brand text-white">
       <motion.video
         autoPlay
         loop
@@ -48,114 +18,47 @@ export default function Hero() {
         initial={{ scale: 1.08 }}
         animate={{ scale: 1 }}
         transition={{ duration: 4.5, ease }}
-        className="absolute inset-0 h-full w-full object-cover opacity-32"
+        className="absolute inset-0 h-full w-full object-cover opacity-55"
         src="/assets/For%20Website%20Upgrade/QHM2-compressed.mp4"
       />
-      <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(31,41,51,0.97),rgba(31,41,51,0.82),rgba(31,41,51,0.94))]" />
+      <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(25,57,138,0.72)_0%,rgba(25,57,138,0.38)_60%,rgba(25,57,138,0.58)_100%)]" />
 
-      <div className="relative z-10 mx-auto grid min-h-screen max-w-7xl content-end gap-8 px-5 pb-8 pt-32 sm:px-8 lg:grid-cols-[0.86fr_1.14fr] lg:gap-12 lg:px-10 lg:pb-12">
-        <div className="border-t border-white/18 pt-8">
-          <h1 className="max-w-4xl text-4xl font-semibold uppercase leading-[0.94] text-white sm:text-5xl lg:text-6xl xl:text-7xl">
-            <TextReveal delay={0.52}>{"Saudi Market\nEntry Command\nCenter"}</TextReveal>
+      <div className="relative z-10 mx-auto flex min-h-screen max-w-7xl flex-col justify-end px-5 pb-16 pt-32 sm:px-8 lg:px-10 lg:pb-20">
+        <div className="max-w-5xl border-t border-white/20 pt-10">
+          <h1 className="text-4xl font-semibold uppercase leading-[0.94] text-white sm:text-5xl lg:text-6xl xl:text-[5.5rem]">
+            <TextReveal delay={0.4}>{"Saudi Depth.\nGlobal Confidence."}</TextReveal>
           </h1>
           <motion.p
             initial={{ opacity: 0, y: 22, filter: "blur(10px)" }}
             animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-            transition={{ delay: 1.05, duration: 0.8, ease }}
-            className="mt-7 max-w-xl text-sm font-light leading-7 text-white/64 sm:text-base sm:leading-8"
+            transition={{ delay: 0.95, duration: 0.8, ease }}
+            className="mt-8 max-w-2xl text-base font-light leading-8 text-white/68"
           >
-            From market entry and corporate structuring to compliance, disputes, employment, tax, and sector regulation, QHM supports clients with practical bilingual legal advice.
+            Independent. Saudi-based. Internationally experienced. From market entry and corporate structuring to compliance, disputes, and sector regulation — QHM delivers partner-led bilingual legal counsel.
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 18, filter: "blur(10px)" }}
             animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-            transition={{ delay: 1.18, duration: 0.75, ease }}
-            className="mt-9 flex flex-col gap-3 sm:flex-row"
+            transition={{ delay: 1.1, duration: 0.75, ease }}
+            className="mt-10 flex flex-col gap-3 sm:flex-row"
           >
-            <PremiumButton href="/contact" inverse>Contact QHM</PremiumButton>
+            <Link
+              href="/contact"
+              className="group inline-flex min-h-12 items-center justify-between gap-7 border border-white bg-white px-6 py-3 text-sm font-light uppercase text-brand transition-all duration-300 hover:bg-transparent hover:text-white"
+            >
+              <span>Contact QHM</span>
+              <ArrowRight size={16} className="transition-transform duration-300 group-hover:translate-x-1" />
+            </Link>
             <PremiumButton href="/expertise" inverse>Explore Expertise</PremiumButton>
           </motion.div>
-        </div>
-
-        <div className="flex flex-col justify-end">
           <motion.div
-            initial={{ opacity: 0, x: 36, clipPath: "inset(0 0 0 18%)" }}
-            animate={{ opacity: 1, x: 0, clipPath: "inset(0 0 0 0%)" }}
-            transition={{ delay: 0.76, duration: 0.9, ease }}
-            className="border border-white/16 bg-white/[0.04] backdrop-blur-md"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1.3, duration: 0.6, ease }}
+            className="mt-14 flex items-center gap-3 text-xs font-light uppercase text-white/42"
           >
-            <div className="border-b border-white/12 p-4 sm:p-5">
-              <p className="text-xs font-light uppercase text-white/45">Saudi Market Entry Command Center</p>
-              <div className="mt-4 grid grid-cols-2 gap-px bg-white/12 sm:grid-cols-4">
-                {["Jeddah HQ", "Riyadh Office", "Arabic", "English"].map((item) => (
-                  <div key={item} className="bg-gray-850/70 px-3 py-2.5 text-[11px] font-light uppercase text-white/58">
-                    {item}
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="grid gap-px bg-white/12 lg:grid-cols-[0.78fr_1.22fr]">
-              <div className="bg-gray-850/70">
-                {pathwayItems.map((item, index) => {
-                  const Icon = item.icon;
-                  const isActive = activeIndex === index;
-                  return (
-                    <button
-                      key={item.label}
-                      type="button"
-                      onMouseEnter={() => setActiveIndex(index)}
-                      onClick={() => setActiveIndex(index)}
-                    className="group relative flex w-full items-center justify-between gap-4 border-b border-white/12 px-4 py-4 text-left last:border-b-0 sm:px-5"
-                    >
-                      {isActive && (
-                        <motion.span
-                          layoutId="home3-command-active"
-                          transition={{ duration: 0.35, ease }}
-                          className="absolute inset-0 bg-white"
-                        />
-                      )}
-                      <span className="relative z-10 flex items-center gap-4">
-                        <Icon size={18} className={isActive ? "text-gray-850" : "text-white/45 transition-colors group-hover:text-white"} />
-                        <span className={isActive ? "text-sm font-light uppercase text-gray-850" : "text-sm font-light uppercase text-white/72 transition-colors group-hover:text-white"}>
-                          {item.label}
-                        </span>
-                      </span>
-                      <ArrowRight size={15} className={isActive ? "relative z-10 text-gray-850" : "relative z-10 -translate-x-2 text-white/0 transition-all group-hover:translate-x-0 group-hover:text-white/55"} />
-                    </button>
-                  );
-                })}
-              </div>
-
-              <div className="flex min-h-[360px] flex-col justify-between bg-gray-850/70 p-7 sm:p-9">
-                <AnimatePresence mode="wait">
-                  <motion.div
-                    key={activeItem.label}
-                    initial={{ opacity: 0, y: 24, filter: "blur(12px)", clipPath: "inset(0 0 16% 0)" }}
-                    animate={{ opacity: 1, y: 0, filter: "blur(0px)", clipPath: "inset(0 0 0% 0)" }}
-                    exit={{ opacity: 0, y: -16, filter: "blur(8px)", clipPath: "inset(0 0 12% 0)" }}
-                    transition={{ duration: 0.45, ease }}
-                  >
-                    <div className="flex h-12 w-12 items-center justify-center border border-white/18">
-                      <ActiveIcon size={22} strokeWidth={1.5} />
-                    </div>
-                    <h2 className="mt-8 text-4xl font-semibold uppercase leading-[0.96] text-white sm:text-5xl">
-                      {activeItem.label}
-                    </h2>
-                    <p className="mt-6 max-w-xl text-sm font-light leading-7 text-white/62 sm:text-base sm:leading-8">
-                      {activeItem.text}
-                    </p>
-                  </motion.div>
-                </AnimatePresence>
-
-                <div className="mt-10 border-t border-white/14 pt-5">
-                  <div className="flex items-center gap-3 text-xs font-light uppercase text-white/45">
-                    <MapPin size={14} />
-                    Jeddah - Riyadh - Kingdom of Saudi Arabia
-                  </div>
-                </div>
-              </div>
-            </div>
+            <MapPin size={13} />
+            Jeddah Headquarters — Riyadh Office — Kingdom of Saudi Arabia
           </motion.div>
         </div>
       </div>

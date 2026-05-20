@@ -1,12 +1,27 @@
 "use client";
 
-import Image from "next/image";
-import Link from "next/link";
-import { useEffect, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
-import { ArrowRight, ArrowUpRight, Building2, Globe, Gavel, Lightbulb, Mail, MapPin, Phone, Scale, Shield, Users, Zap } from "lucide-react";
-import { corporateEnquiryFields, coreCompetencies, editorialWipe, fadeIn, hero, industryFocus, industryTicker, lineDraw, luxuryNavLinks, practiceAreas, practiceIcons, premiumEase, representativeMandates, sectionReveal, teamHeadshots, PremiumButton, ScrollTextReveal, SplitReveal } from "./shared";
-import { teamMembers } from "@/data/lawyers";
+import { motion } from "framer-motion";
+import { ArrowRight } from "lucide-react";
+import {
+  industryFocus,
+  industryTicker,
+  editorialWipe,
+  fadeIn,
+  lineDraw,
+  premiumEase,
+  sectionReveal,
+  ScrollTextReveal,
+} from "./shared";
+
+const cardVariant = {
+  hidden: { opacity: 0, y: 40, clipPath: "inset(0 0 24% 0)" },
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    clipPath: "inset(0 0 0% 0)",
+    transition: { delay: i * 0.09, duration: 0.78, ease: premiumEase },
+  }),
+};
 
 export default function IndustryV2() {
   return (
@@ -15,7 +30,7 @@ export default function IndustryV2() {
         <motion.div
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, amount: 0.16 }}
+          viewport={{ once: true, amount: 0.14 }}
           variants={sectionReveal}
         >
           <motion.h2 variants={editorialWipe} className="mt-3 text-4xl md:text-5xl font-light text-brand mb-14 leading-tight">
@@ -39,7 +54,7 @@ export default function IndustryV2() {
               muted
               playsInline
               className="absolute inset-0 h-full w-full object-cover"
-              src="/assets/For%20Website%20Upgrade/QHM-compressed.mp4"
+              src="/assets/For Website Upgrade/compressed-banner-video.mp4"
             />
             <div className="absolute inset-0 bg-brand/40" />
             <div className="relative z-10 flex min-h-[420px] items-end p-8 sm:p-10 lg:p-14">
@@ -67,29 +82,35 @@ export default function IndustryV2() {
               ))}
             </motion.div>
           </motion.div>
+        </motion.div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-brand/10">
-            {industryFocus.map((item, i) => (
-              <motion.div
-                key={item.title}
-                custom={i}
-                variants={editorialWipe}
-                whileHover={{ y: -6 }}
-                transition={{ duration: 0.35, ease: premiumEase }}
-                className="bg-white p-10 group hover:bg-brand hover:text-white transition-colors duration-300 cursor-pointer"
-              >
-                <span className="text-xs font-light uppercase text-brand/30 group-hover:text-white/50 transition-colors">
-                  {item.number}
-                </span>
-                <h3 className="text-2xl font-light text-brand group-hover:text-white mt-4 mb-4 transition-colors leading-tight">
-                  {item.title}
-                </h3>
-                <div className="flex items-center gap-2 text-xs font-light uppercase text-brand group-hover:text-white/70 transition-colors mt-auto">
-                  Explore <ArrowRight size={12} className="group-hover:translate-x-1 transition-transform" />
-                </div>
-              </motion.div>
-            ))}
-          </div>
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.08 }}
+          variants={sectionReveal}
+          className="grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-brand/10"
+        >
+          {industryFocus.map((item, i) => (
+            <motion.div
+              key={item.title}
+              custom={i}
+              variants={cardVariant}
+              whileHover={{ y: -6 }}
+              transition={{ duration: 0.35, ease: premiumEase }}
+              className="bg-white p-10 group hover:bg-brand hover:text-white transition-colors duration-300 cursor-pointer"
+            >
+              <span className="text-xs font-light uppercase text-brand/30 group-hover:text-white/50 transition-colors">
+                {item.number}
+              </span>
+              <h3 className="text-2xl font-light text-brand group-hover:text-white mt-4 mb-4 transition-colors leading-tight">
+                {item.title}
+              </h3>
+              <div className="flex items-center gap-2 text-xs font-light uppercase text-brand group-hover:text-white/70 transition-colors mt-auto">
+                Explore <ArrowRight size={12} className="group-hover:translate-x-1 transition-transform" />
+              </div>
+            </motion.div>
+          ))}
         </motion.div>
       </div>
     </section>

@@ -236,51 +236,7 @@ function MemberModal({ member, onClose }: { member: TeamMember; onClose: () => v
   );
 }
 
-function FeaturedMember({ member, onSelect }: { member: TeamMember; onSelect: () => void }) {
-  return (
-    <motion.button
-      type="button"
-      variants={item}
-      onClick={onSelect}
-      whileHover={{ y: -6 }}
-      transition={{ duration: 0.35, ease }}
-      className="group grid w-full overflow-hidden bg-brand text-left text-white lg:grid-cols-[0.92fr_1.08fr]"
-    >
-      <motion.div
-        variants={{
-          hidden: { clipPath: "inset(8% 0 8% 0)" },
-          visible: { clipPath: "inset(0% 0 0% 0)", transition: { duration: 0.95, ease } },
-        }}
-        className="relative min-h-[460px] overflow-hidden bg-white/5 sm:min-h-[560px] lg:min-h-[680px]"
-      >
-        <Image
-          src={member.image}
-          alt={member.name}
-          fill
-          priority
-          className="scale-[1.13] object-cover object-[68%_center] grayscale transition duration-700 group-hover:scale-[1.03] group-hover:grayscale-0 lg:object-[72%_center]"
-          sizes="(max-width: 1024px) 100vw, 46vw"
-        />
-        <div className="absolute inset-0 bg-brand/15 transition-opacity group-hover:opacity-0" />
-      </motion.div>
-      <div className="flex min-h-[420px] flex-col justify-end p-7 sm:p-10 lg:p-14">
-        <motion.p variants={item} className="text-xs font-light uppercase text-white/48">{member.role}</motion.p>
-        <motion.h2 variants={item} className="mt-5 max-w-3xl text-5xl font-semibold leading-[0.98] sm:text-6xl lg:text-7xl">
-          <ScrollTextReveal>{member.name}</ScrollTextReveal>
-        </motion.h2>
-        {member.description && (
-          <motion.p variants={item} className="mt-8 max-w-2xl text-sm leading-7 text-white/62 sm:text-base sm:leading-8">
-            {member.description[0]}
-          </motion.p>
-        )}
-        <motion.div variants={item} className="mt-10 flex items-center justify-between border-t border-white/16 pt-6">
-          <span className="text-sm font-light text-white/58">View profile</span>
-          <ArrowUpRight size={20} className="transition-transform group-hover:-translate-y-1 group-hover:translate-x-1" />
-        </motion.div>
-      </div>
-    </motion.button>
-  );
-}
+
 
 function MemberCard({ member, index, onSelect }: { member: TeamMember; index: number; onSelect: () => void }) {
   return (
@@ -324,10 +280,8 @@ function MemberCard({ member, index, onSelect }: { member: TeamMember; index: nu
 export default function TeamPage() {
   const [selected, setSelected] = useState<TeamMember | null>(null);
   const [activeRole, setActiveRole] = useState<(typeof roles)[number]>("All");
-  const featured = teamMembers[0];
 
   const filteredMembers = teamMembers
-    .slice(1)
     .filter((member) => activeRole === "All" || roleGroup(member) === activeRole);
 
   return (
@@ -373,17 +327,7 @@ export default function TeamPage() {
         </motion.div>
       </section>
 
-      <section className="px-5 py-16 sm:px-8 lg:px-10">
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.16 }}
-          variants={container}
-          className="mx-auto max-w-7xl"
-        >
-          <FeaturedMember member={featured} onSelect={() => setSelected(featured)} />
-        </motion.div>
-      </section>
+
 
       <section className="border-t border-brand/12 px-5 py-16 sm:px-8 lg:px-10 lg:py-20">
         <div className="mx-auto max-w-7xl">

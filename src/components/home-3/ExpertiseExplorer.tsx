@@ -1,83 +1,180 @@
 "use client";
 
-import Image from "next/image";
-import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { ArrowRight, ArrowUpRight, MapPin, Search, X } from "lucide-react";
-import { coreCompetencies, ease, footer, hero, homepageContent, industryFocus, navLinks, practiceAreas, representativeMandates, revealContainer, revealItem, teamHeadshots, ClipReveal, PremiumButton, ScrollTextReveal, SectionLabel, SectionReveal, TextReveal } from "./shared";
-import { teamMembers } from "@/data/lawyers";
+import {
+  ArrowRight,
+  Building2,
+  Globe,
+  Gavel,
+  Lightbulb,
+  Scale,
+  Shield,
+  Users,
+  Zap,
+} from "lucide-react";
+import {
+  practiceAreas,
+  ease,
+  revealContainer,
+  revealItem,
+  PremiumButton,
+  ScrollTextReveal,
+  SectionLabel,
+} from "./shared";
+
+const practiceIcons: Record<string, React.ElementType> = {
+  "Corporate & Commercial": Building2,
+  "Joint Ventures & FDI": Globe,
+  "Regulatory Advisory": Shield,
+  "Dispute Resolution": Gavel,
+  "Employment & Labor": Users,
+  "IP & Technology": Lightbulb,
+  "Tax & Zakat": Scale,
+  "Sector Advisory": Zap,
+};
 
 export default function ExpertiseExplorer() {
   const [activeIndex, setActiveIndex] = useState(0);
-  const activePractice = practiceAreas[activeIndex];
+  const activeArea = practiceAreas[activeIndex];
+  const ActiveIcon = practiceIcons[activeArea.title] ?? Scale;
 
   return (
-    <SectionReveal className="bg-white px-5 py-24 sm:px-8 lg:px-10">
+    <motion.section
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.12 }}
+      variants={revealContainer}
+      className="bg-white px-5 py-24 sm:px-8 lg:px-10"
+    >
       <div className="mx-auto max-w-7xl">
-        <div className="mb-12 grid gap-8 lg:grid-cols-[0.8fr_1.2fr]">
+        <div className="relative mb-14 flex flex-col justify-between gap-6 pb-8 md:flex-row md:items-end">
+          <motion.div
+            variants={revealItem}
+            className="absolute bottom-0 left-0 h-px w-full origin-left bg-brand/10"
+          />
           <div>
             <SectionLabel>Practice Areas</SectionLabel>
-            <motion.h2 variants={revealItem} className="mt-4 text-4xl font-semibold uppercase leading-tight text-brand md:text-6xl">
-              <ScrollTextReveal>Practice Areas</ScrollTextReveal>
+            <motion.h2
+              variants={revealItem}
+              className="mt-3 text-4xl font-light leading-tight text-brand md:text-5xl"
+            >
+              <ScrollTextReveal>Our Mandate</ScrollTextReveal>
             </motion.h2>
           </div>
-          <motion.p variants={revealItem} className="max-w-2xl text-base leading-8 text-black/55 lg:self-end">
-            {practiceAreas.map((area) => area.title).join(" / ")}
-          </motion.p>
+          <motion.div variants={revealItem}>
+            <PremiumButton href="/expertise">All Practice Areas</PremiumButton>
+          </motion.div>
         </div>
 
-        <div className="grid border border-black/12 lg:grid-cols-[0.9fr_1.1fr]">
-          <div className="border-b border-black/12 lg:border-b-0 lg:border-r">
-            {practiceAreas.map((area, index) => (
-              <button
-                key={area.title}
-                onMouseEnter={() => setActiveIndex(index)}
-                onClick={() => setActiveIndex(index)}
-                className={`relative flex w-full items-center justify-between border-b border-black/12 px-6 py-6 text-left transition-colors last:border-b-0 ${
-                  activeIndex === index ? "bg-brand text-white" : "bg-white text-brand hover:bg-brand/5"
-                }`}
+        <div className="grid gap-px bg-brand/10 lg:grid-cols-[0.95fr_1.05fr]">
+          <motion.div
+            variants={revealItem}
+            className="bg-brand p-8 text-white sm:p-10 lg:min-h-[560px] lg:p-12"
+          >
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeArea.title}
+                initial={{ opacity: 0, x: -24, clipPath: "inset(0 18% 0 0)" }}
+                animate={{ opacity: 1, x: 0, clipPath: "inset(0 0% 0 0)" }}
+                exit={{ opacity: 0, x: 18, clipPath: "inset(0 0 0 14%)" }}
+                transition={{ duration: 0.5, ease }}
+                className="flex h-full flex-col justify-between"
               >
-                <span className="text-sm font-light uppercase">{String(index + 1).padStart(2, "0")} {area.title}</span>
-                <ArrowRight size={17} className={activeIndex === index ? "text-white" : "text-brand/45"} />
-              </button>
-            ))}
-          </div>
+                <div>
+                  <div className="flex items-start justify-between">
+                    <div className="flex h-14 w-14 items-center justify-center border border-white/20">
+                      <ActiveIcon size={24} strokeWidth={1.5} />
+                    </div>
+                    <span className="font-mono text-sm text-white/40">
+                      {String(activeIndex + 1).padStart(2, "0")}
+                    </span>
+                  </div>
+                  <h3 className="mt-14 max-w-xl text-5xl font-light leading-[0.98] sm:text-6xl">
+                    {activeArea.title}
+                  </h3>
+                </div>
 
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={activePractice.title}
-              initial={{ opacity: 0, x: 24, clipPath: "inset(0 0 0 12%)" }}
-              animate={{ opacity: 1, x: 0, clipPath: "inset(0 0 0 0%)" }}
-              exit={{ opacity: 0, x: -18, clipPath: "inset(0 12% 0 0)" }}
-              transition={{ duration: 0.55, ease }}
-              className="min-h-[390px] p-7 md:p-10"
-            >
-              <p className="text-xs font-light uppercase text-brand/60">Practice Areas</p>
-              <h3 className="mt-4 text-4xl font-semibold leading-tight text-brand">{activePractice.title}</h3>
-              <p className="mt-5 max-w-2xl text-base leading-8 text-black/55">{activePractice.description}</p>
-              <div className="mt-9 grid gap-px bg-black/12 sm:grid-cols-2">
-                {practiceAreas.slice(0, 4).map((practice, index) => {
-                  return (
-                    <motion.div
-                      key={practice.title}
-                      initial={{ opacity: 0, y: 18 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: index * 0.08, duration: 0.45, ease }}
-                      className="group bg-white p-6 transition-colors hover:bg-brand hover:text-white"
+                <div className="mt-16">
+                  <p className="max-w-xl text-base leading-8 text-white/62">
+                    {activeArea.description}
+                  </p>
+                  <div className="mt-10">
+                    <PremiumButton href={activeArea.href} inverse>
+                      Explore Practice
+                    </PremiumButton>
+                  </div>
+                </div>
+              </motion.div>
+            </AnimatePresence>
+          </motion.div>
+
+          <div className="grid gap-px bg-brand/10 sm:grid-cols-2">
+            {practiceAreas.map((area, i) => {
+              const Icon = practiceIcons[area.title] ?? Scale;
+              const isActive = activeIndex === i;
+              return (
+                <motion.button
+                  key={area.title}
+                  type="button"
+                  custom={i}
+                  variants={revealItem}
+                  whileHover={{ y: -4 }}
+                  whileTap={{ scale: 0.985 }}
+                  transition={{ duration: 0.3, ease }}
+                  onMouseEnter={() => setActiveIndex(i)}
+                  onClick={() => setActiveIndex(i)}
+                  className={`group flex min-h-[220px] flex-col justify-between p-6 text-left transition-colors sm:p-7 ${
+                    isActive
+                      ? "bg-gray-850 text-white"
+                      : "bg-white text-brand hover:bg-brand hover:text-white"
+                  }`}
+                >
+                  <div className="flex items-start justify-between gap-5">
+                    <Icon
+                      size={22}
+                      strokeWidth={1.5}
+                      className={
+                        isActive
+                          ? "text-white"
+                          : "text-brand/45 transition-colors group-hover:text-white"
+                      }
+                    />
+                    <span
+                      className={
+                        isActive
+                          ? "font-mono text-xs text-white/40"
+                          : "font-mono text-xs text-brand/24 transition-colors group-hover:text-white/40"
+                      }
                     >
-                      <h4 className="text-xl font-light">{practice.title}</h4>
-                      <p className="mt-4 text-sm leading-7 text-black/55 transition-colors group-hover:text-white/62">
-                        {practice.description}
-                      </p>
-                    </motion.div>
-                  );
-                })}
-              </div>
-            </motion.div>
-          </AnimatePresence>
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                  </div>
+                  <div>
+                    <h3
+                      className={
+                        isActive
+                          ? "text-2xl font-light leading-tight text-white"
+                          : "text-2xl font-light leading-tight text-brand transition-colors group-hover:text-white"
+                      }
+                    >
+                      {area.title}
+                    </h3>
+                    <ArrowRight
+                      size={16}
+                      className={
+                        isActive
+                          ? "mt-6 text-white/70"
+                          : "mt-6 -translate-x-2 text-brand/0 transition-all group-hover:translate-x-0 group-hover:text-white/70"
+                      }
+                    />
+                  </div>
+                </motion.button>
+              );
+            })}
+          </div>
         </div>
       </div>
-    </SectionReveal>
+    </motion.section>
   );
 }

@@ -1,12 +1,25 @@
 "use client";
 
-import Image from "next/image";
-import Link from "next/link";
-import { useEffect, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
-import { ArrowRight, ArrowUpRight, Building2, Globe, Gavel, Lightbulb, Mail, MapPin, Phone, Scale, Shield, Users, Zap } from "lucide-react";
-import { corporateEnquiryFields, coreCompetencies, editorialWipe, fadeIn, hero, industryFocus, industryTicker, lineDraw, luxuryNavLinks, practiceAreas, practiceIcons, premiumEase, representativeMandates, sectionReveal, teamHeadshots, PremiumButton, ScrollTextReveal, SplitReveal } from "./shared";
-import { teamMembers } from "@/data/lawyers";
+import { motion } from "framer-motion";
+import { ArrowRight } from "lucide-react";
+import {
+  coreCompetencies,
+  editorialWipe,
+  lineDraw,
+  premiumEase,
+  sectionReveal,
+  ScrollTextReveal,
+} from "./shared";
+
+const rowVariant = {
+  hidden: { opacity: 0, x: -32, clipPath: "inset(0 100% 0 0)" },
+  visible: (i: number) => ({
+    opacity: 1,
+    x: 0,
+    clipPath: "inset(0 0% 0 0)",
+    transition: { delay: i * 0.1, duration: 0.82, ease: premiumEase },
+  }),
+};
 
 export default function CompetenciesV2() {
   return (
@@ -15,7 +28,7 @@ export default function CompetenciesV2() {
         <motion.div
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, amount: 0.16 }}
+          viewport={{ once: true, amount: 0.14 }}
           variants={sectionReveal}
         >
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6 pb-8 relative">
@@ -30,12 +43,18 @@ export default function CompetenciesV2() {
             </motion.p>
           </div>
 
-          <div className="divide-y divide-white/20">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.08 }}
+            variants={sectionReveal}
+            className="divide-y divide-white/20"
+          >
             {coreCompetencies.map((item, i) => (
               <motion.div
                 key={item.title}
                 custom={i}
-                variants={editorialWipe}
+                variants={rowVariant}
                 whileHover={{ x: 8 }}
                 transition={{ duration: 0.3, ease: premiumEase }}
                 className="group flex flex-col md:flex-row md:items-center gap-6 py-10 hover:bg-white/5 transition-colors px-2"
@@ -51,7 +70,7 @@ export default function CompetenciesV2() {
                 <ArrowRight size={18} className="text-white/20 group-hover:text-white group-hover:translate-x-2 transition-all flex-shrink-0 hidden md:block" />
               </motion.div>
             ))}
-          </div>
+          </motion.div>
         </motion.div>
       </div>
     </section>

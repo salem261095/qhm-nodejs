@@ -1,12 +1,17 @@
 "use client";
 
-import Image from "next/image";
+import { motion } from "framer-motion";
+import { ArrowRight, ArrowUpRight, MapPin } from "lucide-react";
 import Link from "next/link";
-import { useEffect, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
-import { ArrowRight, ArrowUpRight, MapPin, Search, X } from "lucide-react";
-import { coreCompetencies, ease, footer, hero, homepageContent, industryFocus, navLinks, practiceAreas, representativeMandates, revealContainer, revealItem, teamHeadshots, ClipReveal, PremiumButton, ScrollTextReveal, SectionLabel, SectionReveal, TextReveal } from "./shared";
-import { teamMembers } from "@/data/lawyers";
+import {
+  footer,
+  homepageContent,
+  ease,
+  revealItem,
+  ScrollTextReveal,
+  PremiumButton,
+  SectionReveal,
+} from "./shared";
 
 export default function OfficesAndCta() {
   return (
@@ -17,12 +22,12 @@ export default function OfficesAndCta() {
             <motion.article
               key={office.label}
               variants={{
-                hidden: { opacity: 0, x: index === 0 ? -42 : 42, clipPath: "inset(0 10% 0 10%)" },
+                hidden: { opacity: 0, x: index === 0 ? -48 : 48, clipPath: "inset(0 10% 0 10%)" },
                 visible: {
                   opacity: 1,
                   x: 0,
                   clipPath: "inset(0 0% 0 0%)",
-                  transition: { duration: 0.9, ease },
+                  transition: { delay: index * 0.18, duration: 0.9, ease },
                 },
               }}
               className="bg-white p-8 md:p-10"
@@ -39,7 +44,10 @@ export default function OfficesAndCta() {
                   <p key={line}>{line}</p>
                 ))}
               </address>
-              <Link href={office.mapHref} className="mt-9 inline-flex items-center gap-3 text-sm font-light uppercase text-brand">
+              <Link
+                href={office.mapHref}
+                className="mt-9 inline-flex items-center gap-3 text-sm font-light uppercase text-brand"
+              >
                 {office.mapLabel}
                 <ArrowUpRight size={16} />
               </Link>
@@ -47,18 +55,34 @@ export default function OfficesAndCta() {
           ))}
         </div>
 
-        <motion.div variants={revealItem} className="mt-px bg-brand px-8 py-14 text-white md:px-12">
+        <motion.div
+          variants={revealItem}
+          className="mt-px bg-brand px-8 py-14 text-white md:px-12"
+        >
           <div className="flex flex-col gap-10 lg:flex-row lg:items-end lg:justify-between">
             <div>
-              <p className="text-xs font-light uppercase text-white/48">Corporate Engagement</p>
-              <h2 className="mt-5 max-w-4xl text-4xl font-semibold uppercase leading-tight md:text-6xl">
+              <motion.p
+                variants={revealItem}
+                className="text-xs font-light uppercase text-white/48"
+              >
+                Corporate Engagement
+              </motion.p>
+              <motion.h2
+                variants={revealItem}
+                className="mt-5 max-w-4xl text-4xl font-semibold uppercase leading-tight md:text-6xl"
+              >
                 <ScrollTextReveal>{footer.firmName}</ScrollTextReveal>
-              </h2>
+              </motion.h2>
             </div>
-            <div className="flex flex-col gap-3 sm:flex-row">
-              <PremiumButton href={homepageContent.headerCta.href} inverse>{homepageContent.headerCta.label}</PremiumButton>
+            <motion.div
+              variants={revealItem}
+              className="flex flex-col gap-3 sm:flex-row"
+            >
+              <PremiumButton href={homepageContent.headerCta.href} inverse>
+                {homepageContent.headerCta.label}
+              </PremiumButton>
               <PremiumButton href="/expertise" inverse>Expertise</PremiumButton>
-            </div>
+            </motion.div>
           </div>
         </motion.div>
       </div>

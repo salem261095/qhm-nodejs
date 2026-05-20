@@ -2,228 +2,172 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { navItems, headerCta } from "@/data/homepage";
-import { useState, useEffect, useRef } from "react";
+import { usePathname } from "next/navigation";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronDown } from "lucide-react";
+import { Mail, X } from "lucide-react";
+import { navItems } from "@/data/homepage";
 
-type NavChild = { label: string; href: string };
-type NavItem = { label: string; href: string; children?: NavChild[] };
+const ease = [0.22, 1, 0.36, 1] as [number, number, number, number];
 
-function DropdownItem({ item }: { item: NavItem }) {
-  const [open, setOpen] = useState(false);
-  const ref = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const handler = (e: MouseEvent) => {
-      if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false);
-    };
-    document.addEventListener("mousedown", handler);
-    return () => document.removeEventListener("mousedown", handler);
-  }, []);
-
-  if (!item.children) {
-    return (
-      <Link
-        href={item.href}
-        className="text-sm font-bold tracking-wide text-gray-900 hover:text-brand transition-colors"
-      >
-        {item.label}
-      </Link>
-    );
-  }
-
-  return (
-    <div ref={ref} className="relative">
-      <button
-        onClick={() => setOpen((p) => !p)}
-        className="flex items-center gap-1 text-sm font-bold tracking-wide text-gray-900 hover:text-brand transition-colors focus:outline-none"
-      >
-        {item.label}
-        <ChevronDown
-          size={14}
-          strokeWidth={2.5}
-          className={`transition-transform duration-200 ${open ? "rotate-180" : ""}`}
-        />
-      </button>
-
-      <AnimatePresence>
-        {open && (
-          <motion.div
-            initial={{ opacity: 0, y: 6 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 6 }}
-            transition={{ duration: 0.18, ease: "easeOut" }}
-            className="absolute left-0 top-full mt-3 w-52 bg-white border border-gray-100 shadow-xl rounded-sm overflow-hidden z-50"
-          >
-            {item.children.map((child) => (
-              <Link
-                key={child.href}
-                href={child.href}
-                onClick={() => setOpen(false)}
-                className="block px-5 py-3 text-sm text-gray-700 font-medium hover:bg-brand hover:text-white transition-colors border-b border-gray-50 last:border-0"
-              >
-                {child.label}
-              </Link>
-            ))}
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </div>
-  );
-}
+const flatNav = navItems.map((item) => ({ label: item.label, href: item.href }));
 
 export default function Header() {
+  const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [mobileExpanded, setMobileExpanded] = useState<string | null>(null);
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  // Check if we are on one of the homepages which have dark background video backdrops
+  const isHome = pathname === "/" || pathname === "/home-2";
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    const onScroll = () => setScrolled(window.scrollY > 24);
+    onScroll();
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   useEffect(() => {
-    document.body.style.overflow = isMobileMenuOpen ? "hidden" : "unset";
-    return () => { document.body.style.overflow = "unset"; };
-  }, [isMobileMenuOpen]);
+    document.body.style.overflow = menuOpen ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
+  }, [menuOpen]);
+
+  // Determine state parameters
+  const isTransparent = isHome && !scrolled;
 
   return (
     <>
       <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          scrolled || isMobileMenuOpen
-            ? "bg-white/90 backdrop-blur-xl border-b border-gray-200/50 shadow-sm py-3"
-            : "bg-white/90 backdrop-blur-xl border-b border-gray-200/50 py-3"
+        className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
+          isTransparent
+            ? "bg-transparent border-b border-transparent py-5"
+            : "bg-white shadow-[0_1px_0_0_rgba(0,0,0,0.08)] py-4"
         }`}
       >
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between">
-            <div className="flex-shrink-0 relative z-50">
-              <Link href="/" className="block" onClick={() => setIsMobileMenuOpen(false)}>
-                <Image
-                  src="/logo/QHM_Blue.svg"
-                  alt="QHM Law Firm Logo"
-                  width={180}
-                  height={50}
-                  className="w-auto h-10 md:h-12 transition-all duration-300"
-                  priority
-                />
-              </Link>
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-6 transition-all duration-500 sm:px-8 lg:px-10">
+          <Link href="/" className="block shrink-0" onClick={() => setMenuOpen(false)}>
+            <div className="relative w-28 md:w-36">
+              <Image
+                src="/logo/QHM_Blue.svg"
+                alt="QHM Law Firm"
+                width={144}
+                height={88}
+                priority
+                className={`h-auto w-full object-contain transition-opacity duration-500 ${
+                  isTransparent ? "opacity-0" : "opacity-100"
+                }`}
+              />
+              <Image
+                src="/logo/QHM_White.svg"
+                alt="QHM Law Firm"
+                width={144}
+                height={88}
+                priority
+                className={`absolute inset-0 h-auto w-full object-contain transition-opacity duration-500 ${
+                  isTransparent ? "opacity-100" : "opacity-0"
+                }`}
+              />
             </div>
+          </Link>
 
-            <nav className="hidden md:flex items-center space-x-10">
-              {(navItems as NavItem[]).map((item) => (
-                <DropdownItem key={item.label} item={item} />
-              ))}
-            </nav>
-
-            <div className="hidden md:flex items-center relative z-50">
+          <nav className="hidden items-center gap-9 lg:flex">
+            {flatNav.map((link) => (
               <Link
-                href={headerCta.href}
-                className="bg-brand text-white px-6 py-2.5 rounded-sm text-sm font-bold uppercase tracking-wider hover:bg-brand-solid transition-all shadow-md transform hover:-translate-y-0.5"
+                key={link.href}
+                href={link.href}
+                className={`relative text-sm font-light uppercase tracking-wide transition-colors duration-500 after:absolute after:-bottom-0.5 after:left-0 after:h-px after:w-0 after:transition-all after:duration-300 hover:after:w-full ${
+                  isTransparent
+                    ? "text-white/78 hover:text-white after:bg-white"
+                    : "text-brand/70 hover:text-brand after:bg-brand"
+                }`}
               >
-                {headerCta.label}
+                {link.label}
               </Link>
-            </div>
+            ))}
+          </nav>
 
-            <div className="md:hidden flex items-center relative z-50">
-              <button
-                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="flex flex-col justify-center items-center w-10 h-10 space-y-[6px] focus:outline-none"
-                aria-label="Toggle Menu"
-              >
-                <span className={`block w-7 h-[2px] bg-brand transition-transform duration-300 ease-in-out ${isMobileMenuOpen ? "rotate-45 translate-y-[8px]" : ""}`} />
-                <span className={`block w-7 h-[2px] bg-brand transition-opacity duration-300 ease-in-out ${isMobileMenuOpen ? "opacity-0" : "opacity-100"}`} />
-                <span className={`block w-7 h-[2px] bg-brand transition-transform duration-300 ease-in-out ${isMobileMenuOpen ? "-rotate-45 -translate-y-[8px]" : ""}`} />
-              </button>
-            </div>
+          <div className="flex items-center gap-3">
+            <Link
+              href="/contact"
+              aria-label="Contact"
+              className={`flex h-10 w-10 items-center justify-center border transition-all duration-500 ${
+                isTransparent
+                  ? "border-white/20 text-white/75 hover:border-white hover:text-white"
+                  : "border-brand/20 text-brand/55 hover:border-brand hover:text-brand"
+              }`}
+            >
+              <Mail size={16} />
+            </Link>
+
+            <button
+              onClick={() => setMenuOpen(true)}
+              className={`flex h-10 w-10 flex-col items-center justify-center gap-[5px] border transition-all duration-500 lg:hidden ${
+                isTransparent
+                  ? "border-white/20 text-white"
+                  : "border-brand/20 text-brand"
+              }`}
+              aria-label="Open menu"
+            >
+              <span className="block h-px w-5 bg-current" />
+              <span className="block h-px w-5 bg-current" />
+              <span className="block h-px w-5 bg-current" />
+            </button>
           </div>
         </div>
       </header>
 
       <AnimatePresence>
-        {isMobileMenuOpen && (
+        {menuOpen && (
           <motion.div
-            initial={{ opacity: 0, y: "-100%" }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: "-100%" }}
-            transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-            className="fixed inset-0 z-40 bg-white flex flex-col justify-center pt-24 pb-12 px-6"
+            initial={{ clipPath: "inset(0 0 100% 0)" }}
+            animate={{ clipPath: "inset(0 0 0% 0)" }}
+            exit={{ clipPath: "inset(0 0 100% 0)" }}
+            transition={{ duration: 0.68, ease }}
+            className="fixed inset-0 z-[60] flex flex-col bg-white text-brand"
           >
-            <nav className="flex flex-col space-y-6 mt-12 h-full justify-center">
-              {(navItems as NavItem[]).map((item, index) => (
-                <motion.div
-                  key={item.label}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.15 + index * 0.08, duration: 0.4 }}
-                >
-                  {item.children ? (
-                    <div className="border-b border-gray-100 pb-5">
-                      <button
-                        onClick={() => setMobileExpanded(mobileExpanded === item.label ? null : item.label)}
-                        className="flex items-center justify-between w-full text-3xl font-extrabold text-gray-900 focus:outline-none"
-                      >
-                        {item.label}
-                        <ChevronDown
-                          size={20}
-                          className={`transition-transform duration-200 ${mobileExpanded === item.label ? "rotate-180" : ""}`}
-                        />
-                      </button>
-                      <AnimatePresence>
-                        {mobileExpanded === item.label && (
-                          <motion.div
-                            initial={{ height: 0, opacity: 0 }}
-                            animate={{ height: "auto", opacity: 1 }}
-                            exit={{ height: 0, opacity: 0 }}
-                            transition={{ duration: 0.25 }}
-                            className="overflow-hidden"
-                          >
-                            <div className="pt-4 flex flex-col space-y-3 pl-4">
-                              {item.children.map((child) => (
-                                <Link
-                                  key={child.href}
-                                  href={child.href}
-                                  onClick={() => setIsMobileMenuOpen(false)}
-                                  className="text-lg font-semibold text-brand hover:text-brand-solid transition-colors"
-                                >
-                                  → {child.label}
-                                </Link>
-                              ))}
-                            </div>
-                          </motion.div>
-                        )}
-                      </AnimatePresence>
-                    </div>
-                  ) : (
-                    <Link
-                      href={item.href}
-                      onClick={() => setIsMobileMenuOpen(false)}
-                      className="text-3xl font-extrabold text-gray-900 hover:text-brand transition-colors block border-b border-gray-100 pb-5"
-                    >
-                      {item.label}
-                    </Link>
-                  )}
-                </motion.div>
-              ))}
-
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.15 + navItems.length * 0.08, duration: 0.4 }}
-                className="pt-6"
+            <div className="flex items-center justify-between px-5 py-4 sm:px-8">
+              <Image
+                src="/logo/QHM_Blue.svg"
+                alt="QHM Law Firm"
+                width={180}
+                height={60}
+                className="h-auto w-36 object-contain"
+              />
+              <button
+                onClick={() => setMenuOpen(false)}
+                className="flex h-10 w-10 items-center justify-center border border-brand/20 text-brand"
+                aria-label="Close menu"
               >
-                <Link
-                  href={headerCta.href}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="bg-brand text-white px-8 py-5 text-center font-bold uppercase tracking-[0.15em] hover:bg-brand-solid transition-all block w-full shadow-lg"
-                >
-                  {headerCta.label}
-                </Link>
-              </motion.div>
+                <X size={18} />
+              </button>
+            </div>
+
+            <nav className="flex flex-1 flex-col justify-center gap-6 px-6">
+              {flatNav.map((link, index) => (
+                <span key={link.href} className="overflow-hidden border-b border-brand/10 pb-6">
+                  <motion.span
+                    initial={{ y: "110%" }}
+                    animate={{ y: 0 }}
+                    transition={{ delay: 0.1 + index * 0.07, duration: 0.75, ease }}
+                    className="block"
+                  >
+                    <Link
+                      href={link.href}
+                      onClick={() => setMenuOpen(false)}
+                      className="block text-4xl font-light uppercase text-brand transition-colors hover:text-brand/50 sm:text-5xl"
+                    >
+                      {link.label}
+                    </Link>
+                  </motion.span>
+                </span>
+              ))}
             </nav>
+
+            <div className="flex items-center justify-between border-t border-brand/10 px-6 py-6 text-xs font-light uppercase text-brand/42">
+              <span>Jeddah</span>
+              <span>Riyadh</span>
+              <span>QHM</span>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
