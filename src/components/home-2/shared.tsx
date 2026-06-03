@@ -162,11 +162,11 @@ export const luxuryNavLinks = [
 ];
 
 export const teamHeadshots = [
-  "/assets/team/Qaisar.jpg",
-  "/assets/team/Yasser Mustafa.jpg",
-  "/assets/team/Tamer Elnagar.jpg",
-  "/assets/team/Amna Usman.jpg",
-  "/assets/team/Hamed Matawi.jpg",
+  "/assets/team/Dr-Q.webp",
+  "/assets/team/Yasser.webp",
+  "/assets/team/Tamer.webp",
+  "/assets/team/Amna.webp",
+  "/assets/team/Hamed.webp",
 ];
 
 

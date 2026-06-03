@@ -46,18 +46,18 @@ export const navLinks = [
 ];
 
 export const teamHeadshots = [
-  "/assets/team/Qaisar.jpg",
-  "/assets/team/Yasser Mustafa.jpg",
-  "/assets/team/Tamer Elnagar.jpg",
-  "/assets/team/Amna Usman.jpg",
-  "/assets/team/Hamed Matawi.jpg",
-  "/assets/team/Muayd Johar.jpg",
-  "/assets/team/Mahmoud Bashandy.jpg",
-  "/assets/team/Abdulelah Ashmawi.jpg",
-  "/assets/team/Deema Daqqaq.jpg",
-  "/assets/team/Tamara Khattab.jpg",
-  "/assets/team/Talah Reda.jpg",
-  "/assets/team/Abdulmajeed Ghandoorah.jpg",
+  "/assets/team/Dr-Q.webp",
+  "/assets/team/Yasser.webp",
+  "/assets/team/Tamer.webp",
+  "/assets/team/Amna.webp",
+  "/assets/team/Hamed.webp",
+  "/assets/team/Moayad.webp",
+  "/assets/team/Mahmoud.webp",
+  "/assets/team/Abdulelah.webp",
+  "/assets/team/Deemah.webp",
+  "/assets/team/Tamara.webp",
+  "/assets/team/Talah.webp",
+  "/assets/team/Abdulmajeed.webp",
 ];
 
 export function TextReveal({ children, delay = 0 }: { children: string; delay?: number }) {

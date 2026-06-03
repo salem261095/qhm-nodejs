@@ -13,7 +13,7 @@ export default function HeroV2() {
         playsInline
         preload="metadata"
         className="absolute inset-0 h-full w-full object-cover object-center"
-        src="/assets/vid/QHM-SingleCompressed-2.mp4"
+        src="/assets/vid/RyadhJeddah.mp4"
       />
       <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.48),rgba(0,0,0,0.68))]" />
       <motion.div

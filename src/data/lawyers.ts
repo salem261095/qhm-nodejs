@@ -5,7 +5,7 @@ export const teamMembers = [
     position: "Managing Partner",
     phone: "+966 920029088",
     email: "manager@qhmlawfirm.com",
-    image: "/assets/team/Qaisar.jpg",
+    image: "/assets/team/Dr-Q.webp",
     bio: [
       "Dr. Qaisar Metawea is a Saudi lawyer and the founding partner of the Firm. Before establishing the Firm in 2016, Dr. Qaisar practiced as a Saudi attorney for over fifteen years. He is licensed as an attorney by the Saudi Ministry of Justice and is fluent in Arabic and English.",
       "Dr. Qaisar received an S.J.D. degree in International Intellectual Property Law -International Trade Law-, and an L.L.M. degree in International Intellectual Property Law at Indiana University, School of Law, U.S.A. Also Dr. Qaisar completed an L.L.M. degree in Business Law – International Trade Law-, at Case Western Reserve University, School of Law, U.S.A and an L.L.B. degree at King Abdul Aziz University, Saudi Arabia.",
@@ -29,7 +29,7 @@ export const teamMembers = [
     id: "johnny-hannouche",
     name: "Johnny Hannouche",
     position: "Senior Associate, Head of Riyadh",
-    image: "/assets/team/Yasser Mustafa.jpg",
+    image: "/assets/team/Yasser.webp",
     bio: [
       "Johnny Hannouche is a legal consultant and heads the Riyadh office. Prior to joining the Firm in 2023, he had over 14 years of experience working in Saudi Arabia. Johnny is admitted as a licensed attorney by the Beirut Bar Association. He is fluent in both Arabic and English.",
       "He holds an LL.B. from La Sagesse University and an Islamic Finance Qualification accredited by the UK Securities Institute.",
@@ -51,7 +51,7 @@ export const teamMembers = [
     position: "Senior Associate",
     phone: "+966 920029088",
     email: "tamer@qhmlawfirm.com",
-    image: "/assets/team/Tamer Elnagar.jpg",
+    image: "/assets/team/Tamer.webp",
     bio: [
       "Tamer El-Naggar is an Egyptian legal consultant with over six years of experience as a legal consultant in Egypt, and over 10 years of experience in Saudi Arabia, before joining the Firm in 2017. He is licensed as an attorney by the Bar Association of Egypt.",
       "Tamer obtained his LL.B. in Law from Menoufia University, Egypt.",
@@ -76,7 +76,7 @@ export const teamMembers = [
     position: "Senior Associate",
     phone: "+966 920029088",
     email: "doua@qhmlawfirm.com",
-    image: "/assets/team/Deema Daqqaq.jpg",
+    image: "/assets/team/Deemah.webp",
     bio: [
       "Doua Alattas is licensed as an attorney by both the Saudi Ministry of Justice and the New York State Bar Association. She joined the Firm in February 2018, and has over four years of professional experience, both locally in Saudi Arabia and abroad. Doua is fluent in Arabic and English.",
       "Doua received a Juris Doctor Degree in Law and a Certificate in International and Comparative Law from Pepperdine University, School of Law, U.S.A. Doua also obtained her Master’s degree in Alternative Dispute Resolution with a concentration in International Commercial Arbitration from Pepperdine University, School of Law, U.S.A. , in addition to a Bachelor’s degree in Islamic Studies from King Abdul Aziz University, Saudi Arabia.",
@@ -98,7 +98,7 @@ export const teamMembers = [
     position: "Associate",
     phone: "+966 920029088",
     email: "abdulelah@qhmlawfirm.com",
-    image: "/assets/team/Abdulelah Ashmawi.jpg",
+    image: "/assets/team/Abdulelah.webp",
     bio: [
       "Abdulelah Ashmawi is a Saudi lawyer and had over ten years of experience as a legal consultant in Saudi Arabia prior to joining the Firm in 2022. He is licensed as an attorney by the Saudi Ministry of Justice.",
       "Abdulelah obtained his LL.M. with High Honors from Chapman University, California, U.S.A in 2014, with an academic specialization in Business Law. Abdulelah received his LL.B. in Legal Studies from King Abdulaziz University, Saudi Arabia, in 2011.",
@@ -121,7 +121,7 @@ export const teamMembers = [
     position: "Associate",
     phone: "+966 920029088",
     email: "amna@qhmlawfirm.com",
-    image: "/assets/team/Amna Usman.jpg",
+    image: "/assets/team/Amna.webp",
     bio: [
       "Amna Usma joined the Firm in 2022 with prior experience of over two years working in law firms in Saudi Arabia.",
       "Amna obtained her LL.B. from the University of London and her LL.M. from Queen Mary, University of London specializing in Corporate and Commercial Law.",
@@ -142,7 +142,7 @@ export const teamMembers = [
     position: "Associate",
     phone: "+966 920029088",
     email: "moayad@qhmlawfirm.com",
-    image: "/assets/team/Muayd Johar.jpg",
+    image: "/assets/team/Moayad.webp",
     bio: [
       "Moayad Johar joined the Firm in 2018 and he is licensed as an attorney by the Saudi Ministry of Justice.",
       "Moayad obtained his LL.B. in Legal Studies from King Abdulaziz University, Saudi Arabia.",
@@ -164,7 +164,7 @@ export const teamMembers = [
     position: "Business Administrator",
     phone: "+966 920029088",
     email: "nada@qhmlawfirm.com",
-    image: "/assets/team/Nada Al Mehdar .jpg",
+    image: "/assets/team/Nada.webp",
     bio: [
       "Nada Almehdar joined the Firm in 2017 and is experienced in professional administrative work. She is fluent in Arabic, English and French.",
       "Nada obtained her Bachelor’s degree in Accounting and Finance from the University of Business and Technology, Saudi Arabia.",
@@ -178,7 +178,7 @@ export const teamMembers = [
     position: "Trainee Lawyer",
     phone: "+966 920029088",
     email: "aziza@qhmlawfirm.com",
-    image: "/assets/team/Tamara Khattab.jpg",
+    image: "/assets/team/Tamara.webp",
     bio: [
       "Aziza joined the Firm in 2022 and is registered as a trainee lawyer with the Saudi Ministry of Justice. Aziza is fluent in both Arabic and English.",
       "She obtained her LL.B. in Legal Studies from Dar Al Hekma University, Saudi Arabia, and her LL.M. from George Washington University in Washington DC.",
@@ -196,7 +196,7 @@ export const teamMembers = [
     id: "baraah-al-samman",
     name: "Baraah Al Samman",
     position: "Associate",
-    image: "/assets/team/Mahmoud Bashandy.jpg",
+    image: "/assets/team/Mahmoud.webp",
     bio: [],
     practices: []
   },
@@ -204,7 +204,7 @@ export const teamMembers = [
     id: "hamed-a-matawi",
     name: "Hamed A Matawi",
     position: "Associate",
-    image: "/assets/team/Hamed Matawi.jpg",
+    image: "/assets/team/Hamed.webp",
     bio: [],
     practices: []
   },
@@ -212,7 +212,7 @@ export const teamMembers = [
     id: "talah-reda",
     name: "Talah Reda",
     position: "Trainee Lawyer",
-    image: "/assets/team/Talah Reda.jpg",
+    image: "/assets/team/Talah.webp",
     bio: [],
     practices: []
   }

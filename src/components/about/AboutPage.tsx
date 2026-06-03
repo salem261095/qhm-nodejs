@@ -8,214 +8,338 @@ import { aboutData } from "@/data/about";
 
 const { hero, intro, strategicFocus, methodology, positioning, leadership } = aboutData;
 
-const fadeIn = {
-  hidden: { opacity: 0, y: 28 },
-  visible: (i = 0) => ({
+const ease = [0.22, 1, 0.36, 1] as [number, number, number, number];
+
+const container = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.075,
+      delayChildren: 0.05,
+    },
+  },
+};
+
+const reveal = {
+  hidden: { opacity: 0, y: 30, filter: "blur(12px)", clipPath: "inset(0 0 14% 0)" },
+  visible: {
     opacity: 1,
     y: 0,
-    transition: { delay: i * 0.09, duration: 0.65, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] },
-  }),
+    filter: "blur(0px)",
+    clipPath: "inset(0 0 0% 0)",
+    transition: { duration: 0.82, ease },
+  },
 };
+
+function TextReveal({ children, delay = 0 }: { children: string; delay?: number }) {
+  return (
+    <>
+      {children.split("\n").map((line, index) => (
+        <span key={line} className="block overflow-hidden">
+          <motion.span
+            initial={{ y: "112%" }}
+            animate={{ y: 0 }}
+            transition={{ delay: delay + index * 0.1, duration: 0.88, ease }}
+            className="block"
+          >
+            {line}
+          </motion.span>
+        </span>
+      ))}
+    </>
+  );
+}
+
+function ScrollTextReveal({ children }: { children: string }) {
+  return (
+    <>
+      {children.split("\n").map((line, index) => (
+        <span key={line} className="block overflow-hidden">
+          <motion.span
+            variants={{
+              hidden: { y: "112%" },
+              visible: {
+                y: 0,
+                transition: { delay: index * 0.08, duration: 0.82, ease },
+              },
+            }}
+            className="block"
+          >
+            {line}
+          </motion.span>
+        </span>
+      ))}
+    </>
+  );
+}
 
 export default function AboutPage() {
   return (
-    <main>
+    <main className="bg-white">
+      <section className="border-b border-brand/12 px-5 pb-16 pt-24 sm:px-8 lg:px-10 lg:pb-20">
+        <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.95fr_1.05fr] lg:items-end">
+          <div>
+            <p className="mb-5 text-xs font-light uppercase text-brand/55">{hero.eyebrow}</p>
+            <h1 className="max-w-5xl text-6xl font-semibold uppercase leading-[0.9] text-brand sm:text-7xl lg:text-[8rem]">
+              <TextReveal delay={0.08}>{hero.heading}</TextReveal>
+            </h1>
+            <motion.div
+              initial={{ scaleX: 0 }}
+              animate={{ scaleX: 1 }}
+              transition={{ delay: 0.55, duration: 0.9, ease }}
+              className="mt-8 h-px w-full max-w-xl origin-left bg-brand/16"
+            />
+          </div>
 
-      <section className="relative bg-gray-950 text-white pt-36 pb-24 overflow-hidden">
-        <div className="absolute inset-0 opacity-10 bg-[radial-gradient(ellipse_at_top_left,rgba(25,57,138,0.6)_0%,transparent_60%)]" />
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <motion.div
-            initial="hidden"
-            animate="visible"
-            variants={{ visible: { transition: { staggerChildren: 0.1 } } }}
+            initial={{ opacity: 0, y: 24, filter: "blur(12px)" }}
+            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            transition={{ delay: 0.26, duration: 0.82, ease }}
+            className="max-w-xl lg:justify-self-end"
           >
-            <motion.p variants={fadeIn} className="text-xs font-bold tracking-[0.35em] uppercase text-brand mb-4">
-              {hero.eyebrow}
-            </motion.p>
-            <motion.h1
-              variants={fadeIn}
-              className="text-6xl sm:text-7xl md:text-8xl font-extrabold leading-[0.95] tracking-tighter mb-8 max-w-3xl"
-            >
-              {hero.heading}
-            </motion.h1>
-            <motion.p variants={fadeIn} className="max-w-xl text-xl leading-relaxed text-white/80">
-              {hero.subheading}
-            </motion.p>
+            <p className="text-base leading-8 text-black/58">{hero.subheading}</p>
           </motion.div>
         </div>
-        <div className="absolute bottom-0 left-0 right-0 h-px bg-white/10" />
       </section>
 
-      <section className="py-24 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-start">
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-            >
-              <p className="text-xs font-bold tracking-[0.3em] uppercase text-brand mb-6">{intro.label}</p>
-              <p className="text-2xl md:text-3xl font-bold text-gray-950 leading-snug">{intro.body}</p>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.15 }}
-              className="pt-2"
-            >
-              <p className="text-gray-500 text-sm leading-relaxed mb-8">{strategicFocus.intro}</p>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-px bg-gray-100">
-                {strategicFocus.pillars.map((p, i) => (
-                  <div key={p.title} className="bg-white p-6 group">
-                    <span className="text-xs font-bold text-gray-200 block mb-2">{String(i + 1).padStart(2, "0")}</span>
-                    <h3 className="font-bold text-gray-900 text-sm mb-1">{p.title}</h3>
-                    <p className="text-gray-400 text-xs leading-relaxed">{p.description}</p>
-                  </div>
-                ))}
-              </div>
-            </motion.div>
+      <motion.section
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.18 }}
+        variants={container}
+        className="px-5 py-16 sm:px-8 lg:px-10 lg:py-24"
+      >
+        <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.82fr_1.18fr] lg:items-start">
+          <div>
+            <motion.p variants={reveal} className="text-xs font-light uppercase text-brand/55">
+              {intro.label}
+            </motion.p>
+            <motion.h2 variants={reveal} className="mt-4 max-w-2xl text-4xl font-semibold uppercase leading-tight text-brand sm:text-5xl">
+              <ScrollTextReveal>Saudi Corporate Law Firm</ScrollTextReveal>
+            </motion.h2>
           </div>
-        </div>
-      </section>
 
-      <section className="py-24 bg-gray-950 text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.1 }}
-            variants={{ visible: { transition: { staggerChildren: 0.09 } } }}
-          >
-            <motion.p variants={fadeIn} className="text-xs font-bold tracking-[0.3em] uppercase text-brand mb-4">
+          <motion.div variants={container} className="grid gap-px bg-brand/12">
+            <motion.article variants={reveal} className="bg-white p-7 sm:p-8">
+              <p className="text-base leading-8 text-black/58">{intro.body}</p>
+            </motion.article>
+            <motion.article variants={reveal} className="bg-white p-7 sm:p-8">
+              <p className="text-sm leading-7 text-black/52">{strategicFocus.intro}</p>
+            </motion.article>
+          </motion.div>
+        </div>
+      </motion.section>
+
+      <motion.section
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.16 }}
+        variants={container}
+        className="border-t border-brand/12 px-5 py-16 sm:px-8 lg:px-10 lg:py-24"
+      >
+        <div className="mx-auto max-w-7xl">
+          <div className="mb-12 grid gap-8 lg:grid-cols-[0.82fr_1.18fr] lg:items-end">
+            <div>
+              <motion.p variants={reveal} className="text-xs font-light uppercase text-brand/55">
+                {strategicFocus.label}
+              </motion.p>
+              <motion.h2 variants={reveal} className="mt-4 max-w-2xl text-4xl font-semibold uppercase leading-tight text-brand sm:text-5xl">
+                <ScrollTextReveal>Strategic Advisory Focus</ScrollTextReveal>
+              </motion.h2>
+            </div>
+          </div>
+
+          <motion.div variants={container} className="grid gap-px bg-brand/12 sm:grid-cols-2 lg:grid-cols-3">
+            {strategicFocus.pillars.map((pillar, index) => (
+              <motion.article
+                key={pillar.title}
+                variants={reveal}
+                whileHover={{ y: -4 }}
+                transition={{ duration: 0.3, ease }}
+                className="group flex min-h-[230px] flex-col bg-white p-6 transition-colors hover:bg-brand hover:text-white sm:p-7"
+              >
+                <span className="font-mono text-xs text-brand/30 transition-colors group-hover:text-white/42">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <h3 className="mt-10 text-2xl font-light leading-tight text-brand transition-colors group-hover:text-white">
+                  {pillar.title}
+                </h3>
+                <p className="mt-5 text-sm leading-7 text-black/52 transition-colors group-hover:text-white/62">
+                  {pillar.description}
+                </p>
+              </motion.article>
+            ))}
+          </motion.div>
+        </div>
+      </motion.section>
+
+      <motion.section
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.18 }}
+        variants={container}
+        className="bg-gray-850 px-5 py-16 text-white sm:px-8 lg:px-10 lg:py-24"
+      >
+        <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.82fr_1.18fr]">
+          <div>
+            <motion.p variants={reveal} className="text-xs font-light uppercase text-white/45">
               {methodology.label}
             </motion.p>
-            <motion.h2 variants={fadeIn} className="text-4xl md:text-5xl font-extrabold mb-16 leading-tight max-w-xl">
-              {methodology.heading}
+            <motion.h2 variants={reveal} className="mt-4 max-w-2xl text-4xl font-semibold uppercase leading-tight text-white sm:text-5xl">
+              <ScrollTextReveal>{methodology.heading}</ScrollTextReveal>
             </motion.h2>
+          </div>
 
-            <div className="divide-y divide-white/10">
-              {methodology.pillars.map((p, i) => (
-                <motion.div
-                  key={p.title}
-                  custom={i}
-                  variants={fadeIn}
-                  className="group grid md:grid-cols-12 gap-6 py-10 hover:bg-white/[0.02] transition-colors px-2"
-                >
-                  <div className="md:col-span-1">
-                    <span className="text-4xl font-extrabold text-white/5 group-hover:text-brand/20 transition-colors leading-none">
-                      {String(i + 1).padStart(2, "0")}
-                    </span>
-                  </div>
-                  <div className="md:col-span-4">
-                    <h3 className="text-lg font-bold">{p.title}</h3>
-                  </div>
-                  <div className="md:col-span-7">
-                    <p className="text-sm leading-relaxed text-white/75">{p.description}</p>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
+          <motion.div variants={container} className="grid gap-px bg-white/14">
+            {methodology.pillars.map((pillar, index) => (
+              <motion.article
+                key={pillar.title}
+                variants={reveal}
+                whileHover={{ x: 6 }}
+                transition={{ duration: 0.3, ease }}
+                className="group grid gap-6 bg-gray-850 p-6 transition-colors hover:bg-white hover:text-brand sm:grid-cols-[0.16fr_0.84fr] sm:p-7"
+              >
+                <span className="font-mono text-xs text-white/35 transition-colors group-hover:text-brand/35">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <div>
+                  <h3 className="text-2xl font-light leading-tight text-white transition-colors group-hover:text-brand">
+                    {pillar.title}
+                  </h3>
+                  <p className="mt-4 text-sm leading-7 text-white/58 transition-colors group-hover:text-black/58">
+                    {pillar.description}
+                  </p>
+                </div>
+              </motion.article>
+            ))}
           </motion.div>
         </div>
-      </section>
+      </motion.section>
 
-      <section className="py-24 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <motion.section
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.16 }}
+        variants={container}
+        className="border-b border-brand/12 px-5 py-16 sm:px-8 lg:px-10 lg:py-24"
+      >
+        <div className="mx-auto max-w-7xl">
+          <div className="mb-12 grid gap-8 lg:grid-cols-[0.82fr_1.18fr] lg:items-end">
+            <div>
+              <motion.p variants={reveal} className="text-xs font-light uppercase text-brand/55">
+                {positioning.label}
+              </motion.p>
+              <motion.h2 variants={reveal} className="mt-4 text-4xl font-semibold uppercase leading-tight text-brand sm:text-5xl">
+                <ScrollTextReveal>{positioning.heading}</ScrollTextReveal>
+              </motion.h2>
+            </div>
+          </div>
+
+          <motion.div variants={container} className="grid gap-px bg-brand/12 md:grid-cols-3">
+            {positioning.pillars.map((pillar, index) => (
+              <motion.article
+                key={pillar.title}
+                variants={reveal}
+                className="group flex min-h-[360px] flex-col bg-white p-7 transition-colors hover:bg-brand hover:text-white sm:p-8"
+              >
+                <span className="font-mono text-xs text-brand/30 transition-colors group-hover:text-white/42">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <h3 className="mt-12 text-3xl font-light leading-tight text-brand transition-colors group-hover:text-white">
+                  {pillar.title}
+                </h3>
+                <p className="mt-5 text-sm leading-7 text-black/52 transition-colors group-hover:text-white/62">
+                  {pillar.description}
+                </p>
+              </motion.article>
+            ))}
+          </motion.div>
+        </div>
+      </motion.section>
+
+      <section className="px-5 py-16 sm:px-8 lg:px-10 lg:py-24">
+        <div className="mx-auto grid max-w-7xl gap-px bg-brand/12 lg:grid-cols-[0.48fr_0.52fr]">
+          <motion.div
+            initial={{ opacity: 0, scale: 1.04, filter: "blur(12px)" }}
+            whileInView={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+            viewport={{ once: true, amount: 0.18 }}
+            transition={{ duration: 0.86, ease }}
+            className="relative min-h-[520px] bg-brand/5"
+          >
+            <Image
+              src={leadership.image}
+              alt={leadership.name}
+              fill
+              className="object-cover object-top grayscale"
+              sizes="(max-width: 1024px) 100vw, 48vw"
+            />
+          </motion.div>
+
           <motion.div
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, amount: 0.1 }}
-            variants={{ visible: { transition: { staggerChildren: 0.1 } } }}
+            viewport={{ once: true, amount: 0.18 }}
+            variants={container}
+            className="flex min-h-[520px] flex-col justify-between bg-white p-7 sm:p-10 lg:p-12"
           >
-            <motion.p variants={fadeIn} className="text-xs font-bold tracking-[0.3em] uppercase text-brand mb-4">
-              {positioning.label}
-            </motion.p>
-            <motion.h2 variants={fadeIn} className="text-4xl md:text-5xl font-extrabold mb-16 text-gray-950 leading-tight max-w-xl">
-              {positioning.heading}
-            </motion.h2>
-
-            <div className="grid md:grid-cols-3 gap-px bg-gray-100">
-              {positioning.pillars.map((p, i) => (
-                <motion.div
-                  key={p.title}
-                  custom={i}
-                  variants={fadeIn}
-                  className="bg-white p-10 group hover:bg-brand hover:text-white transition-all duration-300"
-                >
-                  <span className="text-5xl font-extrabold text-gray-100 group-hover:text-white/10 transition-colors leading-none block mb-6">
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                  <h3 className="text-xl font-bold text-gray-950 group-hover:text-white mb-4 transition-colors">{p.title}</h3>
-                  <p className="text-gray-500 group-hover:text-white/70 text-sm leading-relaxed transition-colors">{p.description}</p>
-                </motion.div>
-              ))}
+            <div>
+              <motion.p variants={reveal} className="text-xs font-light uppercase text-brand/55">
+                {leadership.label}
+              </motion.p>
+              <motion.h2 variants={reveal} className="mt-4 text-4xl font-semibold uppercase leading-tight text-brand sm:text-5xl">
+                <ScrollTextReveal>{leadership.name}</ScrollTextReveal>
+              </motion.h2>
+              <motion.p variants={reveal} className="mt-5 text-sm font-medium uppercase text-brand/60">
+                {leadership.role}
+              </motion.p>
+              <motion.p variants={reveal} className="mt-8 max-w-xl text-base leading-8 text-black/58">
+                {leadership.bio}
+              </motion.p>
             </div>
+
+            <motion.div variants={reveal} className="mt-12">
+              <Link
+                href="/team"
+                className="group inline-flex min-h-12 items-center gap-4 border border-brand bg-brand px-6 text-sm font-medium uppercase text-white transition-colors hover:bg-white hover:text-brand"
+              >
+                Meet The Team
+                <ArrowUpRight size={16} className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+              </Link>
+            </motion.div>
           </motion.div>
         </div>
       </section>
 
-      <section className="bg-gray-950 text-white overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col lg:flex-row">
-            <motion.div
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-              className="lg:w-1/2 py-20 lg:py-32 pr-0 lg:pr-20 flex flex-col justify-center"
-            >
-              <p className="text-xs font-bold tracking-[0.3em] uppercase text-brand mb-6">{leadership.label}</p>
-              <h2 className="text-4xl md:text-5xl font-extrabold leading-tight mb-4">{leadership.name}</h2>
-              <p className="text-brand font-bold text-sm uppercase tracking-widest mb-8">{leadership.role}</p>
-              <p className="mb-10 max-w-md text-base leading-relaxed text-white/78">{leadership.bio}</p>
-              <Link
-                href="/team"
-                className="inline-flex items-center gap-3 text-sm font-bold tracking-widest uppercase text-brand group hover:gap-5 transition-all"
-              >
-                Meet The Team
-                <ArrowUpRight size={16} className="group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-transform" />
-              </Link>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, scale: 1.05 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 1 }}
-              className="lg:w-1/2 relative min-h-[500px] lg:min-h-0"
-            >
-              <Image
-                src={leadership.image}
-                alt={leadership.name}
-                fill
-                className="object-cover object-top grayscale"
-                sizes="(max-width: 1024px) 100vw, 50vw"
-              />
-              <div className="absolute inset-0 bg-gradient-to-r from-gray-950/50 via-transparent to-transparent" />
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      <section className="py-20 bg-brand text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-8">
+      <section className="bg-gray-850 px-5 py-16 text-white sm:px-8 lg:px-10 lg:py-20">
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+          variants={container}
+          className="mx-auto flex max-w-7xl flex-col gap-10 md:flex-row md:items-end md:justify-between"
+        >
           <div>
-            <h2 className="text-3xl font-extrabold mb-2">Ready to Engage QHM?</h2>
-            <p className="text-white/60 text-sm">Partner-level access from the first conversation.</p>
+            <motion.p variants={reveal} className="text-xs font-light uppercase text-white/45">
+              Next Step
+            </motion.p>
+            <motion.h2 variants={reveal} className="mt-4 text-4xl font-semibold uppercase leading-tight md:text-6xl">
+              <ScrollTextReveal>Ready to Engage QHM?</ScrollTextReveal>
+            </motion.h2>
+            <motion.p variants={reveal} className="mt-5 max-w-xl text-sm leading-7 text-white/58">
+              Partner-level access from the first conversation.
+            </motion.p>
           </div>
-          <Link
-            href="/contact"
-            className="inline-flex items-center gap-3 bg-white text-brand px-8 py-4 font-bold uppercase tracking-widest text-sm hover:bg-gray-100 transition-all flex-shrink-0 group"
-          >
-            Submit Enquiry
-            <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
-          </Link>
-        </div>
+          <motion.div variants={reveal}>
+            <Link
+              href="/contact"
+              className="group inline-flex min-h-12 items-center gap-4 border border-white bg-white px-6 text-sm font-medium uppercase text-gray-850 transition-colors hover:bg-gray-850 hover:text-white"
+            >
+              Submit Enquiry
+              <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
+            </Link>
+          </motion.div>
+        </motion.div>
       </section>
-
     </main>
   );
 }
