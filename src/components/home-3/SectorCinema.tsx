@@ -7,7 +7,6 @@ import {
   industryFocus,
   revealItem,
   ScrollTextReveal,
-  SectionLabel,
   SectionReveal,
 } from "./shared";
 

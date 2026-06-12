@@ -3,8 +3,10 @@
 import Header from "@/components/layout/Header";
 import Hero from "./Hero";
 import WhyQhm from "./WhyQhm";
+import FirmProfileSpotlight from "./FirmProfileSpotlight";
 import ExpertiseExplorer from "./ExpertiseExplorer";
 import SectorCinema from "./SectorCinema";
+import ClientLogoRibbon from "./ClientLogoRibbon";
 
 import MandatesStream from "./MandatesStream";
 import OfficesAndCta from "./OfficesAndCta";
@@ -16,9 +18,10 @@ export default function HomeVariant3() {
       <Header />
       <Hero />
       <WhyQhm />
+      <FirmProfileSpotlight />
       <ExpertiseExplorer />
       <SectorCinema />
-
+      <ClientLogoRibbon />
       <MandatesStream />
       <OfficesAndCta />
       <Footer />

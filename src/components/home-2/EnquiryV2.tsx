@@ -6,7 +6,7 @@ import { corporateEnquiryFields, editorialWipe, sectionReveal, ScrollTextReveal 
 
 export default function EnquiryV2() {
   return (
-    <section className="py-24 bg-white">
+    <section className="py-24 bg-bg-base">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial="hidden"

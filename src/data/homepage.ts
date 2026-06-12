@@ -68,41 +68,49 @@ export const practiceAreas = [
     title: "Corporate & Commercial",
     description: "Structuring complex entities and cross-border transactions.",
     href: "/expertise",
+    image: "",
   },
   {
     title: "Joint Ventures & FDI",
     description: "Navigating foreign investment laws and strategic partnerships.",
     href: "/expertise",
+    image: "",
   },
   {
     title: "Regulatory Advisory",
     description: "Compliance with Capital Market Authority and gov regulations.",
     href: "/expertise",
+    image: "",
   },
   {
     title: "Dispute Resolution",
     description: "Commercial arbitration and high-stakes litigation.",
     href: "/expertise",
+    image: "",
   },
   {
     title: "Employment & Labor",
     description: "Workforce structuring and executive contracts.",
     href: "/expertise",
+    image: "",
   },
   {
     title: "IP & Technology",
     description: "Protecting intellectual assets and data privacy.",
     href: "/expertise",
+    image: "",
   },
   {
     title: "Tax & Zakat",
     description: "Corporate tax planning and disputes.",
     href: "/expertise",
+    image: "",
   },
   {
     title: "Sector Advisory",
     description: "Specialized counsel for Energy, Health, and Real Estate.",
     href: "/expertise",
+    image: "",
   },
 ];
 

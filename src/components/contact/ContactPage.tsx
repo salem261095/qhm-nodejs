@@ -52,7 +52,7 @@ export default function ContactPage() {
 
   return (
     <main className="bg-white">
-      <section className="border-b border-brand/12 px-5 pb-16 pt-24 sm:px-8 lg:px-10 lg:pb-20">
+      <section className="border-b border-brand/12 bg-bg-base px-5 pb-16 pt-24 sm:px-8 lg:px-10 lg:pb-20">
         <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.95fr_1.05fr] lg:items-end">
           <div>
             <h1 className="max-w-5xl text-6xl font-semibold uppercase leading-[0.9] text-brand sm:text-7xl lg:text-[8rem]">
@@ -133,7 +133,7 @@ export default function ContactPage() {
                   type="button"
                   className="group inline-flex min-h-12 w-full items-center justify-center gap-4 border border-brand bg-brand px-7 text-sm font-medium uppercase text-white transition-colors hover:bg-white hover:text-brand sm:w-auto"
                 >
-                  Submit Corporate Enquiry
+                  Submit Enquiry
                   <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
                 </button>
               </motion.div>

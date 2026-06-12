@@ -17,7 +17,7 @@ export default function TeamV2() {
   const roster = teamMembers.slice(1, 5);
 
   return (
-    <section className="bg-white py-24">
+    <section className="bg-bg-base py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <motion.div
           initial="hidden"

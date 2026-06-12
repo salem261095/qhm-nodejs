@@ -70,8 +70,24 @@ export default function ExpertiseExplorer() {
         <div className="grid gap-px bg-brand/10 lg:grid-cols-[0.95fr_1.05fr]">
           <motion.div
             variants={revealItem}
-            className="bg-brand p-8 text-white sm:p-10 lg:min-h-[560px] lg:p-12"
+            className="relative overflow-hidden p-8 text-white sm:p-10 lg:min-h-[560px] lg:p-12 bg-brand"
           >
+            <AnimatePresence mode="wait">
+              {activeArea.image ? (
+                <motion.img
+                  key={activeArea.image}
+                  src={activeArea.image}
+                  alt={activeArea.title}
+                  initial={{ opacity: 0, scale: 1.05 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 1.05 }}
+                  transition={{ duration: 0.5, ease }}
+                  className="absolute inset-0 h-full w-full object-cover z-0"
+                />
+              ) : null}
+            </AnimatePresence>
+            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent z-0 pointer-events-none" />
+
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeArea.title}
@@ -79,7 +95,7 @@ export default function ExpertiseExplorer() {
                 animate={{ opacity: 1, x: 0, clipPath: "inset(0 0% 0 0)" }}
                 exit={{ opacity: 0, x: 18, clipPath: "inset(0 0 0 14%)" }}
                 transition={{ duration: 0.5, ease }}
-                className="flex h-full flex-col justify-between"
+                className="relative z-10 flex h-full flex-col justify-between"
               >
                 <div>
                   <div className="flex items-start justify-between">

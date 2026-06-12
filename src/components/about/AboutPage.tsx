@@ -76,7 +76,7 @@ function ScrollTextReveal({ children }: { children: string }) {
 export default function AboutPage() {
   return (
     <main className="bg-white">
-      <section className="border-b border-brand/12 px-5 pb-16 pt-24 sm:px-8 lg:px-10 lg:pb-20">
+      <section className="border-b border-brand/12 bg-bg-base px-5 pb-16 pt-24 sm:px-8 lg:px-10 lg:pb-20">
         <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.95fr_1.05fr] lg:items-end">
           <div>
             <p className="mb-5 text-xs font-light uppercase text-brand/55">{hero.eyebrow}</p>

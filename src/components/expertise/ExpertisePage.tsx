@@ -153,7 +153,7 @@ export default function ExpertisePage() {
 
   return (
     <main className="bg-white">
-      <section ref={heroRef} className="relative overflow-hidden border-b border-brand/12 bg-white px-5 pb-16 pt-24 sm:px-8 lg:px-10 lg:pb-24">
+      <section ref={heroRef} className="relative overflow-hidden border-b border-brand/12 bg-bg-base px-5 pb-16 pt-24 sm:px-8 lg:px-10 lg:pb-24">
         <motion.div style={{ y: heroY, opacity: heroOpacity }} className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.92fr_1.08fr] lg:items-end">
           <div>
             <h1 className="max-w-5xl text-6xl font-semibold uppercase leading-[0.9] text-brand sm:text-7xl lg:text-[8rem]">
@@ -301,7 +301,7 @@ export default function ExpertisePage() {
           </div>
           <motion.div variants={blurItem}>
             <Link href="/contact" className="group inline-flex min-h-12 items-center gap-4 border border-white bg-white px-6 text-sm font-medium uppercase text-gray-850 transition-colors hover:bg-gray-850 hover:text-white">
-              Submit Corporate Enquiry
+              Submit Enquiry
               <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
             </Link>
           </motion.div>

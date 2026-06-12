@@ -7,8 +7,8 @@ const { footer } = homepageContent;
 
 export default function Footer() {
   return (
-    <footer className="bg-brand-solid px-5 py-12 text-white sm:px-8 lg:px-10">
-      <div className="mx-auto flex max-w-3xl flex-col items-center border-t border-white/15 pt-10 text-center">
+    <footer className="bg-brand px-5 py-12 text-white sm:px-8 lg:px-10">
+      <div className="mx-auto flex max-w-3xl flex-col items-center pt-10 text-center">
         <Image
           src="/assets/identity/QHM_White.svg"
           alt="QHM Law Firm"

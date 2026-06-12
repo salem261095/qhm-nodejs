@@ -15,7 +15,7 @@ const cardVariant = {
 
 export default function WhyQhm() {
   return (
-    <SectionReveal className="bg-white px-5 py-24 sm:px-8 lg:px-10">
+    <SectionReveal className="bg-bg-base px-5 py-24 sm:px-8 lg:px-10">
       <div className="mx-auto max-w-7xl">
         <motion.div variants={revealItem}>
           <SectionLabel>Core Competencies</SectionLabel>

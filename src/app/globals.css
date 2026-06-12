@@ -1,9 +1,10 @@
 @import "tailwindcss";
 
 @theme inline {
-  --color-brand: rgba(25, 57, 138, 0.9);
-  --color-brand-solid: rgb(25, 57, 138);
+  --color-brand: #19398a;
   --color-gray-850: #1f2933;
+  --color-bg-base: #faf8f5;
+  --color-bg-card: #ffffff;
 }
 
 body {
@@ -20,6 +21,24 @@ textarea {
   font: inherit;
 }
 
+.client-logo-ribbon {
+  animation: client-logo-ribbon 42s linear infinite;
+}
+
+.client-logo-ribbon:hover {
+  animation-play-state: paused;
+}
+
+@keyframes client-logo-ribbon {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -28,5 +47,9 @@ textarea {
     animation-iteration-count: 1 !important;
     scroll-behavior: auto !important;
     transition-duration: 0.01ms !important;
+  }
+
+  .client-logo-ribbon {
+    animation: none !important;
   }
 }

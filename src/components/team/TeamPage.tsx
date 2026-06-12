@@ -287,7 +287,7 @@ export default function TeamPage() {
 
   return (
     <main className="bg-white">
-      <section className="border-b border-brand/12 bg-white px-5 pb-16 pt-24 sm:px-8 lg:px-10 lg:pb-20">
+      <section className="border-b border-brand/12 bg-bg-base px-5 pb-16 pt-24 sm:px-8 lg:px-10 lg:pb-20">
         <motion.div
           initial="hidden"
           animate="visible"
