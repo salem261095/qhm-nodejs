@@ -1,6 +1,8 @@
-import HomeVariant3 from "@/components/home-3/HomeVariant3";
+import HomePage from "@/components/home/HomePage";
+import { getInsights } from "@/lib/getInsights";
 
-export default function Home() {
-  return <HomeVariant3 />;
+export default async function Home() {
+  const { posts } = await getInsights();
+  return <HomePage posts={posts} />;
 }
 

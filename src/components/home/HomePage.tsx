@@ -7,12 +7,17 @@ import FirmProfileSpotlight from "./FirmProfileSpotlight";
 import ExpertiseExplorer from "./ExpertiseExplorer";
 import SectorCinema from "./SectorCinema";
 import ClientLogoRibbon from "./ClientLogoRibbon";
-
+import HomeInsights from "@/components/insights/HomeInsights";
 import MandatesStream from "./MandatesStream";
 import OfficesAndCta from "./OfficesAndCta";
 import Footer from "@/components/layout/Footer";
+import { InsightPost } from "@/lib/getInsights";
 
-export default function HomeVariant3() {
+interface HomePageProps {
+  posts: InsightPost[];
+}
+
+export default function HomePage({ posts }: HomePageProps) {
   return (
     <main className="min-h-screen bg-white font-sans">
       <Header />
@@ -23,6 +28,7 @@ export default function HomeVariant3() {
       <SectorCinema />
       <ClientLogoRibbon />
       <MandatesStream />
+      <HomeInsights posts={posts} />
       <OfficesAndCta />
       <Footer />
     </main>

@@ -130,17 +130,6 @@ export default function Footer() {
           <p>
             © {new Date().getFullYear()} {footer.firmName} All rights reserved.
           </p>
-          <div className="flex gap-6 justify-center md:justify-end">
-            <Link href="/privacy" className="hover:text-white transition-colors duration-300">
-              Privacy Policy
-            </Link>
-            <Link href="/terms" className="hover:text-white transition-colors duration-300">
-              Terms & Conditions
-            </Link>
-            <Link href="/disclaimer" className="hover:text-white transition-colors duration-300">
-              Disclaimer
-            </Link>
-          </div>
         </motion.div>
       </div>
     </motion.footer>
