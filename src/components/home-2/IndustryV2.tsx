@@ -57,7 +57,7 @@ export default function IndustryV2() {
               playsInline
               preload="metadata"
               className="absolute inset-0 h-full w-full object-cover"
-              src="/assets/vid/compressed-banner-video.mp4"
+              src="/assets/vid/indusFootage.mp4"
             />
             <div className="absolute inset-0 bg-brand/40" />
             <div className="relative z-10 flex min-h-[420px] items-end p-8 sm:p-10 lg:p-14">

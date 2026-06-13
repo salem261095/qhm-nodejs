@@ -36,7 +36,7 @@ export default function SectorCinema() {
           },
         }}
         className="absolute inset-0 h-full w-full object-cover opacity-62"
-        src="/assets/vid/compressed-banner-video.mp4"
+        src="/assets/vid/indusFootage.mp4"
       />
       <div className="absolute inset-0 pointer-events-none" />
       <div className="relative z-10 mx-auto grid min-h-[66vh] max-w-7xl items-end gap-12 lg:grid-cols-[1fr_0.9fr]">
