@@ -21,7 +21,7 @@ const highlights = [
 
 export default function FirmProfileEditorial() {
   return (
-    <section className="bg-bg-base py-24 border-t border-brand">
+    <section className="bg-bg-base py-24 border-t border-brand/10">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <motion.div
           initial="hidden"
@@ -40,13 +40,13 @@ export default function FirmProfileEditorial() {
               className="group relative block w-full max-w-[320px] aspect-[1/1.4] overflow-hidden bg-brand shadow-xl transition-all duration-500 hover:shadow-2xl hover:-translate-y-2"
               aria-label={firmProfile.cta}
             >
-              <div className="absolute inset-0 bg-brand transition-opacity duration-300 group-hover:opacity-0" />
+              <div className="absolute inset-0 bg-brand/5 transition-opacity duration-300 group-hover:opacity-0" />
               <Image
                 src={firmProfile.cover}
                 alt="Front cover of the latest QHM Firm Profile"
                 width={679}
                 height={955}
-                className="h-full w-full object-cover border border-brand transition-transform duration-500 group-hover:scale-102"
+                className="h-full w-full object-cover border border-brand/10 transition-transform duration-500 group-hover:scale-102"
               />
               <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-350 flex items-center justify-center">
                 <div className="flex h-14 w-14 items-center justify-center rounded-full bg-white text-brand shadow-lg">
@@ -59,11 +59,11 @@ export default function FirmProfileEditorial() {
           <motion.div
             variants={editorialWipe}
             custom={1}
-            className="relative bg-white p-8 sm:p-12 border border-brand shadow-sm"
+            className="relative bg-white p-8 sm:p-12 border border-brand/10 shadow-sm"
           >
             <motion.div
               variants={lineDraw}
-              className="absolute left-8 right-8 top-8 h-px origin-left bg-brand sm:left-12 sm:right-12"
+              className="absolute left-8 right-8 top-8 h-px origin-left bg-brand/12 sm:left-12 sm:right-12"
             />
             <p className="mt-8 text-xs font-semibold uppercase tracking-wider text-brand">
               Business Development Asset
@@ -78,7 +78,7 @@ export default function FirmProfileEditorial() {
             <div className="mt-8 grid gap-4 sm:grid-cols-2">
               {highlights.map((highlight) => (
                 <div key={highlight} className="flex items-center gap-3">
-                  <div className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-brand text-brand">
+                  <div className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-brand/5 text-brand">
                     <Check size={12} strokeWidth={3} />
                   </div>
                   <span className="text-xs font-medium text-brand">{highlight}</span>

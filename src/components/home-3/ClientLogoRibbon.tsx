@@ -35,11 +35,11 @@ export default function ClientLogoRibbon() {
 
       <motion.div
         variants={revealItem}
-        className="relative -mx-5 overflow-hidden border-y border-brand bg-white py-7 sm:-mx-8 lg:-mx-10"
+        className="relative -mx-5 overflow-hidden border-y border-brand/10 bg-white py-7 sm:-mx-8 lg:-mx-10"
       >
         <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-24 bg-gradient-to-r from-white to-transparent" />
         <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-24 bg-gradient-to-l from-white to-transparent" />
-        <div className="client-logo-ribbon flex w-max items-center gap-px bg-brand">
+        <div className="client-logo-ribbon flex w-max items-center gap-px bg-brand/10">
           {ribbonLogos.map((logo, index) => (
             <div
               key={`${logo.src}-${index}`}

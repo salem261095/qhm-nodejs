@@ -17,7 +17,7 @@ export default function OfficesAndCta() {
   return (
     <SectionReveal className="bg-white px-5 py-24 sm:px-8 lg:px-10">
       <div className="mx-auto max-w-7xl">
-        <div className="grid gap-px bg-brand lg:grid-cols-2">
+        <div className="grid gap-px bg-brand/16 lg:grid-cols-2">
           {footer.offices.map((office, index) => (
             <motion.article
               key={office.label}
@@ -34,10 +34,10 @@ export default function OfficesAndCta() {
             >
               <div className="flex items-start justify-between gap-8">
                 <div>
-                  <p className="text-xs font-light uppercase text-brand">Office</p>
+                  <p className="text-xs font-light uppercase text-brand/55">Office</p>
                   <h3 className="mt-3 text-4xl font-semibold text-brand">{office.label}</h3>
                 </div>
-                <MapPin className="mt-1 text-brand" size={22} />
+                <MapPin className="mt-1 text-brand/45" size={22} />
               </div>
               <address className="mt-10 space-y-2 not-italic text-sm leading-7 text-black/58">
                 {office.address.map((line) => (
@@ -69,14 +69,14 @@ export default function OfficesAndCta() {
               </motion.p>
               <motion.h2
                 variants={revealItem}
-                className="mt-5 max-w-4xl text-3xl font-semibold uppercase leading-tight md:text-4xl"
+                className="mt-5 max-w-4xl text-4xl font-semibold uppercase leading-tight md:text-6xl"
               >
                 <ScrollTextReveal>{footer.firmName}</ScrollTextReveal>
               </motion.h2>
             </div>
             <motion.div
               variants={revealItem}
-              className="flex flex-col gap-3 sm:flex-row flex-shrink-0"
+              className="flex flex-col gap-3 sm:flex-row"
             >
               <PremiumButton href={homepageContent.headerCta.href} inverse>
                 {homepageContent.headerCta.label}

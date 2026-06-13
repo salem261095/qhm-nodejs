@@ -78,7 +78,7 @@ export default function Header() {
                 className={`relative text-sm font-medium uppercase tracking-wide transition-colors duration-500 after:absolute after:-bottom-0.5 after:left-0 after:h-px after:w-0 after:transition-all after:duration-300 hover:after:w-full ${
                   isTransparent
                     ? "text-white/90 hover:text-white after:bg-white"
-                    : "text-brand hover:text-brand after:bg-brand"
+                    : "text-brand/85 hover:text-brand after:bg-brand"
                 }`}
               >
                 {link.label}
@@ -93,7 +93,7 @@ export default function Header() {
               className={`flex h-10 w-10 items-center justify-center border transition-all duration-500 ${
                 isTransparent
                   ? "border-white/35 text-white/90 hover:border-white hover:text-white"
-                  : "border-brand text-brand hover:border-brand hover:text-brand"
+                  : "border-brand/30 text-brand/80 hover:border-brand hover:text-brand"
               }`}
             >
               <Mail size={16} />
@@ -104,7 +104,7 @@ export default function Header() {
               className={`flex h-10 w-10 flex-col items-center justify-center gap-[5px] border transition-all duration-500 lg:hidden ${
                 isTransparent
                   ? "border-white/20 text-white"
-                  : "border-brand text-brand"
+                  : "border-brand/20 text-brand"
               }`}
               aria-label="Open menu"
             >
@@ -135,7 +135,7 @@ export default function Header() {
               />
               <button
                 onClick={() => setMenuOpen(false)}
-                className="flex h-10 w-10 items-center justify-center border border-brand text-brand"
+                className="flex h-10 w-10 items-center justify-center border border-brand/20 text-brand"
                 aria-label="Close menu"
               >
                 <X size={18} />
@@ -144,7 +144,7 @@ export default function Header() {
 
             <nav className="flex flex-1 flex-col justify-center gap-6 px-6">
               {flatNav.map((link, index) => (
-                <span key={link.href} className="overflow-hidden border-b border-brand pb-6">
+                <span key={link.href} className="overflow-hidden border-b border-brand/10 pb-6">
                   <motion.span
                     initial={{ y: "110%" }}
                     animate={{ y: 0 }}
@@ -154,7 +154,7 @@ export default function Header() {
                     <Link
                       href={link.href}
                       onClick={() => setMenuOpen(false)}
-                      className="block text-4xl font-light uppercase text-brand transition-colors hover:text-brand sm:text-5xl"
+                      className="block text-4xl font-light uppercase text-brand transition-colors hover:text-brand/50 sm:text-5xl"
                     >
                       {link.label}
                     </Link>
@@ -163,7 +163,7 @@ export default function Header() {
               ))}
             </nav>
 
-            <div className="flex items-center justify-between border-t border-brand px-6 py-6 text-xs font-light uppercase text-brand">
+            <div className="flex items-center justify-between border-t border-brand/10 px-6 py-6 text-xs font-light uppercase text-brand/42">
               <span>Jeddah</span>
               <span>Riyadh</span>
               <span>QHM</span>

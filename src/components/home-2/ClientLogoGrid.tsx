@@ -13,7 +13,7 @@ import {
 
 export default function ClientLogoGrid() {
   return (
-    <section className="border-t border-brand bg-white py-24">
+    <section className="border-t border-brand/10 bg-white py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <motion.div
           initial="hidden"
@@ -24,12 +24,12 @@ export default function ClientLogoGrid() {
           <div className="relative mb-12 flex flex-col gap-5 pb-8 md:flex-row md:items-end md:justify-between">
             <motion.div
               variants={lineDraw}
-              className="absolute bottom-0 left-0 h-px w-full origin-left bg-brand"
+              className="absolute bottom-0 left-0 h-px w-full origin-left bg-brand/10"
             />
             <div>
               <motion.p
                 variants={editorialWipe}
-                className="text-xs font-medium uppercase text-brand"
+                className="text-xs font-medium uppercase text-brand/60"
               >
                 Client Portfolio
               </motion.p>
@@ -44,7 +44,7 @@ export default function ClientLogoGrid() {
             <motion.p
               variants={editorialWipe}
               custom={2}
-              className="max-w-md text-sm leading-7 text-brand"
+              className="max-w-md text-sm leading-7 text-brand/52"
             >
               A static overview designed for quick scanning and presentation-led
               credibility.
@@ -53,7 +53,7 @@ export default function ClientLogoGrid() {
 
           <motion.div
             variants={fadeIn}
-            className="grid grid-cols-2 gap-px bg-brand sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5"
+            className="grid grid-cols-2 gap-px bg-brand/10 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5"
           >
             {clientLogos.map((logo, index) => (
               <motion.div

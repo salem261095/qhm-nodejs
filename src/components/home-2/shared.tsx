@@ -123,7 +123,7 @@ export function SectionLabel({ children, inverse = false }: { children: string; 
   return (
     <motion.p
       variants={fadeIn}
-      className={`text-xs font-medium uppercase ${inverse ? "text-white/75" : "text-brand"}`}
+      className={`text-xs font-medium uppercase ${inverse ? "text-white/75" : "text-brand/75"}`}
     >
       {children}
     </motion.p>
@@ -142,10 +142,10 @@ export function PremiumButton({
   return (
     <Link
       href={href}
-      className={`group inline-flex items-center justify-between gap-6 border px-6 py-3 text-xs font-medium uppercase whitespace-nowrap transition-all duration-300 ${
+      className={`group inline-flex items-center justify-between gap-6 border px-6 py-3 text-xs font-medium uppercase transition-all duration-300 ${
         inverse
           ? "border-white/65 text-white hover:border-white hover:bg-white hover:text-brand"
-          : "border-brand text-brand hover:border-brand hover:bg-brand hover:text-white"
+          : "border-brand/50 text-brand hover:border-brand hover:bg-brand hover:text-white"
       }`}
     >
       <span>{children}</span>

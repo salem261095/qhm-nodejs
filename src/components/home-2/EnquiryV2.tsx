@@ -19,17 +19,17 @@ export default function EnquiryV2() {
             <motion.h2 variants={editorialWipe} custom={1} className="mt-4 text-4xl md:text-5xl font-light text-brand leading-tight mb-6">
               <ScrollTextReveal>Discuss Your Mandate</ScrollTextReveal>
             </motion.h2>
-            <motion.p variants={editorialWipe} custom={2} className="text-brand text-base leading-relaxed mb-10 max-w-md">
+            <motion.p variants={editorialWipe} custom={2} className="text-brand/50 text-base leading-relaxed mb-10 max-w-md">
               We act exclusively for multinational corporations, financial institutions, and regional headquarters requiring precision, discretion, and commercial alignment.
             </motion.p>
             <div className="flex flex-col gap-4 text-sm">
-              <motion.div variants={editorialWipe} custom={3} className="flex items-center gap-3 text-brand">
+              <motion.div variants={editorialWipe} custom={3} className="flex items-center gap-3 text-brand/60">
                 <Phone size={14} className="text-brand flex-shrink-0" /> +966 920029088
               </motion.div>
-              <motion.div variants={editorialWipe} custom={4} className="flex items-center gap-3 text-brand">
+              <motion.div variants={editorialWipe} custom={4} className="flex items-center gap-3 text-brand/60">
                 <Mail size={14} className="text-brand flex-shrink-0" /> manager@qhmlawfirm.com
               </motion.div>
-              <motion.div variants={editorialWipe} custom={5} className="flex items-center gap-3 text-brand">
+              <motion.div variants={editorialWipe} custom={5} className="flex items-center gap-3 text-brand/60">
                 <MapPin size={14} className="text-brand flex-shrink-0" /> Jeddah HQ - Riyadh Office
               </motion.div>
             </div>
@@ -40,11 +40,11 @@ export default function EnquiryV2() {
               {corporateEnquiryFields.map((field, index) =>
                 field.type === "select" ? (
                   <motion.div key={field.name} variants={editorialWipe} custom={index * 0.7} className="flex flex-col gap-1.5">
-                    <label className="text-xs font-medium uppercase text-brand">{field.label}</label>
+                    <label className="text-xs font-medium uppercase text-brand/70">{field.label}</label>
                     <select
                       name={field.name}
                       required={field.required}
-                      className="border-b border-brand py-3 text-sm text-brand bg-transparent focus:outline-none focus:border-brand transition-colors"
+                      className="border-b border-brand/20 py-3 text-sm text-brand bg-transparent focus:outline-none focus:border-brand transition-colors"
                     >
                       <option value="">{field.placeholder}</option>
                       {field.options?.map((option) => (
@@ -56,13 +56,13 @@ export default function EnquiryV2() {
                   </motion.div>
                 ) : (
                   <motion.div key={field.name} variants={editorialWipe} custom={index * 0.7} className="flex flex-col gap-1.5">
-                    <label className="text-xs font-medium uppercase text-brand">{field.label}</label>
+                    <label className="text-xs font-medium uppercase text-brand/70">{field.label}</label>
                     <input
                       type={field.type}
                       name={field.name}
                       placeholder={field.placeholder}
                       required={field.required}
-                      className="border-b border-brand py-3 text-sm text-brand placeholder:text-brand bg-transparent focus:outline-none focus:border-brand transition-colors"
+                      className="border-b border-brand/20 py-3 text-sm text-brand placeholder:text-brand/30 bg-transparent focus:outline-none focus:border-brand transition-colors"
                     />
                   </motion.div>
                 )

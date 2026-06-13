@@ -52,7 +52,7 @@ export default function ContactPage() {
 
   return (
     <main className="bg-white">
-      <section className="border-b border-brand bg-bg-base px-5 pb-16 pt-24 sm:px-8 lg:px-10 lg:pb-20">
+      <section className="border-b border-brand/12 bg-bg-base px-5 pb-16 pt-24 sm:px-8 lg:px-10 lg:pb-20">
         <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.95fr_1.05fr] lg:items-end">
           <div>
             <h1 className="max-w-5xl text-6xl font-semibold uppercase leading-[0.9] text-brand sm:text-7xl lg:text-[8rem]">
@@ -62,7 +62,7 @@ export default function ContactPage() {
               initial={{ scaleX: 0 }}
               animate={{ scaleX: 1 }}
               transition={{ delay: 0.55, duration: 0.9, ease }}
-              className="mt-8 h-px w-full max-w-xl origin-left bg-brand"
+              className="mt-8 h-px w-full max-w-xl origin-left bg-brand/16"
             />
           </div>
 
@@ -78,7 +78,7 @@ export default function ContactPage() {
       </section>
 
       <section className="px-5 py-16 sm:px-8 lg:px-10 lg:py-24">
-        <div className="mx-auto grid max-w-7xl gap-px bg-brand lg:grid-cols-[0.58fr_0.42fr]">
+        <div className="mx-auto grid max-w-7xl gap-px bg-brand/12 lg:grid-cols-[0.58fr_0.42fr]">
           <motion.div
             initial="hidden"
             whileInView="visible"
@@ -101,13 +101,13 @@ export default function ContactPage() {
                   custom={index}
                   className={field.type === "email" || field.name === "matterType" ? "sm:col-span-2" : ""}
                 >
-                  <label className="text-xs font-medium uppercase text-brand">
+                  <label className="text-xs font-medium uppercase text-brand/70">
                     {field.label} {field.required && "*"}
                   </label>
                   {field.type === "select" ? (
                     <select
                       defaultValue=""
-                      className="mt-2 w-full border-b border-brand bg-transparent py-3 text-sm text-brand outline-none transition-colors focus:border-brand"
+                      className="mt-2 w-full border-b border-brand/20 bg-transparent py-3 text-sm text-brand outline-none transition-colors focus:border-brand"
                     >
                       <option value="" disabled>
                         {field.placeholder}
@@ -122,7 +122,7 @@ export default function ContactPage() {
                     <input
                       type={field.type}
                       placeholder={field.placeholder}
-                      className="mt-2 w-full border-b border-brand bg-transparent py-3 text-sm text-brand outline-none transition-colors placeholder:text-brand focus:border-brand"
+                      className="mt-2 w-full border-b border-brand/20 bg-transparent py-3 text-sm text-brand outline-none transition-colors placeholder:text-brand/30 focus:border-brand"
                     />
                   )}
                 </motion.div>

@@ -35,8 +35,7 @@ export default function SectorCinema() {
             transition: { duration: 1.25, ease },
           },
         }}
-        className="absolute inset-0 h-full w-full object-cover"
-        style={{ opacity: 0.62 }}
+        className="absolute inset-0 h-full w-full object-cover opacity-62"
         src="/assets/vid/indusFootage.mp4"
       />
       <div className="absolute inset-0 pointer-events-none" />

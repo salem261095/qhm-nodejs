@@ -17,8 +17,7 @@ export default function Hero() {
         initial={{ scale: 1.08 }}
         animate={{ scale: 1 }}
         transition={{ duration: 4.5, ease }}
-        className="absolute inset-0 h-full w-full object-cover"
-        style={{ opacity: 0.55 }}
+        className="absolute inset-0 h-full w-full object-cover opacity-55"
         src="/assets/vid/RyadhJeddah.mp4"
       />
       <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(25,57,138,0.72)_0%,rgba(25,57,138,0.38)_60%,rgba(25,57,138,0.58)_100%)]" />
