@@ -153,13 +153,13 @@ export default function ExpertisePage() {
 
   return (
     <main className="bg-white">
-      <section ref={heroRef} className="relative overflow-hidden border-b border-brand/12 bg-bg-base px-5 pb-16 pt-24 sm:px-8 lg:px-10 lg:pb-24">
+      <section ref={heroRef} className="relative overflow-hidden border-b border-brand bg-bg-base px-5 pb-16 pt-24 sm:px-8 lg:px-10 lg:pb-24">
         <motion.div style={{ y: heroY, opacity: heroOpacity }} className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.92fr_1.08fr] lg:items-end">
           <div>
             <h1 className="max-w-5xl text-6xl font-semibold uppercase leading-[0.9] text-brand sm:text-7xl lg:text-[8rem]">
               <TextReveal delay={0.08}>Legal Expertise</TextReveal>
             </h1>
-            <motion.div style={{ scaleX: ruleScale }} className="mt-8 h-px w-full max-w-xl origin-left bg-brand/16" />
+            <motion.div style={{ scaleX: ruleScale }} className="mt-8 h-px w-full max-w-xl origin-left bg-brand" />
           </div>
 
           <motion.div
@@ -194,7 +194,7 @@ export default function ExpertisePage() {
             </motion.p>
           </div>
 
-          <motion.div variants={container} className="grid gap-px bg-brand/12 md:grid-cols-2 xl:grid-cols-3">
+          <motion.div variants={container} className="grid gap-px bg-brand md:grid-cols-2 xl:grid-cols-3">
             {expertiseItems.map((area, index) => {
               const Icon = area.icon;
 
@@ -207,10 +207,10 @@ export default function ExpertisePage() {
                   className="group flex min-h-[340px] flex-col bg-white p-6 text-left transition-colors hover:bg-brand hover:text-white sm:p-7"
                 >
                   <div className="flex items-start justify-between gap-5">
-                    <div className="flex h-12 w-12 items-center justify-center border border-brand/14 text-brand/55 transition-colors group-hover:border-white/20 group-hover:text-white">
+                    <div className="flex h-12 w-12 items-center justify-center border border-brand text-brand transition-colors group-hover:border-white/20 group-hover:text-white">
                       <Icon size={21} strokeWidth={1.5} />
                     </div>
-                    <span className="font-mono text-xs text-brand/28 transition-colors group-hover:text-white/42">
+                    <span className="font-mono text-xs text-brand transition-colors group-hover:text-white/42">
                       {String(index + 1).padStart(2, "0")}
                     </span>
                   </div>
@@ -247,7 +247,7 @@ export default function ExpertisePage() {
         whileInView="visible"
         viewport={{ once: true, amount: 0.18 }}
         variants={container}
-        className="border-t border-brand/12 px-5 py-16 sm:px-8 lg:px-10 lg:py-24"
+        className="border-t border-brand px-5 py-16 sm:px-8 lg:px-10 lg:py-24"
       >
         <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.82fr_1.18fr]">
           <div>
@@ -256,7 +256,7 @@ export default function ExpertisePage() {
             </motion.h2>
           </div>
 
-          <motion.div variants={container} className="grid gap-px bg-brand/12">
+          <motion.div variants={container} className="grid gap-px bg-brand">
             {sectorItems.map((sector, index) => (
               <motion.article
                 key={sector.title}
@@ -265,7 +265,7 @@ export default function ExpertisePage() {
                 transition={{ duration: 0.3, ease }}
                 className="group grid gap-6 bg-white p-6 transition-colors hover:bg-brand hover:text-white sm:grid-cols-[0.18fr_0.82fr] sm:p-7"
               >
-                <span className="font-mono text-xs text-brand/35 transition-colors group-hover:text-white/42">
+                <span className="font-mono text-xs text-brand transition-colors group-hover:text-white/42">
                   {String(index + 1).padStart(2, "0")}
                 </span>
                 <div>

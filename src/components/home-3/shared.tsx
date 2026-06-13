@@ -6,12 +6,10 @@ import { ArrowRight } from "lucide-react";
 import { homepageContent } from "@/data/homepage";
 
 export const {
-  hero,
   coreCompetencies,
   practiceAreas,
   industryFocus,
   representativeMandates,
-  newsletter,
   footer,
 } = homepageContent;
 
@@ -37,28 +35,7 @@ export const revealItem = {
   },
 };
 
-export const navLinks = [
-  { label: "Expertise", href: "/expertise" },
-  { label: "Team", href: "/team" },
-  { label: "Insights", href: "/insights" },
-  { label: "About", href: "/about" },
-  { label: "Contact", href: "/contact" },
-];
 
-export const teamHeadshots = [
-  "/assets/team/Dr-Q.webp",
-  "/assets/team/Yasser.webp",
-  "/assets/team/Tamer.webp",
-  "/assets/team/Amna.webp",
-  "/assets/team/Hamed.webp",
-  "/assets/team/Moayad.webp",
-  "/assets/team/Mahmoud.webp",
-  "/assets/team/Abdulelah.webp",
-  "/assets/team/Deemah.webp",
-  "/assets/team/Tamara.webp",
-  "/assets/team/Talah.webp",
-  "/assets/team/Abdulmajeed.webp",
-];
 
 export function TextReveal({ children, delay = 0 }: { children: string; delay?: number }) {
   return (
@@ -102,16 +79,7 @@ export function ScrollTextReveal({ children }: { children: string }) {
   );
 }
 
-export function ClipReveal({ children, className = "" }: { children: React.ReactNode; className?: string }) {
-  return (
-    <motion.div
-      variants={revealItem}
-      className={className}
-    >
-      {children}
-    </motion.div>
-  );
-}
+
 
 export function SectionReveal({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   return (
@@ -131,7 +99,7 @@ export function SectionLabel({ children, inverse = false }: { children: string; 
   return (
     <motion.p
       variants={revealItem}
-      className={`text-xs font-medium uppercase ${inverse ? "text-white/75" : "text-brand/75"}`}
+      className={`text-xs font-medium uppercase ${inverse ? "text-white/75" : "text-brand"}`}
     >
       {children}
     </motion.p>
@@ -153,7 +121,7 @@ export function PremiumButton({
       className={`group inline-flex min-h-12 items-center justify-between gap-7 border px-6 py-3 text-sm font-medium uppercase transition-all duration-300 ${
         inverse
           ? "border-white/65 text-white hover:border-white hover:bg-white hover:text-brand"
-          : "border-brand/50 text-brand hover:border-brand hover:bg-brand hover:text-white"
+          : "border-brand text-brand hover:border-brand hover:bg-brand hover:text-white"
       }`}
     >
       <span>{children}</span>

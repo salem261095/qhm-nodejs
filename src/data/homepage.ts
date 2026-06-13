@@ -11,6 +11,7 @@ export const navItems = [
   { label: "Team", href: "/team" },
   { label: "Insights", href: "/insights" },
   { label: "About", href: "/about" },
+  { label: "Contact", href: "/contact" },
 ];
 
 export const headerCta = {

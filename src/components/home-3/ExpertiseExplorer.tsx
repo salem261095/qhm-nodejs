@@ -51,7 +51,7 @@ export default function ExpertiseExplorer() {
         <div className="relative mb-14 flex flex-col justify-between gap-6 pb-8 md:flex-row md:items-end">
           <motion.div
             variants={revealItem}
-            className="absolute bottom-0 left-0 h-px w-full origin-left bg-brand/10"
+            className="absolute bottom-0 left-0 h-px w-full origin-left bg-brand"
           />
           <div>
             <SectionLabel>Practice Areas</SectionLabel>
@@ -67,7 +67,7 @@ export default function ExpertiseExplorer() {
           </motion.div>
         </div>
 
-        <div className="grid gap-px bg-brand/10 lg:grid-cols-[0.95fr_1.05fr]">
+        <div className="grid gap-px bg-brand lg:grid-cols-[0.95fr_1.05fr]">
           <motion.div
             variants={revealItem}
             className="relative overflow-hidden p-8 text-white sm:p-10 lg:min-h-[560px] lg:p-12 bg-brand"
@@ -125,7 +125,7 @@ export default function ExpertiseExplorer() {
             </AnimatePresence>
           </motion.div>
 
-          <div className="grid gap-px bg-brand/10 sm:grid-cols-2">
+          <div className="grid gap-px bg-brand sm:grid-cols-2">
             {practiceAreas.map((area, i) => {
               const Icon = practiceIcons[area.title] ?? Scale;
               const isActive = activeIndex === i;
@@ -153,14 +153,14 @@ export default function ExpertiseExplorer() {
                       className={
                         isActive
                           ? "text-white"
-                          : "text-brand/45 transition-colors group-hover:text-white"
+                          : "text-brand transition-colors group-hover:text-white"
                       }
                     />
                     <span
                       className={
                         isActive
                           ? "font-mono text-xs text-white/40"
-                          : "font-mono text-xs text-brand/24 transition-colors group-hover:text-white/40"
+                          : "font-mono text-xs text-brand transition-colors group-hover:text-white/40"
                       }
                     >
                       {String(i + 1).padStart(2, "0")}
@@ -181,7 +181,7 @@ export default function ExpertiseExplorer() {
                       className={
                         isActive
                           ? "mt-6 text-white/70"
-                          : "mt-6 -translate-x-2 text-brand/0 transition-all group-hover:translate-x-0 group-hover:text-white/70"
+                          : "mt-6 -translate-x-2 text-brand transition-all group-hover:translate-x-0 group-hover:text-white/70"
                       }
                     />
                   </div>

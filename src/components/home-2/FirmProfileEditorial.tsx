@@ -21,7 +21,7 @@ const highlights = [
 
 export default function FirmProfileEditorial() {
   return (
-    <section className="bg-bg-base py-24 border-t border-brand/10">
+    <section className="bg-bg-base py-24 border-t border-brand">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <motion.div
           initial="hidden"
@@ -46,7 +46,7 @@ export default function FirmProfileEditorial() {
                 alt="Front cover of the latest QHM Firm Profile"
                 width={679}
                 height={955}
-                className="h-full w-full object-cover border border-brand/10 transition-transform duration-500 group-hover:scale-102"
+                className="h-full w-full object-cover border border-brand transition-transform duration-500 group-hover:scale-102"
               />
               <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-350 flex items-center justify-center">
                 <div className="flex h-14 w-14 items-center justify-center rounded-full bg-white text-brand shadow-lg">
@@ -59,11 +59,11 @@ export default function FirmProfileEditorial() {
           <motion.div
             variants={editorialWipe}
             custom={1}
-            className="relative bg-white p-8 sm:p-12 border border-brand/10 shadow-sm"
+            className="relative bg-white p-8 sm:p-12 border border-brand shadow-sm"
           >
             <motion.div
               variants={lineDraw}
-              className="absolute left-8 right-8 top-8 h-px origin-left bg-brand/12 sm:left-12 sm:right-12"
+              className="absolute left-8 right-8 top-8 h-px origin-left bg-brand sm:left-12 sm:right-12"
             />
             <p className="mt-8 text-xs font-semibold uppercase tracking-wider text-brand">
               Business Development Asset

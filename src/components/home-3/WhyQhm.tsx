@@ -30,7 +30,7 @@ export default function WhyQhm() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.1 }}
-          className="mt-14 grid gap-px bg-brand/16 md:grid-cols-2 lg:grid-cols-4"
+          className="mt-14 grid gap-px bg-brand md:grid-cols-2 lg:grid-cols-4"
         >
           {coreCompetencies.map((item, index) => (
             <motion.article
@@ -41,7 +41,7 @@ export default function WhyQhm() {
               transition={{ duration: 0.3, ease }}
               className="group min-h-[330px] bg-white p-7 transition-colors hover:bg-brand hover:text-white"
             >
-              <p className="text-5xl font-thin text-brand/22 transition-colors group-hover:text-white/25">{item.number}</p>
+              <p className="text-5xl font-thin text-brand transition-colors group-hover:text-white/25">{item.number}</p>
               <h3 className="mt-10 text-2xl font-light leading-tight text-brand transition-colors group-hover:text-white">{item.title}</h3>
               <p className="mt-5 text-sm leading-7 text-black/55 transition-colors group-hover:text-white/62">{item.description}</p>
             </motion.article>

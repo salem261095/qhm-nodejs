@@ -8,7 +8,7 @@ import {
 } from "lucide-react";
 import { homepageContent } from "@/data/homepage";
 
-export const { hero, managingPartner, coreCompetencies, practiceAreas, industryFocus, representativeMandates, corporateEnquiryFields, newsletter } = homepageContent;
+export const { coreCompetencies, practiceAreas, industryFocus, representativeMandates, corporateEnquiryFields } = homepageContent;
 
 export const practiceIcons: Record<string, React.ElementType> = {
   "Corporate & Commercial": Building2,
@@ -123,7 +123,7 @@ export function SectionLabel({ children, inverse = false }: { children: string; 
   return (
     <motion.p
       variants={fadeIn}
-      className={`text-xs font-medium uppercase ${inverse ? "text-white/75" : "text-brand/75"}`}
+      className={`text-xs font-medium uppercase ${inverse ? "text-white/75" : "text-brand"}`}
     >
       {children}
     </motion.p>
@@ -145,7 +145,7 @@ export function PremiumButton({
       className={`group inline-flex items-center justify-between gap-6 border px-6 py-3 text-xs font-medium uppercase transition-all duration-300 ${
         inverse
           ? "border-white/65 text-white hover:border-white hover:bg-white hover:text-brand"
-          : "border-brand/50 text-brand hover:border-brand hover:bg-brand hover:text-white"
+          : "border-brand text-brand hover:border-brand hover:bg-brand hover:text-white"
       }`}
     >
       <span>{children}</span>
@@ -154,12 +154,7 @@ export function PremiumButton({
   );
 }
 
-export const luxuryNavLinks = [
-  { label: "Expertise", href: "/expertise" },
-  { label: "Team", href: "/team" },
-  { label: "About", href: "/about" },
-  { label: "Contact", href: "/contact" },
-];
+
 
 export const teamHeadshots = [
   "/assets/team/Dr-Q.webp",
