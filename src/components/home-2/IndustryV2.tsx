@@ -24,7 +24,7 @@ const cardVariant = {
 
 export default function IndustryV2() {
   return (
-    <section className="py-24 bg-bg-base overflow-hidden border-t border-brand/10">
+    <section className="py-24 bg-bg-base overflow-hidden border-t border-brand">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial="hidden"
@@ -59,9 +59,9 @@ export default function IndustryV2() {
               className="absolute inset-0 h-full w-full object-cover"
               src="/assets/vid/indusFootage.mp4"
             />
-            <div className="absolute inset-0 bg-brand/40" />
+            <div className="absolute inset-0 bg-brand" />
             <div className="relative z-10 flex min-h-[420px] items-end p-8 sm:p-10 lg:p-14">
-              <div className="max-w-2xl border border-white/20 bg-brand/75 p-8 text-white backdrop-blur-sm">
+              <div className="max-w-2xl border border-white/20 bg-brand p-8 text-white backdrop-blur-sm">
                 <motion.h3
                   variants={editorialWipe}
                   custom={1}
@@ -109,7 +109,7 @@ export default function IndustryV2() {
           whileInView="visible"
           viewport={{ once: true, amount: 0.08 }}
           variants={sectionReveal}
-          className="grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-brand/10"
+          className="grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-brand"
         >
           {industryFocus.map((item, i) => (
             <motion.div
@@ -120,7 +120,7 @@ export default function IndustryV2() {
               transition={{ duration: 0.35, ease: premiumEase }}
               className="bg-white p-10 group hover:bg-brand hover:text-white transition-colors duration-300 cursor-pointer"
             >
-              <span className="text-xs font-light uppercase text-brand/30 group-hover:text-white/50 transition-colors">
+              <span className="text-xs font-light uppercase text-brand group-hover:text-white/50 transition-colors">
                 {item.number}
               </span>
               <h3 className="text-2xl font-light text-brand group-hover:text-white mt-4 mb-4 transition-colors leading-tight">

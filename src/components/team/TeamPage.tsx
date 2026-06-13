@@ -158,7 +158,7 @@ function MemberModal({ member, onClose }: { member: TeamMember; onClose: () => v
           initial={{ clipPath: "inset(0 16% 0 0)", scale: 1.08 }}
           animate={{ clipPath: "inset(0 0% 0 0)", scale: 1 }}
           transition={{ duration: 0.72, ease }}
-          className="relative min-h-[420px] bg-brand/5"
+          className="relative min-h-[420px] bg-brand"
         >
           <Image
             src={member.image}
@@ -178,7 +178,7 @@ function MemberModal({ member, onClose }: { member: TeamMember; onClose: () => v
             className="mb-12 flex items-start justify-between gap-8"
           >
             <div>
-              <motion.p variants={item} className="text-xs font-light uppercase text-brand/55">{member.role}</motion.p>
+              <motion.p variants={item} className="text-xs font-light uppercase text-brand">{member.role}</motion.p>
               <motion.h2 variants={item} className="mt-4 text-4xl font-semibold leading-tight text-brand sm:text-5xl">{member.name}</motion.h2>
             </div>
             <motion.button
@@ -187,7 +187,7 @@ function MemberModal({ member, onClose }: { member: TeamMember; onClose: () => v
               transition={{ delay: 0.18, duration: 0.4, ease }}
               type="button"
               onClick={onClose}
-              className="flex h-11 w-11 shrink-0 items-center justify-center border border-brand/18 text-brand transition-colors hover:bg-brand hover:text-white"
+              className="flex h-11 w-11 shrink-0 items-center justify-center border border-brand text-brand transition-colors hover:bg-brand hover:text-white"
               aria-label="Close profile"
             >
               <X size={18} />
@@ -198,7 +198,7 @@ function MemberModal({ member, onClose }: { member: TeamMember; onClose: () => v
             initial="hidden"
             animate="visible"
             variants={container}
-            className="mt-auto space-y-4 border-t border-brand/12 pt-8"
+            className="mt-auto space-y-4 border-t border-brand pt-8"
           >
             {member.description && (
               <div className="space-y-4 pb-5">
@@ -210,7 +210,7 @@ function MemberModal({ member, onClose }: { member: TeamMember; onClose: () => v
               </div>
             )}
             {member.email && (
-              <motion.a variants={item} href={`mailto:${member.email}`} className="group flex items-center justify-between gap-5 border-b border-brand/10 pb-4 text-brand">
+              <motion.a variants={item} href={`mailto:${member.email}`} className="group flex items-center justify-between gap-5 border-b border-brand pb-4 text-brand">
                 <span className="inline-flex items-center gap-3 text-sm">
                   <Mail size={16} />
                   {member.email}
@@ -219,7 +219,7 @@ function MemberModal({ member, onClose }: { member: TeamMember; onClose: () => v
               </motion.a>
             )}
             {member.phone && (
-              <motion.a variants={item} href={phoneHref(member.phone)} className="group flex items-center justify-between gap-5 border-b border-brand/10 pb-4 text-brand">
+              <motion.a variants={item} href={phoneHref(member.phone)} className="group flex items-center justify-between gap-5 border-b border-brand pb-4 text-brand">
                 <span className="inline-flex items-center gap-3 text-sm">
                   <Phone size={16} />
                   {cleanPhone(member.phone)}
@@ -252,7 +252,7 @@ function MemberCard({ member, index, onSelect }: { member: TeamMember; index: nu
       transition={{ duration: 0.32, ease }}
       className="group flex min-h-[420px] flex-col bg-white text-left transition-colors hover:bg-brand hover:text-white"
     >
-      <div className="relative h-72 overflow-hidden bg-brand/5">
+      <div className="relative h-72 overflow-hidden bg-brand">
         <Image
           src={member.image}
           alt={member.name}
@@ -265,10 +265,10 @@ function MemberCard({ member, index, onSelect }: { member: TeamMember; index: nu
         </div>
       </div>
       <div className="flex flex-1 flex-col p-6">
-        <p className="text-xs font-light uppercase text-brand/55 transition-colors group-hover:text-white/45">{member.role}</p>
+        <p className="text-xs font-light uppercase text-brand transition-colors group-hover:text-white/45">{member.role}</p>
         <div className="mt-4 flex items-start justify-between gap-5">
           <h3 className="text-2xl font-light leading-tight text-brand transition-colors group-hover:text-white">{member.name}</h3>
-          <ArrowUpRight size={17} className="mt-1 shrink-0 text-brand/35 transition-all group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-white" />
+          <ArrowUpRight size={17} className="mt-1 shrink-0 text-brand transition-all group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-white" />
         </div>
         <div className="mt-auto pt-8 text-xs font-light uppercase text-black/36 transition-colors group-hover:text-white/45">
           {member.email || getInitials(member.name)}
@@ -287,7 +287,7 @@ export default function TeamPage() {
 
   return (
     <main className="bg-white">
-      <section className="border-b border-brand/12 bg-bg-base px-5 pb-16 pt-24 sm:px-8 lg:px-10 lg:pb-20">
+      <section className="border-b border-brand bg-bg-base px-5 pb-16 pt-24 sm:px-8 lg:px-10 lg:pb-20">
         <motion.div
           initial="hidden"
           animate="visible"
@@ -302,7 +302,7 @@ export default function TeamPage() {
               initial={{ scaleX: 0 }}
               animate={{ scaleX: 1 }}
               transition={{ delay: 0.55, duration: 0.9, ease }}
-              className="mt-8 h-px w-full max-w-xl origin-left bg-brand/16"
+              className="mt-8 h-px w-full max-w-xl origin-left bg-brand"
             />
           </div>
 
@@ -310,12 +310,12 @@ export default function TeamPage() {
             <p className="text-base leading-8 text-black/58">
               Our team consists of bilingual Saudi-qualified lawyers and experienced legal consultants who combine regulatory insight with commercial pragmatism.
             </p>
-            <div className="mt-10 grid grid-cols-3 border border-brand/12 text-center">
-              <motion.div variants={item} className="border-r border-brand/12 p-4">
+            <div className="mt-10 grid grid-cols-3 border border-brand text-center">
+              <motion.div variants={item} className="border-r border-brand p-4">
                 <p className="text-3xl font-semibold text-brand">{teamMembers.length}</p>
                 <p className="mt-1 text-xs font-light uppercase text-black/42">People</p>
               </motion.div>
-              <motion.div variants={item} className="border-r border-brand/12 p-4">
+              <motion.div variants={item} className="border-r border-brand p-4">
                 <p className="text-3xl font-semibold text-brand">2</p>
                 <p className="mt-1 text-xs font-light uppercase text-black/42">Offices</p>
               </motion.div>
@@ -330,7 +330,7 @@ export default function TeamPage() {
 
 
 
-      <section className="border-t border-brand/12 px-5 py-16 sm:px-8 lg:px-10 lg:py-20">
+      <section className="border-t border-brand px-5 py-16 sm:px-8 lg:px-10 lg:py-20">
         <div className="mx-auto max-w-7xl">
           <motion.div
             initial="hidden"
@@ -340,7 +340,7 @@ export default function TeamPage() {
             className="mb-10 grid gap-6 lg:grid-cols-[1fr_0.78fr] lg:items-end"
           >
             <div>
-              <motion.p variants={item} className="text-xs font-light uppercase text-brand/55">Directory</motion.p>
+              <motion.p variants={item} className="text-xs font-light uppercase text-brand">Directory</motion.p>
               <motion.h2 variants={item} className="mt-4 text-4xl font-semibold uppercase leading-tight text-brand sm:text-5xl">
                 <ScrollTextReveal>People Directory</ScrollTextReveal>
               </motion.h2>
@@ -356,13 +356,13 @@ export default function TeamPage() {
             </motion.div>
           </motion.div>
 
-          <div className="mb-8 flex gap-px overflow-x-auto bg-brand/12 p-px">
+          <div className="mb-8 flex gap-px overflow-x-auto bg-brand p-px">
             {roles.map((role) => (
               <button
                 key={role}
                 type="button"
                 onClick={() => setActiveRole(role)}
-                className="relative min-h-11 shrink-0 overflow-hidden bg-white px-5 text-xs font-medium uppercase text-brand transition-colors hover:bg-brand/5"
+                className="relative min-h-11 shrink-0 overflow-hidden bg-white px-5 text-xs font-medium uppercase text-brand transition-colors hover:bg-brand"
               >
                 {activeRole === role && (
                   <motion.span
@@ -384,7 +384,7 @@ export default function TeamPage() {
               exit={{ opacity: 0, y: 18, transition: { duration: 0.2 } }}
               variants={container}
               layout
-              className="grid gap-px bg-brand/12 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+              className="grid gap-px bg-brand sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
             >
               {filteredMembers.map((member, index) => (
                 <MemberCard key={member.email ?? member.name} member={member} index={index} onSelect={() => setSelected(member)} />
@@ -393,7 +393,7 @@ export default function TeamPage() {
           </AnimatePresence>
 
           {filteredMembers.length === 0 && (
-            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="border border-brand/12 p-10 text-center text-sm text-black/50">
+            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="border border-brand p-10 text-center text-sm text-black/50">
               No team members in this category.
             </motion.div>
           )}

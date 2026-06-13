@@ -73,16 +73,16 @@ export default function InsightsListing({ initialPosts }: InsightsListingProps) 
   };
 
   return (
-    <section ref={sectionRef} className="border-t border-brand/12 bg-white px-5 py-16 sm:px-8 lg:px-10 lg:py-24">
+    <section ref={sectionRef} className="border-t border-brand bg-white px-5 py-16 sm:px-8 lg:px-10 lg:py-24">
       <div className="mx-auto max-w-7xl">
         <div className="mb-12">
-          <p className="text-xs font-light uppercase text-brand/55">Publications Archive</p>
+          <p className="text-xs font-light uppercase text-brand">Publications Archive</p>
           <h2 className="mt-4 text-4xl font-semibold uppercase leading-tight text-brand sm:text-5xl">
             Recent Analysis
           </h2>
         </div>
 
-        <div className="mb-12 flex flex-wrap gap-2.5 border-b border-brand/10 pb-8">
+        <div className="mb-12 flex flex-wrap gap-2.5 border-b border-brand pb-8">
           {SPECIFIED_CATEGORIES.map((cat) => {
             const isSelected = selectedCategory === cat;
             return (
@@ -93,7 +93,7 @@ export default function InsightsListing({ initialPosts }: InsightsListingProps) 
                 className={`px-4 py-2.5 text-xs font-semibold uppercase tracking-wider transition-all duration-300 ${
                   isSelected
                     ? "bg-brand text-white border border-brand"
-                    : "bg-bg-base text-brand border border-brand/12 hover:border-brand/45 hover:bg-brand/5"
+                    : "bg-bg-base text-brand border border-brand hover:border-brand hover:bg-brand"
                 }`}
               >
                 {cat}
@@ -116,9 +116,9 @@ export default function InsightsListing({ initialPosts }: InsightsListingProps) 
                 paginatedPosts.map((post) => (
                   <article
                     key={post.id}
-                    className="group flex flex-col bg-white border border-brand/10 p-5 transition-all duration-300 hover:border-brand/30 hover:shadow-sm"
+                    className="group flex flex-col bg-white border border-brand p-5 transition-all duration-300 hover:border-brand hover:shadow-sm"
                   >
-                    <div className="relative aspect-[16/10] w-full overflow-hidden bg-brand/5">
+                    <div className="relative aspect-[16/10] w-full overflow-hidden bg-brand">
                       {post.image ? (
                         <img
                           src={post.image}
@@ -128,7 +128,7 @@ export default function InsightsListing({ initialPosts }: InsightsListingProps) 
                           decoding="async"
                         />
                       ) : (
-                        <div className="flex h-full w-full items-center justify-center bg-brand/5 text-brand/20">
+                        <div className="flex h-full w-full items-center justify-center bg-brand text-brand">
                           <span className="text-xs font-semibold uppercase tracking-wider">QHM Insight</span>
                         </div>
                       )}
@@ -156,8 +156,8 @@ export default function InsightsListing({ initialPosts }: InsightsListingProps) 
                   </article>
                 ))
               ) : (
-                <div className="col-span-full py-24 text-center border border-brand/10 bg-bg-base">
-                  <p className="text-sm font-light text-brand/60 uppercase tracking-wider">
+                <div className="col-span-full py-24 text-center border border-brand bg-bg-base">
+                  <p className="text-sm font-light text-brand uppercase tracking-wider">
                     No publications found under this topic
                   </p>
                 </div>
@@ -167,12 +167,12 @@ export default function InsightsListing({ initialPosts }: InsightsListingProps) 
         </div>
 
         {totalPages > 1 && (
-          <div className="mt-16 flex items-center justify-center gap-2 border-t border-brand/10 pt-8">
+          <div className="mt-16 flex items-center justify-center gap-2 border-t border-brand pt-8">
             <button
               type="button"
               disabled={currentPage === 1}
               onClick={() => handlePageChange(currentPage - 1)}
-              className="flex h-10 w-10 items-center justify-center border border-brand/12 text-brand transition-all hover:bg-brand hover:text-white disabled:pointer-events-none disabled:opacity-30"
+              className="flex h-10 w-10 items-center justify-center border border-brand text-brand transition-all hover:bg-brand hover:text-white disabled:pointer-events-none disabled:opacity-30"
             >
               <ArrowLeft size={16} />
             </button>
@@ -187,7 +187,7 @@ export default function InsightsListing({ initialPosts }: InsightsListingProps) 
                   className={`flex h-10 w-10 items-center justify-center text-sm font-medium transition-all ${
                     isActive
                       ? "bg-brand text-white font-semibold"
-                      : "border border-brand/12 text-brand hover:bg-brand/5"
+                      : "border border-brand text-brand hover:bg-brand"
                   }`}
                 >
                   {page}
@@ -199,7 +199,7 @@ export default function InsightsListing({ initialPosts }: InsightsListingProps) 
               type="button"
               disabled={currentPage === totalPages}
               onClick={() => handlePageChange(currentPage + 1)}
-              className="flex h-10 w-10 items-center justify-center border border-brand/12 text-brand transition-all hover:bg-brand hover:text-white disabled:pointer-events-none disabled:opacity-30"
+              className="flex h-10 w-10 items-center justify-center border border-brand text-brand transition-all hover:bg-brand hover:text-white disabled:pointer-events-none disabled:opacity-30"
             >
               <ArrowRight size={16} />
             </button>
