@@ -362,7 +362,9 @@ export default function TeamPage() {
                 key={role}
                 type="button"
                 onClick={() => setActiveRole(role)}
-                className="relative min-h-11 shrink-0 overflow-hidden bg-white px-5 text-xs font-medium uppercase text-brand transition-colors hover:bg-brand/5"
+                className={`relative min-h-11 shrink-0 overflow-hidden bg-white px-5 text-xs font-medium uppercase transition-colors hover:bg-gray-200 ${
+                  activeRole === role ? "text-white hover:text-white" : "text-brand hover:text-brand"
+                }`}
               >
                 {activeRole === role && (
                   <motion.span
@@ -371,7 +373,7 @@ export default function TeamPage() {
                     className="absolute inset-0 bg-brand"
                   />
                 )}
-                <span className={`relative z-10 transition-colors ${activeRole === role ? "text-white" : "text-brand"}`}>{role}</span>
+                <span className="relative z-10">{role}</span>
               </button>
             ))}
           </div>

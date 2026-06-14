@@ -260,11 +260,7 @@ export const newsletter = {
 export const socialLinks = [
   {
     label: "LinkedIn",
-    href: "#",
-  },
-  {
-    label: "X / Twitter",
-    href: "#",
+    href: "https://www.linkedin.com/company/qhmlawfirm",
   },
 ];
 

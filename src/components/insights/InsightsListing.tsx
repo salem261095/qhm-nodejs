@@ -82,7 +82,7 @@ export default function InsightsListing({ initialPosts }: InsightsListingProps) 
           </h2>
         </div>
 
-        <div className="mb-12 flex flex-wrap gap-2.5 border-b border-brand pb-8">
+        <div className="mb-12 flex gap-2.5 overflow-x-auto whitespace-nowrap border-b border-brand pb-8 md:flex-wrap md:overflow-x-visible md:whitespace-normal">
           {SPECIFIED_CATEGORIES.map((cat) => {
             const isSelected = selectedCategory === cat;
             return (
@@ -90,7 +90,7 @@ export default function InsightsListing({ initialPosts }: InsightsListingProps) 
                 key={cat}
                 type="button"
                 onClick={() => handleCategoryChange(cat)}
-                className={`px-4 py-2.5 text-xs font-semibold uppercase tracking-wider transition-all duration-300 ${
+                className={`shrink-0 px-4 py-2.5 text-xs font-semibold uppercase tracking-wider transition-all duration-300 ${
                   isSelected
                     ? "bg-brand text-white border border-brand"
                     : "bg-bg-base text-brand border border-brand hover:border-brand hover:bg-brand/5"
