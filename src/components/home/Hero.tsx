@@ -8,7 +8,9 @@ import { ease, PremiumButton, TextReveal } from "./shared";
 export default function Hero() {
   return (
     <section className="relative min-h-screen overflow-hidden bg-brand text-white">
+      {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
       <motion.video
+        key="/assets/vid/QHMvid-9.mp4"
         autoPlay
         loop
         muted

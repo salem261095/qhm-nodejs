@@ -6,7 +6,9 @@ import { premiumEase, SplitReveal } from "./shared";
 export default function HeroV2() {
   return (
     <section className="relative min-h-screen w-screen overflow-hidden">
+      {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
       <video
+        key="/assets/vid/QHMvid-9.mp4"
         autoPlay
         loop
         muted
