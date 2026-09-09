@@ -1,17 +1,33 @@
 export const firmProfile = {
   cover: "/assets/profile/ProfileCover.PNG",
-  pdf: "/assets/profile/QHM - Firm Profile.pdf",
+  pdf: "/assets/profile/QHM - Firm Profilev2.pdf",
   title: "Latest Firm Profile",
   cta: "Download Our Latest Firm Profile",
 };
 
-export const clientLogos = Array.from({ length: 25 }, (_, index) => index + 13)
-  .filter((fileNumber) => fileNumber !== 18)
-  .map((fileNumber) => {
-    const extension = [14, 17, 26, 31, 35].includes(fileNumber) ? "jpg" : "png";
-
-    return {
-      src: `/assets/clientsLogo/${fileNumber}.${extension}`,
-      alt: `QHM client logo ${fileNumber}`,
-    };
-  });
+export const clientLogos = [
+  { src: "/assets/clientsLogo/09.png", alt: "QHM client logo" },
+  { src: "/assets/clientsLogo/99.png", alt: "QHM client logo" },
+  { src: "/assets/clientsLogo/564.png", alt: "QHM client logo" },
+  { src: "/assets/clientsLogo/878.png", alt: "QHM client logo" },
+  { src: "/assets/clientsLogo/4533.jpg", alt: "QHM client logo" },
+  { src: "/assets/clientsLogo/4555.jpg", alt: "QHM client logo" },
+  { src: "/assets/clientsLogo/7090.png", alt: "QHM client logo" },
+  { src: "/assets/clientsLogo/Picture1.png", alt: "QHM client logo" },
+  { src: "/assets/clientsLogo/avia.jpg", alt: "QHM client logo" },
+  { src: "/assets/clientsLogo/bcc.png", alt: "QHM client logo" },
+  { src: "/assets/clientsLogo/ee.png", alt: "QHM client logo" },
+  { src: "/assets/clientsLogo/ismanet.png", alt: "QHM client logo" },
+  { src: "/assets/clientsLogo/jc.jpg", alt: "QHM client logo" },
+  { src: "/assets/clientsLogo/jh.png", alt: "QHM client logo" },
+  { src: "/assets/clientsLogo/king.png", alt: "QHM client logo" },
+  { src: "/assets/clientsLogo/le.jpg", alt: "QHM client logo" },
+  { src: "/assets/clientsLogo/mars.png", alt: "QHM client logo" },
+  { src: "/assets/clientsLogo/mitsu.png", alt: "QHM client logo" },
+  { src: "/assets/clientsLogo/nestal.png", alt: "QHM client logo" },
+  { src: "/assets/clientsLogo/pwc.png", alt: "QHM client logo" },
+  { src: "/assets/clientsLogo/red.png", alt: "QHM client logo" },
+  { src: "/assets/clientsLogo/34.png", alt: "QHM client logo" },
+  { src: "/assets/clientsLogo/453.png", alt: "QHM client logo" },
+  { src: "/assets/clientsLogo/454.jpg", alt: "QHM client logo" },
+];
