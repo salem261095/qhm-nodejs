@@ -25,25 +25,22 @@ export default function MandatesStream() {
   return (
     <SectionReveal className="overflow-hidden bg-brand px-5 py-24 text-white sm:px-8 lg:px-10">
       <div className="mx-auto max-w-7xl">
-        <div className="mb-12 flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
-          <div>
-            <motion.div variants={revealItem}>
-              <SectionLabel inverse>Institutional Proof</SectionLabel>
-            </motion.div>
-            <motion.h2
+          <div className="mb-12 flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
+            <div>
+              <motion.h2
+                variants={revealItem}
+                className="mt-4 max-w-3xl text-4xl font-semibold uppercase leading-tight md:text-6xl"
+              >
+                <ScrollTextReveal>Key Achievements</ScrollTextReveal>
+              </motion.h2>
+            </div>
+            <motion.p
               variants={revealItem}
-              className="mt-4 max-w-3xl text-4xl font-semibold uppercase leading-tight md:text-6xl"
+              className="max-w-md text-sm leading-7 text-white/75"
             >
-              <ScrollTextReveal>Selected Mandates</ScrollTextReveal>
-            </motion.h2>
+              {representativeMandates.map((mandate) => mandate.category).join(" / ")}
+            </motion.p>
           </div>
-          <motion.p
-            variants={revealItem}
-            className="max-w-md text-sm leading-7 text-white/75"
-          >
-            {representativeMandates.map((mandate) => mandate.category).join(" / ")}
-          </motion.p>
-        </div>
 
         <motion.div
           initial="hidden"

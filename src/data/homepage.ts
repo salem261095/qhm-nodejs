@@ -2,10 +2,6 @@ export const navItems = [
   {
     label: "Home",
     href: "/",
-    children: [
-      { label: "Main - Intelligence Hub", href: "/" },
-      { label: "Variant - Editorial", href: "/home-2" },
-    ],
   },
   { label: "Expertise", href: "/expertise" },
   { label: "Team", href: "/team" },
@@ -307,7 +303,7 @@ export const homepageContent = {
   managingPartner: {
     name: "Dr. Qaisar H. Metawea",
     role: "Managing Partner",
-    bio: "Qaisar Hamed Metawea Law Firm (QHM) is a Saudi-based corporate law firm advising multinational companies, financial institutions, and regional headquarters on market entry, regulatory compliance, high-value transactions, tax disputes, and complex commercial matters across the Kingdom.",
+    bio: "We are a Saudi-based corporate law firm advising multinational companies, financial institutions, and regional headquarters on market entry, regulatory compliance, high-value transactions, tax disputes, and complex commercial matters across the Kingdom.",
     extendedBio:
       "We deliver partner-led, commercially driven legal solutions designed to provide regulatory certainty, mitigate transactional risk, and accelerate speed to market.",
     cta: managingPartnerCta,
@@ -321,7 +317,7 @@ export const homepageContent = {
   footer: {
     firmName: "Qaisar H Metawea Law Firm.",
     description:
-      "QHM advises multinational corporations, financial institutions, government-related entities, and leading international law firms on complex regulatory, transactional, and tax matters in Saudi Arabia, delivering seamless local execution aligned with global standards.",
+      "We advise multinational corporations, financial institutions, government-related entities, and leading international law firms on complex regulatory, transactional, and tax matters in Saudi Arabia, delivering seamless local execution aligned with global standards.",
     offices: [jeddahOffice, riyadhOffice],
     links: footerLinks,
     socialLinks,

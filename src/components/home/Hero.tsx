@@ -39,7 +39,7 @@ export default function Hero() {
           >
             Independent. Saudi-based. Internationally experienced. From market
             entry and corporate structuring to compliance, disputes, and sector
-            regulation - QHM delivers partner-led bilingual legal counsel.
+            regulation - we deliver partner-led bilingual legal counsel.
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 18, filter: "blur(10px)" }}
@@ -51,7 +51,7 @@ export default function Hero() {
               href="/contact"
               className="group inline-flex min-h-12 items-center justify-between gap-7 border border-white bg-white px-6 py-3 text-sm font-medium uppercase text-brand transition-all duration-300 hover:bg-transparent hover:text-white"
             >
-              <span>Contact QHM</span>
+              <span>Contact Us</span>
               <ArrowRight
                 size={16}
                 className="transition-transform duration-300 group-hover:translate-x-1"

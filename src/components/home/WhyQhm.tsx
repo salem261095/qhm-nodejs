@@ -24,7 +24,7 @@ export default function WhyQhm() {
           variants={revealItem}
           className="mt-4 max-w-4xl text-4xl font-semibold uppercase leading-tight text-brand md:text-6xl"
         >
-          <ScrollTextReveal>Why Counsel Chooses QHM</ScrollTextReveal>
+          <ScrollTextReveal>Why Counsel Chooses Us</ScrollTextReveal>
         </motion.h2>
         <motion.div
           initial="hidden"

@@ -18,7 +18,7 @@ export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   // Check if we are on one of the homepages which have dark background video backdrops
-  const isHome = pathname === "/" || pathname === "/home-2";
+  const isHome = pathname === "/";
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);

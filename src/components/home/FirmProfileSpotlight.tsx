@@ -24,7 +24,7 @@ export default function FirmProfileSpotlight() {
             variants={revealItem}
             className="mt-4 max-w-4xl text-4xl font-semibold uppercase leading-tight md:text-6xl"
           >
-            <ScrollTextReveal>A Complete View of QHM</ScrollTextReveal>
+            <ScrollTextReveal>A Complete View of Our Firm</ScrollTextReveal>
           </motion.h2>
           <motion.p
             variants={revealItem}
@@ -72,7 +72,7 @@ export default function FirmProfileSpotlight() {
         >
           <Image
             src={firmProfile.cover}
-            alt="Front cover of the latest QHM Firm Profile"
+            alt="Front cover of the latest Firm Profile"
             width={679}
             height={955}
             className="h-auto w-full object-cover"

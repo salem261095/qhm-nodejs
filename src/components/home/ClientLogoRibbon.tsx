@@ -13,9 +13,7 @@ export default function ClientLogoRibbon() {
       <div className="mx-auto max-w-7xl">
         <div className="mb-12 flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
           <div>
-            <motion.div variants={revealItem}>
-              <SectionLabel>Client Portfolio</SectionLabel>
-            </motion.div>
+
             <motion.h2
               variants={revealItem}
               className="mt-4 max-w-3xl text-4xl font-semibold uppercase leading-tight text-brand md:text-6xl"
@@ -27,7 +25,7 @@ export default function ClientLogoRibbon() {
             variants={revealItem}
             className="max-w-md text-sm leading-7 text-black/55"
           >
-            A cross-section of organizations that reflect the firm&apos;s work
+            A cross-section of organizations that reflect our work
             across Saudi and international business mandates.
           </motion.p>
         </div>

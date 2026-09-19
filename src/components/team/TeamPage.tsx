@@ -24,24 +24,23 @@ const teamMembers: TeamMember[] = [
     email: "manager@qhmlawfirm.com",
     image: `${headshotBase}/Dr-Q.webp`,
     description: [
-      "Qaisar Hamed Metawea Law Firm (QHM) is a Saudi-based corporate law firm advising multinational companies, financial institutions, and regional headquarters on market entry, regulatory compliance, high-value transactions, tax disputes, and complex commercial matters across the Kingdom.",
+      "We are a Saudi-based corporate law firm advising multinational companies, financial institutions, and regional headquarters on market entry, regulatory compliance, high-value transactions, tax disputes, and complex commercial matters across the Kingdom.",
       "We deliver partner-led, commercially driven legal solutions designed to provide regulatory certainty, mitigate transactional risk, and accelerate speed to market.",
     ],
   },
-  { name: "Yasser Mustafa", phone: "503195639", role: "Counsel - Head of Riyadh", email: "yam@qhmlawfirm.com", image: `${headshotBase}/Yasser.webp` },
-  { name: "Tamer Elnagar", phone: "564200245", role: "Counsel", email: "hmb@qhmlawfirm.com", image: `${headshotBase}/Tamer.webp` },
-  { name: "Amna Usman", phone: "541018241", role: "Managing Associate", email: "anu@qhmlawfirm.com", image: `${headshotBase}/Amna.webp` },
-  { name: "Hamed Matawi", phone: "540612000", role: "Managing Associate", email: "ham@qhmlawfirm.com", image: `${headshotBase}/Hamed.webp` },
-  { name: "Muayd Johar", phone: "542616176", role: "Managing Associate", email: "mhj@qhmlawfirm.com", image: `${headshotBase}/Moayad.webp` },
-  { name: "Mahmoud Bashandy", phone: "537876104", role: "Managing Associate", email: "msb@qhmlawfirm.com", image: `${headshotBase}/Mahmoud.webp` },
-  { name: "Abdulelah Ashmawi", phone: "555666089", role: "Senior Associate", email: "ama@qhmlawfirm.com", image: `${headshotBase}/Abdulelah.webp` },
-  { name: "Deema Daqqaq", phone: "538775566", role: "Associate", email: "dad@qhmlawfirm.com", image: `${headshotBase}/Deemah.webp` },
-  { name: "Tamara Khattab", phone: "506698555", role: "Associate", email: "thk@qhmlawfirm.com", image: `${headshotBase}/Tamara.webp` },
-  { name: "Talah Reda", phone: "553539876", role: "Junior Associate", email: "tkr@qhmlawfirm.com", image: `${headshotBase}/Talah.webp` },
-  { name: "Abdulmajeed Ghandoorah", phone: "566624679", role: "Trainee Lawyer", email: "ahg@qhmlawfirm.com", image: `${headshotBase}/Abdulmajeed.webp` },
-  { name: "Oays Mansori", phone: "598970517", role: "Trainee Lawyer", email: "omm@qhmlawfirm.com", image: `${headshotBase}/Oays.webp` },
-  { name: "Nada Al Mehdar", phone: "544460560", role: "Finance", email: "nat@qhmlawfirm.com", image: `${headshotBase}/Nada.webp` },
-  { name: "Syed Rezavi", phone: "566044203", role: "Marketing & BD", email: "skr@qhmlawfirm.com", image: `${headshotBase}/Syed.webp` },
+  { name: "Yasser Mousa", role: "Counsel - Head of Riyadh", email: "yam@qhmlawfirm.com", image: `${headshotBase}/Yasser.webp` },
+  { name: "Tamer Elnagar", role: "Counsel", email: "hmb@qhmlawfirm.com", image: `${headshotBase}/Tamer.webp` },
+  { name: "Abdulelah Ashmawi", role: "Senior Associate", email: "ama@qhmlawfirm.com", image: `${headshotBase}/Abdulelah.webp` },
+  { name: "Amna Usman", role: "Managing Associate", email: "anu@qhmlawfirm.com", image: `${headshotBase}/Amna.webp` },
+  { name: "Hamed Matawi", role: "Managing Associate", email: "ham@qhmlawfirm.com", image: `${headshotBase}/Hamed.webp` },
+  { name: "Muayd Johar", role: "Managing Associate", email: "mhj@qhmlawfirm.com", image: `${headshotBase}/Moayad.webp` },
+  { name: "Mahmoud Bashandy", role: "Managing Associate", email: "msb@qhmlawfirm.com", image: `${headshotBase}/Mahmoud.webp` },
+  { name: "Deema Daqqaq", role: "Associate", email: "dad@qhmlawfirm.com", image: `${headshotBase}/Deemah.webp` },
+  { name: "Tamara Khattab", role: "Associate", email: "thk@qhmlawfirm.com", image: `${headshotBase}/Tamara.webp` },
+  { name: "Talah Reda", role: "Junior Associate", email: "tkr@qhmlawfirm.com", image: `${headshotBase}/Talah.webp` },
+  { name: "Abdulmajeed Ghandoorah", role: "Trainee Lawyer", email: "ahg@qhmlawfirm.com", image: `${headshotBase}/Abdulmajeed.webp` },
+  { name: "Oays Mansori", role: "Trainee Lawyer", email: "omm@qhmlawfirm.com", image: `${headshotBase}/Oays.webp` },
+  { name: "Nada Al Mehdar", role: "Finance", email: "nat@qhmlawfirm.com", image: `${headshotBase}/Nada.webp` },
 ];
 
 const roles = ["All", "Leadership", "Counsel", "Associates", "Operations"] as const;
@@ -120,12 +119,14 @@ function phoneHref(phone?: string) {
   return `tel:+966${phone}`;
 }
 
-function roleGroup(member: TeamMember) {
+function roleGroup(member: TeamMember): string[] {
   const role = member.role.toLowerCase();
-  if (role.includes("partner") || role.includes("head")) return "Leadership";
-  if (role.includes("counsel")) return "Counsel";
-  if (role.includes("finance") || role.includes("marketing")) return "Operations";
-  return "Associates";
+  const groups: string[] = [];
+  if (role.includes("partner") || role.includes("head")) groups.push("Leadership");
+  if (role.includes("counsel")) groups.push("Counsel");
+  if (role.includes("finance") || role.includes("marketing")) groups.push("Operations");
+  if (groups.length === 0) groups.push("Associates");
+  return groups;
 }
 
 function getInitials(name: string) {
@@ -227,8 +228,14 @@ function MemberModal({ member, onClose }: { member: TeamMember; onClose: () => v
                 <ArrowUpRight size={16} className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
               </motion.a>
             )}
-            {!member.email && !member.phone && (
-              <motion.p variants={item} className="text-sm leading-7 text-black/52">Contact details are handled through the firm reception.</motion.p>
+            {!member.phone && (
+              <motion.a variants={item} href="tel:+966920029088" className="group flex items-center justify-between gap-5 border-b border-brand pb-4 text-brand">
+                <span className="inline-flex items-center gap-3 text-sm">
+                  <Phone size={16} />
+                  +966 9200 29088
+                </span>
+                <ArrowUpRight size={16} className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+              </motion.a>
             )}
           </motion.div>
         </div>
@@ -283,7 +290,7 @@ export default function TeamPage() {
   const [activeRole, setActiveRole] = useState<(typeof roles)[number]>("All");
 
   const filteredMembers = teamMembers
-    .filter((member) => activeRole === "All" || roleGroup(member) === activeRole);
+    .filter((member) => activeRole === "All" || roleGroup(member).includes(activeRole));
 
   return (
     <main className="bg-white">

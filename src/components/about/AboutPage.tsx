@@ -323,7 +323,7 @@ export default function AboutPage() {
               Next Step
             </motion.p>
             <motion.h2 variants={reveal} className="mt-4 text-4xl font-semibold uppercase leading-tight md:text-6xl">
-              <ScrollTextReveal>Ready to Engage QHM?</ScrollTextReveal>
+              <ScrollTextReveal>Ready to Engage With Us?</ScrollTextReveal>
             </motion.h2>
             <motion.p variants={reveal} className="mt-5 max-w-xl text-sm leading-7 text-white/58">
               Partner-level access from the first conversation.
