@@ -166,7 +166,7 @@ function MemberModal({ member, onClose }: { member: TeamMember; onClose: () => v
             src={member.image}
             alt={member.name}
             fill
-            className="object-cover object-top grayscale"
+            className="object-cover object-top"
             sizes="(max-width: 1024px) 100vw, 42vw"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/28 to-transparent" />
