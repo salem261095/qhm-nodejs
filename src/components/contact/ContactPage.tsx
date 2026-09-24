@@ -99,7 +99,6 @@ export default function ContactPage() {
                   key={field.name}
                   variants={reveal}
                   custom={index}
-                  className={field.type === "email" || field.name === "matterType" ? "sm:col-span-2" : ""}
                 >
                   <label className="text-xs font-medium uppercase text-brand">
                     {field.label} {field.required && "*"}
