@@ -33,13 +33,13 @@ const teamMembers: TeamMember[] = [
   { name: "Abdulelah Ashmawi", role: "Senior Associate", email: "ama@qhmlawfirm.com", image: `${headshotBase}/Abdulelah.webp` },
   { name: "Amna Usman", role: "Managing Associate", email: "anu@qhmlawfirm.com", image: `${headshotBase}/Amna.webp` },
   { name: "Hamed Matawi", role: "Managing Associate", email: "ham@qhmlawfirm.com", image: `${headshotBase}/Hamed.webp` },
-  { name: "Muayd Johar", role: "Managing Associate", email: "mhj@qhmlawfirm.com", image: `${headshotBase}/Moayad.webp` },
+  { name: "Moayd Johar", role: "Managing Associate", email: "mhj@qhmlawfirm.com", image: `${headshotBase}/Moayad.webp` },
   { name: "Mahmoud Bashandy", role: "Managing Associate", email: "msb@qhmlawfirm.com", image: `${headshotBase}/Mahmoud.webp` },
   { name: "Deema Daqqaq", role: "Associate", email: "dad@qhmlawfirm.com", image: `${headshotBase}/Deemah.webp` },
   { name: "Tamara Khattab", role: "Associate", email: "thk@qhmlawfirm.com", image: `${headshotBase}/Tamara.webp` },
   { name: "Talah Reda", role: "Junior Associate", email: "tkr@qhmlawfirm.com", image: `${headshotBase}/Talah.webp` },
   { name: "Abdulmajeed Ghandoorah", role: "Trainee Lawyer", email: "ahg@qhmlawfirm.com", image: `${headshotBase}/Abdulmajeed.webp` },
-  { name: "Oays Mansori", role: "Trainee Lawyer", email: "omm@qhmlawfirm.com", image: `${headshotBase}/Oays.webp` },
+  { name: "Oays Mansouri", role: "Trainee Lawyer", email: "omm@qhmlawfirm.com", image: `${headshotBase}/Oays.webp` },
   { name: "Nada Al Mehdar", role: "Finance", email: "nat@qhmlawfirm.com", image: `${headshotBase}/Nada.webp` },
 ];
 
