@@ -121,8 +121,7 @@ export default function ContactPage() {
                   ) : (
                     <input
                       type={field.type}
-                      placeholder={field.placeholder}
-                      className="mt-2 w-full border-b border-brand bg-transparent py-3 text-sm text-brand outline-none transition-colors placeholder:text-brand focus:border-brand"
+                      className="mt-2 w-full border-b border-brand bg-transparent py-3 text-sm text-brand outline-none transition-colors focus:border-brand"
                     />
                   )}
                 </motion.div>

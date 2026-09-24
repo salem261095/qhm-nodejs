@@ -12,6 +12,7 @@ import {
   Shield,
   Users,
   Zap,
+  Calculator,
 } from "lucide-react";
 import {
   practiceAreas,
@@ -30,7 +31,7 @@ const practiceIcons: Record<string, React.ElementType> = {
   "Dispute Resolution": Gavel,
   "Employment & Labor": Users,
   "IP & Technology": Lightbulb,
-  "Tax & Zakat": Scale,
+  "Tax & Zakat": Calculator,
   "Sector Advisory": Zap,
 };
 
