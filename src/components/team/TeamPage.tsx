@@ -40,6 +40,7 @@ const teamMembers: TeamMember[] = [
   { name: "Talah Reda", role: "Junior Associate", email: "tkr@qhmlawfirm.com", image: `${headshotBase}/TalahReda.webp` },
   { name: "Abdulmajeed Ghandoorah", role: "Trainee Lawyer", email: "ahg@qhmlawfirm.com", image: `${headshotBase}/AbdulmajeedGhandoorah.webp` },
   { name: "Oays Mansouri", role: "Trainee Lawyer", email: "omm@qhmlawfirm.com", image: `${headshotBase}/OaysMansori.webp` },
+  { name: "Abdulaziz Alqana", role: "Trainee Lawyer", image: `${headshotBase}/Abdulaziz.webp` },
   { name: "Nada Al Mehdar", role: "Finance", email: "nat@qhmlawfirm.com", image: `${headshotBase}/NadaAlMehdar.webp` },
 ];
 
