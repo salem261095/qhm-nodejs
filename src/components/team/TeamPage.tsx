@@ -279,7 +279,7 @@ function MemberCard({ member, index, onSelect }: { member: TeamMember; index: nu
           <ArrowUpRight size={17} className="mt-1 shrink-0 text-brand transition-all group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-white" />
         </div>
         <div className="mt-auto pt-8 text-xs font-light uppercase text-black/36 transition-colors group-hover:text-white/45">
-          {member.email || getInitials(member.name)}
+          {member.email || "\u00A0"}
         </div>
       </div>
     </motion.button>
