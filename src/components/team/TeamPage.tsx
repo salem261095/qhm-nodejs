@@ -130,14 +130,6 @@ function roleGroup(member: TeamMember): string[] {
   return groups;
 }
 
-function getInitials(name: string) {
-  return name
-    .replace("Dr. ", "")
-    .split(" ")
-    .map((part) => part[0])
-    .join("")
-    .slice(0, 2);
-}
 
 function MemberModal({ member, onClose }: { member: TeamMember; onClose: () => void }) {
   return (
