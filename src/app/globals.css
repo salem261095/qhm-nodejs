@@ -7,6 +7,12 @@
   --color-bg-card: #ffffff;
 }
 
+html,
+body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
 body {
   background-color: #ffffff;
   color: #111827;

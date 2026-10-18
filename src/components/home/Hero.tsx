@@ -14,14 +14,16 @@ export default function Hero() {
         loop
         muted
         playsInline
-        preload="metadata"
+        preload="auto"
         initial={{ scale: 1.08 }}
         animate={{ scale: 1 }}
         transition={{ duration: 4.5, ease }}
         className="absolute inset-0 h-full w-full object-cover"
         style={{ opacity: 0.55 }}
         src="/assets/vid/0826.mp4"
-      />
+      >
+        <source src="/assets/vid/0826.mp4" type="video/mp4" />
+      </motion.video>
       <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(25,57,138,0.72)_0%,rgba(25,57,138,0.38)_60%,rgba(25,57,138,0.58)_100%)]" />
 
       <div className="relative z-10 mx-auto flex min-h-screen max-w-7xl flex-col justify-end px-5 pb-16 pt-32 sm:px-8 lg:px-10 lg:pb-20">

@@ -19,7 +19,7 @@ interface HomePageProps {
 
 export default function HomePage({ posts }: HomePageProps) {
   return (
-    <main className="min-h-screen bg-white font-sans">
+    <main className="min-h-screen bg-white font-sans overflow-x-hidden">
       <Header />
       <Hero />
       <WhyQhm />
