@@ -7,26 +7,26 @@ import { ease, PremiumButton, TextReveal } from "./shared";
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen overflow-hidden bg-brand text-white">
+    <section className="relative min-h-[640px] sm:min-h-[700px] lg:h-[50vw] lg:min-h-[680px] lg:max-h-[920px] overflow-hidden bg-brand text-white">
       <motion.video
-        key="/assets/vid/0826.mp4"
+        key="/assets/vid/2-1ratioHeroSectionv3.mp4"
         autoPlay
         loop
         muted
         playsInline
         preload="auto"
-        initial={{ scale: 1.08 }}
+        initial={{ scale: 1.05 }}
         animate={{ scale: 1 }}
         transition={{ duration: 4.5, ease }}
-        className="absolute inset-0 h-full w-full object-cover"
+        className="absolute inset-0 h-full w-full object-cover object-[center_35%]"
         style={{ opacity: 0.55 }}
-        src="/assets/vid/0826.mp4"
+        src="/assets/vid/2-1ratioHeroSectionv3.mp4"
       >
-        <source src="/assets/vid/0826.mp4" type="video/mp4" />
+        <source src="/assets/vid/2-1ratioHeroSectionv3.mp4" type="video/mp4" />
       </motion.video>
       <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(25,57,138,0.72)_0%,rgba(25,57,138,0.38)_60%,rgba(25,57,138,0.58)_100%)]" />
 
-      <div className="relative z-10 mx-auto flex min-h-screen max-w-7xl flex-col justify-end px-5 pb-16 pt-32 sm:px-8 lg:px-10 lg:pb-20">
+      <div className="relative z-10 mx-auto flex h-full min-h-[640px] sm:min-h-[700px] lg:min-h-0 lg:h-full max-w-7xl flex-col justify-end px-5 pb-16 pt-32 sm:px-8 lg:px-10 lg:pb-20">
         <div className="max-w-5xl border-t border-white/20 pt-10">
           <h1 className="text-4xl font-semibold uppercase leading-[0.94] text-white sm:text-5xl lg:text-6xl xl:text-[5.5rem]">
             <TextReveal delay={0.4}>
