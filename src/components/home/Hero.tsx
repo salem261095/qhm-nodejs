@@ -9,7 +9,7 @@ export default function Hero() {
   return (
     <section className="relative min-h-[640px] sm:min-h-[700px] lg:h-[50vw] lg:min-h-[680px] lg:max-h-[920px] overflow-hidden bg-brand text-white">
       <motion.video
-        key="/assets/vid/2-1RatioHeroSection_v3.mp4"
+        key="/assets/vid/2-1RatioHeroSection_v4.mp4"
         autoPlay
         loop
         muted
@@ -20,9 +20,9 @@ export default function Hero() {
         transition={{ duration: 4.5, ease }}
         className="absolute inset-0 h-full w-full object-cover object-[center_35%]"
         style={{ opacity: 0.55 }}
-        src="/assets/vid/2-1RatioHeroSection_v3.mp4"
+        src="/assets/vid/2-1RatioHeroSection_v4.mp4"
       >
-        <source src="/assets/vid/2-1RatioHeroSection_v3.mp4" type="video/mp4" />
+        <source src="/assets/vid/2-1RatioHeroSection_v4.mp4" type="video/mp4" />
       </motion.video>
       <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(25,57,138,0.72)_0%,rgba(25,57,138,0.38)_60%,rgba(25,57,138,0.58)_100%)]" />
 
